@@ -1,0 +1,469 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		980F64AF2B78FF85000738EF /* Fox_DocsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F64AE2B78FF85000738EF /* Fox_DocsApp.swift */; };
+		980F64B12B78FF85000738EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F64B02B78FF85000738EF /* ContentView.swift */; };
+		980F64B52B78FF86000738EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 980F64B42B78FF86000738EF /* Assets.xcassets */; };
+		980F64B82B78FF86000738EF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 980F64B72B78FF86000738EF /* Preview Assets.xcassets */; };
+		980F64BF2B790881000738EF /* CardsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F64BE2B790881000738EF /* CardsModel.swift */; };
+		980F64C32B79572E000738EF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F64C22B79572E000738EF /* Extensions.swift */; };
+		980F64C72B795EBB000738EF /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F64C62B795EBB000738EF /* AddCardViewController.swift */; };
+		981B82CA2B7D0E5E008D3EDA /* AddInnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B82C92B7D0E5E008D3EDA /* AddInnView.swift */; };
+		981B82CC2B7D29EC008D3EDA /* ShowDriveLicensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B82CB2B7D29EC008D3EDA /* ShowDriveLicensView.swift */; };
+		981B82CE2B7D2ACC008D3EDA /* DriveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B82CD2B7D2ACC008D3EDA /* DriveModel.swift */; };
+		981B82D02B7D48BA008D3EDA /* AddDriveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B82CF2B7D48BA008D3EDA /* AddDriveView.swift */; };
+		983E51CE2B7CBD8900AEA8B2 /* AddIntPassportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E51CD2B7CBD8900AEA8B2 /* AddIntPassportView.swift */; };
+		983E51D02B7CC8C800AEA8B2 /* PassportIntModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E51CF2B7CC8C800AEA8B2 /* PassportIntModel.swift */; };
+		983E51D22B7CCCC500AEA8B2 /* ShowPassportIntView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E51D12B7CCCC500AEA8B2 /* ShowPassportIntView.swift */; };
+		983E51D42B7CE9D000AEA8B2 /* INNModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E51D32B7CE9D000AEA8B2 /* INNModel.swift */; };
+		983E51D62B7CEADC00AEA8B2 /* ShowInnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E51D52B7CEADC00AEA8B2 /* ShowInnView.swift */; };
+		985223862B7B8E39000A0585 /* ShowPassportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985223852B7B8E39000A0585 /* ShowPassportView.swift */; };
+		985223882B7BB0F3000A0585 /* AddPassportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985223872B7BB0F3000A0585 /* AddPassportView.swift */; };
+		988ACD532B7C06AE00189B66 /* AddSnilsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988ACD522B7C06AE00189B66 /* AddSnilsView.swift */; };
+		988ACD552B7C0F3500189B66 /* SnilsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988ACD542B7C0F3500189B66 /* SnilsModel.swift */; };
+		988ACD572B7C0FB900189B66 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988ACD562B7C0FB900189B66 /* Enums.swift */; };
+		988ACD592B7C12D000189B66 /* ShowSnilsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988ACD582B7C12D000189B66 /* ShowSnilsView.swift */; };
+		98F9F0502B7A531000EC8DAF /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9F04F2B7A531000EC8DAF /* CardViewController.swift */; };
+		98F9F0582B7A6F0700EC8DAF /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9F0572B7A6F0700EC8DAF /* BannerModifier.swift */; };
+		98F9F05C2B7A7C7000EC8DAF /* PassportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9F05B2B7A7C7000EC8DAF /* PassportModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		980F64AB2B78FF85000738EF /* Fox Docs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fox Docs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		980F64AE2B78FF85000738EF /* Fox_DocsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fox_DocsApp.swift; sourceTree = "<group>"; };
+		980F64B02B78FF85000738EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		980F64B42B78FF86000738EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		980F64B72B78FF86000738EF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		980F64BE2B790881000738EF /* CardsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsModel.swift; sourceTree = "<group>"; };
+		980F64C22B79572E000738EF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		980F64C62B795EBB000738EF /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
+		981B82C92B7D0E5E008D3EDA /* AddInnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInnView.swift; sourceTree = "<group>"; };
+		981B82CB2B7D29EC008D3EDA /* ShowDriveLicensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDriveLicensView.swift; sourceTree = "<group>"; };
+		981B82CD2B7D2ACC008D3EDA /* DriveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveModel.swift; sourceTree = "<group>"; };
+		981B82CF2B7D48BA008D3EDA /* AddDriveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDriveView.swift; sourceTree = "<group>"; };
+		983E51CD2B7CBD8900AEA8B2 /* AddIntPassportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIntPassportView.swift; sourceTree = "<group>"; };
+		983E51CF2B7CC8C800AEA8B2 /* PassportIntModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportIntModel.swift; sourceTree = "<group>"; };
+		983E51D12B7CCCC500AEA8B2 /* ShowPassportIntView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPassportIntView.swift; sourceTree = "<group>"; };
+		983E51D32B7CE9D000AEA8B2 /* INNModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INNModel.swift; sourceTree = "<group>"; };
+		983E51D52B7CEADC00AEA8B2 /* ShowInnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowInnView.swift; sourceTree = "<group>"; };
+		985223852B7B8E39000A0585 /* ShowPassportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPassportView.swift; sourceTree = "<group>"; };
+		985223872B7BB0F3000A0585 /* AddPassportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPassportView.swift; sourceTree = "<group>"; };
+		988ACD512B7BE35E00189B66 /* Fox-Docs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fox-Docs-Info.plist"; sourceTree = SOURCE_ROOT; };
+		988ACD522B7C06AE00189B66 /* AddSnilsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSnilsView.swift; sourceTree = "<group>"; };
+		988ACD542B7C0F3500189B66 /* SnilsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnilsModel.swift; sourceTree = "<group>"; };
+		988ACD562B7C0FB900189B66 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		988ACD582B7C12D000189B66 /* ShowSnilsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSnilsView.swift; sourceTree = "<group>"; };
+		98F9F04F2B7A531000EC8DAF /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		98F9F0572B7A6F0700EC8DAF /* BannerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModifier.swift; sourceTree = "<group>"; };
+		98F9F05B2B7A7C7000EC8DAF /* PassportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		980F64A82B78FF85000738EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		980F64A22B78FF85000738EF = {
+			isa = PBXGroup;
+			children = (
+				98F9F05E2B7A7DA200EC8DAF /* ShowControllers */,
+				98F9F05D2B7A7D8400EC8DAF /* AddControllers */,
+				98F9F05A2B7A7C4500EC8DAF /* Models */,
+				98F9F0592B7A7C0900EC8DAF /* Extensions */,
+				980F64AD2B78FF85000738EF /* Fox Docs */,
+				980F64AC2B78FF85000738EF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		980F64AC2B78FF85000738EF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				980F64AB2B78FF85000738EF /* Fox Docs.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		980F64AD2B78FF85000738EF /* Fox Docs */ = {
+			isa = PBXGroup;
+			children = (
+				988ACD512B7BE35E00189B66 /* Fox-Docs-Info.plist */,
+				980F64AE2B78FF85000738EF /* Fox_DocsApp.swift */,
+				980F64B02B78FF85000738EF /* ContentView.swift */,
+				980F64B42B78FF86000738EF /* Assets.xcassets */,
+				980F64B62B78FF86000738EF /* Preview Content */,
+			);
+			path = "Fox Docs";
+			sourceTree = "<group>";
+		};
+		980F64B62B78FF86000738EF /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				980F64B72B78FF86000738EF /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		98F9F0592B7A7C0900EC8DAF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				988ACD562B7C0FB900189B66 /* Enums.swift */,
+				980F64C22B79572E000738EF /* Extensions.swift */,
+				98F9F0572B7A6F0700EC8DAF /* BannerModifier.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		98F9F05A2B7A7C4500EC8DAF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				980F64BE2B790881000738EF /* CardsModel.swift */,
+				98F9F05B2B7A7C7000EC8DAF /* PassportModel.swift */,
+				988ACD542B7C0F3500189B66 /* SnilsModel.swift */,
+				983E51CF2B7CC8C800AEA8B2 /* PassportIntModel.swift */,
+				983E51D32B7CE9D000AEA8B2 /* INNModel.swift */,
+				981B82CD2B7D2ACC008D3EDA /* DriveModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		98F9F05D2B7A7D8400EC8DAF /* AddControllers */ = {
+			isa = PBXGroup;
+			children = (
+				980F64C62B795EBB000738EF /* AddCardViewController.swift */,
+				985223872B7BB0F3000A0585 /* AddPassportView.swift */,
+				988ACD522B7C06AE00189B66 /* AddSnilsView.swift */,
+				983E51CD2B7CBD8900AEA8B2 /* AddIntPassportView.swift */,
+				981B82C92B7D0E5E008D3EDA /* AddInnView.swift */,
+				981B82CF2B7D48BA008D3EDA /* AddDriveView.swift */,
+			);
+			path = AddControllers;
+			sourceTree = "<group>";
+		};
+		98F9F05E2B7A7DA200EC8DAF /* ShowControllers */ = {
+			isa = PBXGroup;
+			children = (
+				98F9F04F2B7A531000EC8DAF /* CardViewController.swift */,
+				985223852B7B8E39000A0585 /* ShowPassportView.swift */,
+				988ACD582B7C12D000189B66 /* ShowSnilsView.swift */,
+				983E51D12B7CCCC500AEA8B2 /* ShowPassportIntView.swift */,
+				983E51D52B7CEADC00AEA8B2 /* ShowInnView.swift */,
+				981B82CB2B7D29EC008D3EDA /* ShowDriveLicensView.swift */,
+			);
+			path = ShowControllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		980F64AA2B78FF85000738EF /* Fox Docs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 980F64BB2B78FF86000738EF /* Build configuration list for PBXNativeTarget "Fox Docs" */;
+			buildPhases = (
+				980F64A72B78FF85000738EF /* Sources */,
+				980F64A82B78FF85000738EF /* Frameworks */,
+				980F64A92B78FF85000738EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Fox Docs";
+			productName = "Fox Docs";
+			productReference = 980F64AB2B78FF85000738EF /* Fox Docs.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		980F64A32B78FF85000738EF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					980F64AA2B78FF85000738EF = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = 980F64A62B78FF85000738EF /* Build configuration list for PBXProject "Fox Docs" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 980F64A22B78FF85000738EF;
+			productRefGroup = 980F64AC2B78FF85000738EF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				980F64AA2B78FF85000738EF /* Fox Docs */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		980F64A92B78FF85000738EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				980F64B82B78FF86000738EF /* Preview Assets.xcassets in Resources */,
+				980F64B52B78FF86000738EF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		980F64A72B78FF85000738EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				980F64C72B795EBB000738EF /* AddCardViewController.swift in Sources */,
+				98F9F05C2B7A7C7000EC8DAF /* PassportModel.swift in Sources */,
+				988ACD592B7C12D000189B66 /* ShowSnilsView.swift in Sources */,
+				988ACD552B7C0F3500189B66 /* SnilsModel.swift in Sources */,
+				98F9F0502B7A531000EC8DAF /* CardViewController.swift in Sources */,
+				981B82CA2B7D0E5E008D3EDA /* AddInnView.swift in Sources */,
+				983E51D62B7CEADC00AEA8B2 /* ShowInnView.swift in Sources */,
+				981B82CE2B7D2ACC008D3EDA /* DriveModel.swift in Sources */,
+				983E51D42B7CE9D000AEA8B2 /* INNModel.swift in Sources */,
+				983E51D22B7CCCC500AEA8B2 /* ShowPassportIntView.swift in Sources */,
+				98F9F0582B7A6F0700EC8DAF /* BannerModifier.swift in Sources */,
+				985223862B7B8E39000A0585 /* ShowPassportView.swift in Sources */,
+				981B82CC2B7D29EC008D3EDA /* ShowDriveLicensView.swift in Sources */,
+				988ACD572B7C0FB900189B66 /* Enums.swift in Sources */,
+				983E51D02B7CC8C800AEA8B2 /* PassportIntModel.swift in Sources */,
+				985223882B7BB0F3000A0585 /* AddPassportView.swift in Sources */,
+				980F64C32B79572E000738EF /* Extensions.swift in Sources */,
+				980F64B12B78FF85000738EF /* ContentView.swift in Sources */,
+				981B82D02B7D48BA008D3EDA /* AddDriveView.swift in Sources */,
+				980F64BF2B790881000738EF /* CardsModel.swift in Sources */,
+				988ACD532B7C06AE00189B66 /* AddSnilsView.swift in Sources */,
+				983E51CE2B7CBD8900AEA8B2 /* AddIntPassportView.swift in Sources */,
+				980F64AF2B78FF85000738EF /* Fox_DocsApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		980F64B92B78FF86000738EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		980F64BA2B78FF86000738EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		980F64BC2B78FF86000738EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Fox Docs/Preview Content\"";
+				DEVELOPMENT_TEAM = 7U3Z29D5Y3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Fox-Docs-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Fox.Fox-Docs";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		980F64BD2B78FF86000738EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Fox Docs/Preview Content\"";
+				DEVELOPMENT_TEAM = 7U3Z29D5Y3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Fox-Docs-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Fox.Fox-Docs";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		980F64A62B78FF85000738EF /* Build configuration list for PBXProject "Fox Docs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				980F64B92B78FF86000738EF /* Debug */,
+				980F64BA2B78FF86000738EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		980F64BB2B78FF86000738EF /* Build configuration list for PBXNativeTarget "Fox Docs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				980F64BC2B78FF86000738EF /* Debug */,
+				980F64BD2B78FF86000738EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 980F64A32B78FF85000738EF /* Project object */;
+}
