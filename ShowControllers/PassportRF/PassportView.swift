@@ -1,81 +1,33 @@
 //
-//  Test.swift
+//  PassportView.swift
 //  Fox Docs
 //
-//  Created by Fox on 13.02.2024.
+//  Created by Дарья Котина on 21.02.2024.
 //
 
 import SwiftUI
 
-struct ShowPassportView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
-    @State private var showAlert = false
+struct PassportView: View {
 
     let passport: PassportModel
+    var copyAction: (String) -> Void
+    var shareAction: String
+    var shareTitle: String
 
     var body: some View {
-        NavigationStack {
-            VStack {
-                HStack {
-                    Text("Паспорт РФ")
-                        .font(.title3)
-                        .bold()
-                    Spacer()
-                    Button {
-                        showAlert = true
-                    } label: {
-                        Image(systemName: "trash.circle.fill")
-                            .font(.title2)
-                            .foregroundColor(.red)
-                    }
-                    .alert(isPresented: $showAlert) {
-                        Alert(title: Text("Вы хотите удалить этот документ?"),
-                              primaryButton: .cancel(Text("Отменить")),
-                              secondaryButton: .destructive(Text("Удалить")) {
-                            deleteData()
-                            presentationMode.wrappedValue.dismiss()
-                        }
-                        )
-                    }
-                }
-
-                CardView()
-                Spacer(minLength: 0)
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Label("Закрыть", systemImage: "xmark.circle.fill")
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                        .padding(.vertical, 12)
-                        .frame(maxWidth: .infinity)
-                        .background {
-                            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .fill(.linearGradient(colors: [Color.red, Color.orange], startPoint: .topLeading, endPoint: .bottomTrailing))
-                        }
-                }
-            }
-            .padding()
-        }
-    }
-
-    @ViewBuilder
-    func CardView() -> some View {
-        VStack() {
+        VStack {
             Text("РОССИЙСКАЯ ФЕДЕРАЦИЯ")
                 .foregroundColor(.passportText)
                 .font(.caption)
-            VStack() {
+            VStack {
                 VStack(spacing: 1) {
-                    HStack() {
+                    HStack {
                         Text("Кем выдан")
                             .font(.caption2)
                             .foregroundColor(.secondary)
                         Spacer()
                     }
-                    HStack() {
+                    HStack {
                         Text(passport.whoGive)
                             .font(.caption2)
                             .multilineTextAlignment(.leading)
@@ -84,7 +36,7 @@ struct ShowPassportView: View {
                             .foregroundColor(.black)
 
                         Button {
-                            copyTapped(text: passport.whoGive, spaces: true)
+                            copyAction(passport.whoGive)
                         } label: {
                             Image("CopyImage")
                                 .resizable()
@@ -94,16 +46,16 @@ struct ShowPassportView: View {
                         }
                         Spacer()
                     }
-                    HStack() {
+                    HStack {
                         VStack(spacing: 5){
-                            HStack() {
+                            HStack {
                                 Text("Дата выдачи")
                                     .font(.caption2)
                                     .foregroundColor(.secondary)
                                 Spacer()
                             }
                             .padding(.top, 10)
-                            HStack() {
+                            HStack {
                                 Text(passport.dateOfVidachy)
                                     .font(.caption2)
                                     .foregroundColor(.black)
@@ -111,14 +63,14 @@ struct ShowPassportView: View {
                             }
                         }
                         VStack(spacing: 5){
-                            HStack() {
+                            HStack {
                                 Text("Код подразделения")
                                     .font(.caption2)
                                     .foregroundColor(.secondary)
                                 Spacer()
                             }
                             .padding(.top, 10)
-                            HStack() {
+                            HStack {
                                 Text(passport.codePodrazdelenia)
                                     .font(.caption2)
                                     .foregroundColor(.black)
@@ -126,13 +78,13 @@ struct ShowPassportView: View {
                             }
                         }
                     }
-                    HStack() {
+                    HStack {
                         Text(passport.seriaAndNumber)
                             .font(.title3)
                             .foregroundColor(.passport)
                             .bold()
                         Button {
-                            copyTapped(text: passport.seriaAndNumber, spaces: false)
+                            copyAction(passport.seriaAndNumber.replacingOccurrences(of: " ", with: ""))
                         } label: {
                             Image("CopyImage")
                                 .resizable()
@@ -156,61 +108,18 @@ struct ShowPassportView: View {
                 RoundedRectangle(cornerRadius: 10, style: .continuous)
                     .fill(Color.passportInside)
             }
-            HStack() {
-                VStack {
-                    VStack() {
-                        Color.gray.frame(height: 1 / UIScreen.main.scale)
-                    }
-                }
-                VStack {
+            HStack {
+                ForEach(0..<10) { _ in
                     VStack {
-                        Color.gray.frame(height: 1 / UIScreen.main.scale)
-                    }
-                }
-                VStack {
-                    VStack {
-                        Color.gray.frame(height: 1 / UIScreen.main.scale)
-                    }
-                }
-                VStack {
-                    VStack {
-                        Color.gray.frame(height: 1 / UIScreen.main.scale)
-                    }
-                }
-                VStack {
-                    VStack {
-                        Color.gray.frame(height: 1 / UIScreen.main.scale)
-                    }
-                }
-                VStack {
-                    VStack {
-                        Color.gray.frame(height: 1 / UIScreen.main.scale)
-                    }
-                }
-                VStack {
-                    VStack {
-                        Color.gray.frame(height: 1 / UIScreen.main.scale)
-                    }
-                }
-                VStack {
-                    VStack {
-                        Color.gray.frame(height: 1 / UIScreen.main.scale)
-                    }
-                }
-                VStack {
-                    VStack {
-                        Color.gray.frame(height: 1 / UIScreen.main.scale)
-                    }
-                }
-                VStack {
-                    VStack {
-                        Color.gray.frame(height: 1 / UIScreen.main.scale)
+                        VStack {
+                            Color.gray.frame(height: 1 / UIScreen.main.scale)
+                        }
                     }
                 }
             }
-            VStack() {
+            VStack {
                 HStack(){
-                    Image(.passportPhoto)
+                    Image("passportPhoto")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 130)
@@ -278,7 +187,7 @@ struct ShowPassportView: View {
                         }.padding(.top, 1)
                     }
                 }
-                ShareLink(item: sharePassport(),preview: SharePreview(makeShortName(), image: Image("fox"))) {
+                ShareLink(item: shareAction,preview: SharePreview(shareTitle, image: Image("fox"))) {
                     Label("Поделиться", systemImage:  "square.and.arrow.up")
                         .foregroundColor(.secondary)
                         .padding(.vertical, 12)
@@ -297,60 +206,4 @@ struct ShowPassportView: View {
                 .fill(Color.passport)
         }
     }
-
-    private func copyTapped(text: String, spaces: Bool) {
-        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
-        let copiedText = spaces ? text : text.replacingOccurrences(of: " ", with: "")
-
-        UIPasteboard.general.string = copiedText
-        feedbackGenerator.impactOccurred()
-    }
-
-    private func sharePassport() -> String {
-        let fullName = passport.fullName
-        let seriaAndNumber = passport.seriaAndNumber
-        let dateOfVidachy = passport.dateOfVidachy
-        let whoGive = passport.whoGive
-        let codePodrazdelenia = passport.codePodrazdelenia
-        let dateOfBirth = passport.dateOfBirth
-        let placeOfBirth = passport.placeOfBirth
-
-        let passportData = "ФИО: \(fullName)\nСерия и номер: \(seriaAndNumber)\nДата выдачи: \(dateOfVidachy)\nКем выдан: \(whoGive)\nКод подразделения: \(codePodrazdelenia)\nДата рождения: \(dateOfBirth)\nМесто рождения: \(placeOfBirth)"
-
-        return passportData
-    }
-
-    private func deleteData() {
-        modelContext.delete(passport)
-        do {
-            try modelContext.save()
-            presentationMode.wrappedValue.dismiss()
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-
-    func makeShortName() -> String {
-        let nameComponents = passport.fullName.components(separatedBy: " ")
-        var shortName = "Паспорт РФ "
-
-        if let lastName = nameComponents.first {
-            shortName += "\(lastName) "
-        }
-
-        for i in 1..<nameComponents.count {
-            if let firstCharacter = nameComponents[i].first {
-                shortName += "\(firstCharacter)."
-            }
-        }
-
-        return shortName.trimmingCharacters(in: .whitespaces)
-    }
-
 }
-
-
-#Preview {
-    ShowPassportView(passport: PassportModel(fullName: "Котина Дарья Сергеевна", seriaAndNumber: "1234 123456", dateOfVidachy: "12.12.2020", whoGive: "МВД РОССИИ ПО ГОР МОСКВЕ gkghbkhgv yugkyu yugku fhf uehf e euhfuwehf uehfuqwefhu uehfuhfy gkgkyu yugukygb yugkuy", codePodrazdelenia: "770-770", dateOfBirth: "12.12.2022", placeOfBirth: "г.Москва", type: "Паспорт", sex: .female))
-}
-
