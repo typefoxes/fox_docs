@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 
 @Model
-final class PassportModel {
+final class PassportModel: Identifiable {
     var id = UUID()
     var fullName: String
     var seriaAndNumber: String

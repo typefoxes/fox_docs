@@ -8,142 +8,88 @@
 import SwiftUI
 import SwiftData
 
+struct DocumentCardView: View {
+    let documentType: DocumentType
+    let onTapAction: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(documentType.getType())
+                .foregroundColor(.white)
+                .font(.title2)
+            Text(documentType.getNumber())
+                .foregroundColor(.white)
+                .font(.title2)
+                .padding(.top, 20)
+        }
+        .padding(10)
+        .onTapGesture {
+            onTapAction()
+        }
+        .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(documentType.getGradient())
+        )
+    }
+}
+
 struct DocsSectionView: View {
-    
     @Query private var passports: [PassportModel]
     @Query private var snils: [SnilsModel]
     @Query private var passportInt: [PassportIntModel]
     @Query private var inn: [INNModel]
     @Query private var drive: [DriveModel]
-    
-    @State var selectedPassport: PassportModel? = nil
-    @State var selectedSnils: SnilsModel? = nil
-    @State var selectedPass: PassportIntModel? = nil
-    @State var selectedInn: INNModel? = nil
-    @State var selectedDrive: DriveModel? = nil
-    
+
+    @State private var selectedDocument: DocumentWrapper?
+
     var body: some View {
+        let allDocuments: [DocumentWrapper] = passports.map { DocumentWrapper(document: $0) } +
+                                              snils.map { DocumentWrapper(document: $0) } +
+                                              passportInt.map { DocumentWrapper(document: $0) } +
+                                              inn.map { DocumentWrapper(document: $0) } +
+                                              drive.map { DocumentWrapper(document: $0) }
+
         Section(header: Text("Документы")) {
-            ForEach(0..<1, id: \.self) { index in
-                ScrollView(.horizontal) {
-                    LazyHStack {
-                        ForEach(passports) { passport in
-                            VStack(alignment: .leading) {
-                                Text(passport.type)
-                                    .foregroundColor(.white)
-                                    .font(.title2)
-                                VStack {} .frame(height: 20)
-                                Text(passport.seriaAndNumber)
-                                    .foregroundColor(.white)
-                                    .font(.title2)
-                            }
-                            .padding(10)
-                            .onTapGesture {
-                                selectedPassport = passport
-                            }
-                            .background {
-                                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                    .fill(.linearGradient(colors: [Color.passport, Color.red], startPoint: .topLeading, endPoint: .bottomTrailing))
-                            }
-                        }
-                        ForEach(snils) { snil in
-                            VStack(alignment: .leading) {
-                                Text(snil.type)
-                                    .foregroundColor(.white)
-                                    .font(.title2)
-                                VStack {} .frame(height: 20)
-                                Text(snil.number)
-                                    .foregroundColor(.white)
-                                    .font(.title2)
-                            }
-                            .padding(10)
-                            .onTapGesture {
-                                selectedSnils = snil
-                            }
-                            .background {
-                                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                    .fill(.linearGradient(colors: [Color.snils, Color.snilsHead], startPoint: .topLeading, endPoint: .bottomTrailing))
-                            }
-                        }
-                        ForEach(passportInt) { pass in
-                            VStack(alignment: .leading) {
-                                Text(pass.type)
-                                    .foregroundColor(.white)
-                                    .font(.title2)
-                                VStack {} .frame(height: 20)
-                                Text(pass.number)
-                                    .foregroundColor(.white)
-                                    .font(.title2)
-                            }
-                            .padding(10)
-                            .onTapGesture {
-                                selectedPass = pass
-                            }
-                            .background {
-                                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                    .fill(.linearGradient(colors: [Color.passport, Color.orange], startPoint: .topLeading, endPoint: .bottomTrailing))
-                            }
-                        }
-                        ForEach(inn) { inn in
-                            VStack(alignment: .leading) {
-                                Text(inn.type)
-                                    .foregroundColor(.white)
-                                    .font(.title2)
-                                VStack {} .frame(height: 20)
-                                Text(inn.number)
-                                    .foregroundColor(.white)
-                                    .font(.title2)
-                            }
-                            .padding(10)
-                            .onTapGesture {
-                                selectedInn = inn
-                            }
-                            .background {
-                                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                    .fill(.linearGradient(colors: [Color.passport, Color.orange], startPoint: .topLeading, endPoint: .bottomTrailing))
-                            }
-                        }
-                        ForEach(drive) { drive in
-                            VStack(alignment: .leading) {
-                                Text(drive.type)
-                                    .foregroundColor(.white)
-                                    .font(.title2)
-                                VStack {} .frame(height: 20)
-                                Text(drive.number)
-                                    .foregroundColor(.white)
-                                    .font(.title2)
-                            }
-                            .padding(10)
-                            .onTapGesture {
-                                selectedDrive = drive
-                            }
-                            .background {
-                                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                    .fill(.linearGradient(colors: [Color.passport, Color.orange], startPoint: .topLeading, endPoint: .bottomTrailing))
-                            }
+            ScrollView(.horizontal) {
+                LazyHStack {
+                    ForEach(allDocuments) { document in
+                        DocumentCardView(documentType: getDocumentType(document.document)) {
+                            selectedDocument = document
                         }
                     }
                 }
-                .frame(height: 200)
+            }
+            .frame(height: 200)
+        }
+        .sheet(item: $selectedDocument) { documentWrapper in
+            switch getDocumentType(documentWrapper.document) {
+            case .passport(let passport):
+                ShowPassportView(passport: passport)
+            case .snils(let snils):
+                ShowSnilsView(snils: snils)
+            case .passportInt(let passportInt):
+                ShowPassportIntView(passport: passportInt)
+            case .inn(let inn):
+                ShowInnView(inn: inn)
+            case .drive(let drive):
+                ShowDriveLicensView(drive: drive)
             }
         }
-        .sheet(item: $selectedPassport) { passport in
-            ShowPassportView(passport: passport)
-        }
-        .sheet(item: $selectedSnils) { snils in
-            ShowSnilsView(snils: snils)
-        }
-        .sheet(item: $selectedPass) { pass in
-            ShowPassportIntView(passport: pass)
-        }
-        .sheet(item: $selectedInn) { inn in
-            ShowInnView(inn: inn)
-        }
-        .sheet(item: $selectedDrive) { drive in
-            ShowDriveLicensView(drive: drive)
+    }
+
+    private func getDocumentType(_ document: Any) -> DocumentType {
+        if let passport = document as? PassportModel {
+            return .passport(passport)
+        } else if let snils = document as? SnilsModel {
+            return .snils(snils)
+        } else if let passportInt = document as? PassportIntModel {
+            return .passportInt(passportInt)
+        } else if let inn = document as? INNModel {
+            return .inn(inn)
+        } else if let drive = document as? DriveModel {
+            return .drive(drive)
+        } else {
+            fatalError("Unknown document type")
         }
     }
-}
-#Preview {
-    DocsSectionView()
 }

@@ -11,8 +11,8 @@ import SwiftData
 import SwiftUI
 
 @Model
-final class INNModel {
-
+final class INNModel: Identifiable {
+    var id = UUID()
     var number: String
     var name: String
     var gender: Sex

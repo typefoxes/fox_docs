@@ -11,8 +11,8 @@ import SwiftData
 import SwiftUI
 
 @Model
-final class PassportIntModel {
-
+final class PassportIntModel: Identifiable {
+    var id = UUID()
     var surname: String
     var surnameEng: String
     var givenName: String

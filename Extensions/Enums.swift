@@ -68,3 +68,41 @@ extension DriveCategory {
         return [.none, .a, .a1, .b, .b1, .c, .c1, .d, .be, .c1e, .de, .d1e, .m, .tm, .tb]
     }
 }
+
+enum DocumentType {
+    case passport(PassportModel)
+    case snils(SnilsModel)
+    case passportInt(PassportIntModel)
+    case inn(INNModel)
+    case drive(DriveModel)
+
+    func getType() -> String {
+        switch self {
+        case .passport(let document): return document.type
+        case .snils(let document): return document.type
+        case .passportInt(let document): return document.type
+        case .inn(let document): return document.type
+        case .drive(let document): return document.type
+        }
+    }
+
+    func getNumber() -> String {
+        switch self {
+        case .passport(let document): return document.seriaAndNumber
+        case .snils(let document): return document.number
+        case .passportInt(let document): return document.number
+        case .inn(let document): return document.number
+        case .drive(let document): return document.number
+        }
+    }
+
+    func getGradient() -> LinearGradient {
+        switch self {
+        case .passport: return LinearGradient(colors: [Color.blue, Color.green], startPoint: .topLeading, endPoint: .bottomTrailing)
+        case .snils: return LinearGradient(colors: [Color.red, Color.orange], startPoint: .topLeading, endPoint: .bottomTrailing)
+        case .passportInt: return LinearGradient(colors: [Color.yellow, Color.purple], startPoint: .topLeading, endPoint: .bottomTrailing)
+        case .inn: return LinearGradient(colors: [Color.gray, Color.black], startPoint: .topLeading, endPoint: .bottomTrailing)
+        case .drive: return LinearGradient(colors: [Color.pink, Color.purple], startPoint: .topLeading, endPoint: .bottomTrailing)
+        }
+    }
+}

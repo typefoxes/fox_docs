@@ -17,3 +17,8 @@ extension View {
             .opacity(status ? 0.6 : 1)
     }
 }
+
+struct DocumentWrapper: Identifiable {
+    let id = UUID()
+    let document: Any
+}

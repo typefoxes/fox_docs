@@ -11,8 +11,8 @@ import SwiftData
 import SwiftUI
 
 @Model
-final class SnilsModel {
-
+final class SnilsModel: Identifiable {
+    var id = UUID()
     var number: String
     var name: String
     var dateAndPlace: String
