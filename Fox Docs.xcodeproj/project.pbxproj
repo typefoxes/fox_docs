@@ -35,6 +35,7 @@
 		988ACD552B7C0F3500189B66 /* SnilsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988ACD542B7C0F3500189B66 /* SnilsModel.swift */; };
 		988ACD572B7C0FB900189B66 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988ACD562B7C0FB900189B66 /* Enums.swift */; };
 		988ACD592B7C12D000189B66 /* ShowSnilsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988ACD582B7C12D000189B66 /* ShowSnilsView.swift */; };
+		98D202C02B86501D00E02039 /* InnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D202BF2B86501D00E02039 /* InnView.swift */; };
 		98F9F0502B7A531000EC8DAF /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9F04F2B7A531000EC8DAF /* CardViewController.swift */; };
 		98F9F0582B7A6F0700EC8DAF /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9F0572B7A6F0700EC8DAF /* BannerModifier.swift */; };
 		98F9F05C2B7A7C7000EC8DAF /* PassportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9F05B2B7A7C7000EC8DAF /* PassportModel.swift */; };
@@ -71,6 +72,7 @@
 		988ACD542B7C0F3500189B66 /* SnilsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnilsModel.swift; sourceTree = "<group>"; };
 		988ACD562B7C0FB900189B66 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		988ACD582B7C12D000189B66 /* ShowSnilsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSnilsView.swift; sourceTree = "<group>"; };
+		98D202BF2B86501D00E02039 /* InnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnView.swift; sourceTree = "<group>"; };
 		98F9F04F2B7A531000EC8DAF /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		98F9F0572B7A6F0700EC8DAF /* BannerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModifier.swift; sourceTree = "<group>"; };
 		98F9F05B2B7A7C7000EC8DAF /* PassportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportModel.swift; sourceTree = "<group>"; };
@@ -172,6 +174,15 @@
 			path = "International passport";
 			sourceTree = "<group>";
 		};
+		98D202BE2B86500A00E02039 /* Inn */ = {
+			isa = PBXGroup;
+			children = (
+				983E51D52B7CEADC00AEA8B2 /* ShowInnView.swift */,
+				98D202BF2B86501D00E02039 /* InnView.swift */,
+			);
+			path = Inn;
+			sourceTree = "<group>";
+		};
 		98F9F0592B7A7C0900EC8DAF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,12 +222,12 @@
 		98F9F05E2B7A7DA200EC8DAF /* ShowControllers */ = {
 			isa = PBXGroup;
 			children = (
+				98D202BE2B86500A00E02039 /* Inn */,
 				983016222B855BA00073C2B9 /* International passport */,
 				9830161F2B85534C0073C2B9 /* Snils */,
 				9830161C2B854C230073C2B9 /* PassportRF */,
 				9830161B2B854B820073C2B9 /* Cards */,
 				983016182B8549170073C2B9 /* Views */,
-				983E51D52B7CEADC00AEA8B2 /* ShowInnView.swift */,
 				981B82CB2B7D29EC008D3EDA /* ShowDriveLicensView.swift */,
 			);
 			path = ShowControllers;
@@ -298,6 +309,7 @@
 				988ACD552B7C0F3500189B66 /* SnilsModel.swift in Sources */,
 				98F9F0502B7A531000EC8DAF /* CardViewController.swift in Sources */,
 				981B82CA2B7D0E5E008D3EDA /* AddInnView.swift in Sources */,
+				98D202C02B86501D00E02039 /* InnView.swift in Sources */,
 				983016152B8548880073C2B9 /* CloseButtonView.swift in Sources */,
 				983E51D62B7CEADC00AEA8B2 /* ShowInnView.swift in Sources */,
 				983016132B85485C0073C2B9 /* HeaderView.swift in Sources */,

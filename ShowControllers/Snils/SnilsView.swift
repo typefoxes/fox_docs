@@ -68,10 +68,10 @@ struct SnilsDetailsView: View {
 
     var body: some View {
         VStack(spacing: Constants.spacing) {
-            DetailRow(title: Constants.titleNumber, value: snils.number, action: { copyAction(snils.number) })
-            DetailRow(title: Constants.titleName, value: snils.name)
-            DetailRow(title: Constants.titleDate, value: snils.dateAndPlace)
-            DetailRow(title: Constants.titleGender, value: snils.sex.rawValue)
+            DetailSnilsRow(title: Constants.titleNumber, value: snils.number, action: { copyAction(snils.number) })
+            DetailSnilsRow(title: Constants.titleName, value: snils.name)
+            DetailSnilsRow(title: Constants.titleDate, value: snils.dateAndPlace)
+            DetailSnilsRow(title: Constants.titleGender, value: snils.sex.rawValue)
         }
         .padding(.horizontal, Constants.padding)
         .padding(.top, Constants.spacing)
@@ -84,7 +84,7 @@ struct SnilsDetailsView: View {
     }
 }
 
-struct DetailRow: View {
+struct DetailSnilsRow: View {
 
     private enum Constants {
         static let copyImage: Image = Image("CopyImage")

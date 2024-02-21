@@ -7,203 +7,226 @@
 
 import SwiftUI
 
-struct PassportView: View {
+import SwiftUI
 
+struct PassportView: View {
+    
     let passport: PassportModel
     var copyAction: (String) -> Void
     var shareAction: String
     var shareTitle: String
 
     var body: some View {
-        VStack {
+        VStack(spacing: 10) {
             Text("РОССИЙСКАЯ ФЕДЕРАЦИЯ")
                 .foregroundColor(.passportText)
                 .font(.caption)
-            VStack {
-                VStack(spacing: 1) {
+
+            VStack(spacing: 20) {
+                    TextWithCopyButton(title: "Кем выдан", text: passport.whoGive, copyAction: copyAction)
+               HStack(spacing: 10) {
+                    TextWithDetail(title: "Дата выдачи", detail: passport.dateOfVidachy)
+                    TextWithDetail(title: "Код подразделения", detail: passport.codePodrazdelenia)
+                }
+
+                HStack {
+                    Text(passport.seriaAndNumber)
+                        .font(.title3)
+                        .foregroundColor(.passport)
+                        .bold()
+
+                    CopyButton(text: passport.seriaAndNumber.replacingOccurrences(of: " ", with: ""), copyAction: copyAction)
+
+                    Spacer()
+                }
+            }
+            .padding(10)
+            .background(
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .fill(Color.passportInside)
+            )
+
+            Divider()
+
+            VStack(spacing: 10) {
+                PassportPhotoView(image: Image("passportPhoto"), fullName: passport.fullName, sex: passport.sex.rawValue, dateOfBirth: passport.dateOfBirth, placeOfBirth: passport.placeOfBirth)
+                
+                ShareLinkButton(action: shareAction, shareTitle: shareTitle)
+            }
+            .padding(10)
+            .background(
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .fill(Color.passportInside)
+            )
+            .environment(\.colorScheme, .light)
+        }
+        .padding(5)
+        .background(
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                .fill(Color.passport)
+        )
+    }
+}
+
+struct TextWithCopyButton: View {
+    let title: String
+    let text: String
+    var copyAction: (String) -> Void
+
+    var body: some View {
+        VStack {
+            HStack {
+                Text(title)
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+                Spacer()
+            }
+            HStack {
+                Text(text)
+                    .font(.caption2)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(3)
+                    .bold()
+                    .foregroundColor(.black)
+                
+                CopyButton(text: text, copyAction: copyAction)
+                Spacer()
+            }
+        }
+    }
+}
+
+struct TextWithDetail: View {
+    let title: String
+    let detail: String
+
+    var body: some View {
+        VStack(spacing: 5) {
+            HStack {
+                Text(title)
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+                Spacer()
+            }
+
+            HStack {
+                Text(detail)
+                    .font(.caption2)
+                    .foregroundColor(.black)
+                Spacer()
+            }
+        }
+        .padding(.top, 10)
+    }
+}
+
+struct CopyButton: View {
+    let text: String
+    var copyAction: (String) -> Void
+
+    var body: some View {
+        Button(action: {
+            copyAction(text)
+        }) {
+            Image("CopyImage")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 15)
+                .tint(.secondary)
+        }
+    }
+}
+
+struct PassportPhotoView: View {
+    let image: Image
+    let fullName: String
+    let sex: String
+    let dateOfBirth: String
+    let placeOfBirth: String
+
+    var body: some View {
+        HStack {
+            image
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 130)
+                .cornerRadius(10)
+
+            VStack(alignment: .leading, spacing: 15) {
+                VStack() {
                     HStack {
-                        Text("Кем выдан")
+                        Text("ФИО")
                             .font(.caption2)
                             .foregroundColor(.secondary)
                         Spacer()
                     }
                     HStack {
-                        Text(passport.whoGive)
-                            .font(.caption2)
+                        Text(fullName)
                             .multilineTextAlignment(.leading)
                             .lineLimit(3)
-                            .bold()
+                            .font(.caption2)
                             .foregroundColor(.black)
-
-                        Button {
-                            copyAction(passport.whoGive)
-                        } label: {
-                            Image("CopyImage")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height: 15)
-                                .tint(.secondary)
-                        }
                         Spacer()
-                    }
-                    HStack {
-                        VStack(spacing: 5){
-                            HStack {
-                                Text("Дата выдачи")
-                                    .font(.caption2)
-                                    .foregroundColor(.secondary)
-                                Spacer()
-                            }
-                            .padding(.top, 10)
-                            HStack {
-                                Text(passport.dateOfVidachy)
-                                    .font(.caption2)
-                                    .foregroundColor(.black)
-                                Spacer()
-                            }
-                        }
-                        VStack(spacing: 5){
-                            HStack {
-                                Text("Код подразделения")
-                                    .font(.caption2)
-                                    .foregroundColor(.secondary)
-                                Spacer()
-                            }
-                            .padding(.top, 10)
-                            HStack {
-                                Text(passport.codePodrazdelenia)
-                                    .font(.caption2)
-                                    .foregroundColor(.black)
-                                Spacer()
-                            }
-                        }
-                    }
-                    HStack {
-                        Text(passport.seriaAndNumber)
-                            .font(.title3)
-                            .foregroundColor(.passport)
-                            .bold()
-                        Button {
-                            copyAction(passport.seriaAndNumber.replacingOccurrences(of: " ", with: ""))
-                        } label: {
-                            Image("CopyImage")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height: 15)
-                                .tint(.secondary)
-                        }
-                        .padding(.leading, 20)
-                        Spacer()
-                        Image(.herb)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 80)
-                            .tint(.innFontInside)
                     }
                 }
-            }
-            .padding(10)
-            .environment(\.colorScheme, .light)
-            .background {
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .fill(Color.passportInside)
-            }
-            HStack {
-                ForEach(0..<10) { _ in
+                HStack {
                     VStack {
-                        VStack {
-                            Color.gray.frame(height: 1 / UIScreen.main.scale)
-                        }
-                    }
-                }
-            }
-            VStack {
-                HStack(){
-                    Image("passportPhoto")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 130)
-                        .cornerRadius(10)
-
-                    Spacer()
-                    VStack() {
-                        HStack() {
-                            Text("ФИО")
-                                .font(.caption2)
-                                .foregroundColor(.secondary)
-                            Spacer()
-                        }.padding(.top, 5)
-                        HStack() {
-                            Text(passport.fullName)
-                                .multilineTextAlignment(.leading)
-                                .lineLimit(3)
-                                .foregroundColor(.black)
-                                .font(.caption2)
-                            Spacer()
-                        }
-                        HStack() {
-                            VStack(spacing: 5){
-                                HStack() {
-                                    Text("Пол")
-                                        .font(.caption2)
-                                        .foregroundColor(.secondary)
-                                    Spacer()
-                                }
-                                HStack() {
-                                    Text(passport.sex.rawValue)
-                                        .font(.caption2)
-                                        .foregroundColor(.black)
-                                    Spacer()
-                                }
-                            }
-                            VStack(spacing: 5){
-                                HStack() {
-                                    Text("Дата рождения")
-                                        .font(.caption2)
-                                        .foregroundColor(.secondary)
-                                    Spacer()
-                                }
-                                HStack() {
-                                    Text(passport.dateOfBirth)
-                                        .font(.caption2)
-                                        .foregroundColor(.black)
-                                    Spacer()
-                                }
-                            }
-                        }
-                        .padding(.top, 10)
-                        HStack() {
-                            Text("Место рождения")
+                        HStack {
+                            Text("Пол")
                                 .font(.caption2)
                                 .foregroundColor(.secondary)
                             Spacer()
                         }
-                        .padding(.top, 10)
-                        HStack() {
-                            Text(passport.placeOfBirth)
+                        HStack {
+                            Text(sex)
                                 .font(.caption2)
                                 .foregroundColor(.black)
                             Spacer()
-                        }.padding(.top, 1)
+                        }
+                    }
+                    VStack {
+                        HStack {
+                            Text("Дата рождения")
+                                .font(.caption2)
+                                .foregroundColor(.secondary)
+                            Spacer()
+                        }
+                        HStack {
+                            Text(dateOfBirth)
+                                .font(.caption2)
+                                .foregroundColor(.black)
+                            Spacer()
+                        }
                     }
                 }
-                ShareLink(item: shareAction,preview: SharePreview(shareTitle, image: Image("fox"))) {
-                    Label("Поделиться", systemImage:  "square.and.arrow.up")
-                        .foregroundColor(.secondary)
-                        .padding(.vertical, 12)
+                VStack {
+                    HStack {
+                        Text("Место рождения")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                    }
+                    HStack {
+                        Text(placeOfBirth)
+                            .font(.caption2)
+                            .foregroundColor(.black)
+                        Spacer()
+                    }
                 }
             }
-            .padding(10)
-            .background {
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .fill(Color.passportInside)
-            }
-            .environment(\.colorScheme, .light)
         }
-        .padding(5)
-        .background {
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                .fill(Color.passport)
+    }
+}
+
+struct ShareLinkButton: View {
+    var action: String
+    var shareTitle: String
+
+    var body: some View {
+        ShareLink(item: action, preview: SharePreview(shareTitle, image: Image("fox"))) {
+            Label("Поделиться", systemImage: "square.and.arrow.up")
+                .foregroundColor(.secondary)
+                .padding(.vertical, 12)
         }
     }
 }
