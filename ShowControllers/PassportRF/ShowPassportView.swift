@@ -18,7 +18,7 @@ struct ShowPassportView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                HeaderView(showAlert: $showAlert, title: "Паспорт РФ", deleteAction: deleteData, presentationMode: presentationMode)
+                HeaderShowView(showAlert: $showAlert, title: "Паспорт РФ", deleteAction: deleteData, presentationMode: presentationMode)
 
                 PassportView(passport: passport, copyAction: copyTapped, shareAction: sharePassport(), shareTitle: makeShortName())
                 Spacer()

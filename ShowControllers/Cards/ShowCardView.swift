@@ -17,7 +17,7 @@ struct CardViewController: View {
     
     var body: some View {
             VStack {
-                HeaderView(showAlert: $showAlert, title: "Банковская карта", deleteAction: deleteData, presentationMode: presentationMode)
+                HeaderShowView(showAlert: $showAlert, title: "Банковская карта", deleteAction: deleteData, presentationMode: presentationMode)
                 CardView(card: card, copyAction: copyTapped, shareAction: shareCard())
                 Spacer()
                 CloseButtonView(presentationMode: presentationMode)

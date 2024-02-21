@@ -29,8 +29,7 @@ struct InternationalPassportView: View {
         static let shareLinkLabel: String = "Поделиться"
         static let shareLinkImage: String = "square.and.arrow.up"
         static let copyImage: Image = Image("CopyImage")
-        static let photoHeight: CGFloat = 130
-        static let detailsImageHeight: CGFloat = 100
+        static let photoHeight: CGFloat = 110
         static let copyImageHeight: CGFloat = 15
         static let padding: CGFloat = 10
         static let cornerRadius: CGFloat = 10
@@ -45,7 +44,6 @@ struct InternationalPassportView: View {
             VStack {
                 HStack {
                     passportInformation()
-                    passportDetails()
                 }
             }
             .padding(Constants.padding)
@@ -68,15 +66,17 @@ struct InternationalPassportView: View {
         }
         .padding(Constants.padding)
         .background(RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous).fill(Color.passport))
-        shareLink()
+        ShareLinkButton(action: shareAction, shareTitle: Constants.passportType)
     }
     
     private func passportInformation() -> some View {
         VStack(spacing: Constants.padding) {
             passportInfoRow(title: Constants.surnameTitle, value: "\(passport.surname) / \(passport.surnameEng)")
             passportInfoRow(title: Constants.givenNameTitle, value: "\(passport.givenName) / \(passport.givenNameEng)")
-            passportInfoRow(title: Constants.dateOfBirthTitle, value: "\(passport.dateOfBirth)")
-            passportInfoRow(title: Constants.sexTitle, value: "\(passport.gender.rawValue)")
+            HStack {
+                passportInfoRow(title: Constants.sexTitle, value: "\(passport.gender.rawValue)")
+                passportInfoRow(title: Constants.dateOfBirthTitle, value: "\(passport.dateOfBirth)")
+            }
             passportInfoRow(title: Constants.placeOfBirthTitle, value: "\(passport.placeOfBirth) / \(passport.placeOfBirthEng)")
         }
     }
@@ -92,24 +92,6 @@ struct InternationalPassportView: View {
         }
     }
     
-    private func passportDetails() -> some View {
-        HStack {
-            Image(.herb)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: Constants.detailsImageHeight)
-                .tint(.innFontInside)
-        }
-        .padding(Constants.padding)
-    }
-    
-    private func shareLink() -> some View {
-        ShareLink(item: shareAction, preview: SharePreview(Constants.passportType, image: Constants.appImage)) {
-            Label(Constants.shareLinkLabel, systemImage: Constants.shareLinkImage)
-                .foregroundColor(.secondary)
-                .padding(.vertical, Constants.padding)
-        }
-    }
     
     private func passportInfoRow(title: String, value: String, isBold: Bool = false, action: (() -> Void)? = nil) -> some View {
         VStack { HStack {

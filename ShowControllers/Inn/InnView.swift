@@ -38,11 +38,7 @@ struct InnView: View {
             InnDetailsView(inn: inn, copyAction: copyAction)
         }
         .background(RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous).fill(.innTop))
-        ShareLink(item: shareAction, preview: SharePreview(Constants.typeDoc, image: Constants.appImage)) {
-            Label(Constants.shareLabel, systemImage: Constants.sharePic)
-                .foregroundColor(.secondary)
-                .padding(.vertical, Constants.padding)
-        }
+        ShareLinkButton(action: shareAction, shareTitle: Constants.typeDoc)
     }
 }
 

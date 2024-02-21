@@ -18,7 +18,7 @@ struct ShowInnView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                HeaderView(showAlert: $showAlert, title: "ИНН", deleteAction: deleteData, presentationMode: presentationMode)
+                HeaderShowView(showAlert: $showAlert, title: "ИНН", deleteAction: deleteData, presentationMode: presentationMode)
                 InnView(inn: inn, copyAction: copyTapped, shareAction: shareInn())
                 Spacer()
                 CloseButtonView(presentationMode: presentationMode)

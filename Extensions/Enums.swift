@@ -4,7 +4,10 @@
 //
 //  Created by Fox on 13.02.2024.
 //
-
+import SwiftData
+import SwiftUI
+import UIKit
+import Foundation
 
 enum Sex: String, Codable, Hashable {
     case female = "Женский"
@@ -65,12 +68,3 @@ extension DriveCategory {
         return [.none, .a, .a1, .b, .b1, .c, .c1, .d, .be, .c1e, .de, .d1e, .m, .tm, .tb]
     }
 }
-
-enum Documents {
-    case drive(DriveModel)
-    case inn(INNModel)
-    case passportRF(PassportModel)
-    case passportInt(PassportIntModel)
-    case snils(SnilsModel)
-}
-

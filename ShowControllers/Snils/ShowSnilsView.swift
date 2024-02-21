@@ -23,7 +23,7 @@ struct ShowSnilsView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                HeaderView(showAlert: $showAlert, title: Constants.headerTitle, deleteAction: deleteData, presentationMode: presentationMode)
+                HeaderShowView(showAlert: $showAlert, title: Constants.headerTitle, deleteAction: deleteData, presentationMode: presentationMode)
                 SnilsView(snils: snils, copyAction: copyTapped, shareAction: shareSnils())
                 Spacer()
                 CloseButtonView(presentationMode: presentationMode)

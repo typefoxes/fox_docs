@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HeaderView: View {
+struct HeaderShowView: View {
     @Binding var showAlert: Bool
     var title: String
     var deleteAction: () -> Void

@@ -17,7 +17,7 @@ struct ShowPassportIntView: View {
 
     var body: some View {
             VStack {
-                HeaderView(showAlert: $showAlert, title: "Загранпаспорт", deleteAction: deleteData, presentationMode: presentationMode)
+                HeaderShowView(showAlert: $showAlert, title: "Загранпаспорт", deleteAction: deleteData, presentationMode: presentationMode)
                 InternationalPassportView(passport: passport, copyAction: copyTapped, shareAction: sharePassport())
                 Spacer()
                 CloseButtonView(presentationMode: presentationMode)

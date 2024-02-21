@@ -42,11 +42,7 @@ struct SnilsView: View {
             RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous)
                 .fill(Color.snilsHead)
         )
-        ShareLink(item: shareAction, preview: SharePreview(Constants.sharePreview, image: Constants.appImage)) {
-            Label(Constants.shareLabel, systemImage: Constants.shareSystemImage)
-                .foregroundColor(.secondary)
-                .padding(.vertical, Constants.paddingVertical)
-        }
+        ShareLinkButton(action: shareAction, shareTitle: Constants.sharePreview)
     }
 }
 
