@@ -29,7 +29,7 @@ struct PassportView: View {
 
             PassportDetailsView(passport: passport, copyAction: copyAction)
 
-            Divider()
+            DividerView()
 
             PassportPhotoView(
                 image: Constants.passportPhoto,

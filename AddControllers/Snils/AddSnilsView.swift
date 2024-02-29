@@ -23,85 +23,53 @@ struct AddSnilsView: View {
         VStack {
             CardView()
             Spacer(minLength: 0)
-            Button(action: {
-                   saveData()
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Label("Добавить СНИЛС", systemImage: "lock.circle.fill")
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-                    .padding(.vertical, 12)
-                    .frame(maxWidth: .infinity)
-                    .background {
-                        RoundedRectangle(cornerRadius: 10, style: .continuous)
-                            .fill(.linearGradient(colors: [Color.red, Color.orange], startPoint: .topLeading, endPoint: .bottomTrailing))
-                    }
-            }
-            .disableWithOpacity(number.count != 14 || name.isEmpty || dateAndPlace.isEmpty || selectedSex == .none)
+            AddButtonView(saveAction: saveData, presentationMode: presentationMode)
+                .disableWithOpacity(number.count != 14 || name.isEmpty || dateAndPlace.isEmpty || selectedSex == .none)
         }
         .padding()
+    }
+
+    func TitleView(_ title: String) -> some View {
+        VStack {
+            HStack {
+                Text(title)
+                    .font(.caption2)
+                    .foregroundColor(.black)
+                Spacer()
+            }
+        }
+    }
+
+    func MainTitleView() -> some View {
+        VStack {
+            Text("СТРАХОВОЕ СВИДЕТЕЛЬСТВО").font(.caption).foregroundColor(.snilsTop).padding(.top, 10)
+            Text("ОБЯЗАТЕЛЬНОГО ПЕНСИОННОГО СТРАХОВАНИЯ").font(.caption2).foregroundColor(.snilsTop)
+        }
     }
 
     @ViewBuilder
     func CardView() -> some View {
         VStack() {
-            Text("СТРАХОВОЕ СВИДЕТЕЛЬСТВО").font(.caption).foregroundColor(.snilsTop).padding(.top, 10)
-            Text("ОБЯЗАТЕЛЬНОГО ПЕНСИОННОГО СТРАХОВАНИЯ").font(.caption2).foregroundColor(.snilsTop)
+            MainTitleView()
             VStack() {
                 VStack {
-                    HStack {
-                        Text("Номер")
-                            .font(.caption2)
-                            .foregroundColor(.black)
-                        Spacer()
-                    }
+                    TitleView("Номер")
                     TextField("XXX-XXX-XXX XX", text: $number)
                         .onChange(of: number, { oldValue, newValue in
-                            let formattedText = oldValue.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-                            var finalText = ""
-                            var index = 0
-                            for character in formattedText {
-                                if index == 3 || index == 6 {
-                                    finalText += "-"
-                                }
-                                if index == 9 {
-                                    finalText += " "
-                                }
-                                finalText.append(character)
-                                index += 1
-                            }
-                            if finalText.count > 14 {
-                                finalText = String(finalText.prefix(14))
-                            }
-                            number = finalText
+                            number = formatNumber(oldValue)
                         })
                         .keyboardType(.numberPad)
-                    HStack {
-                        Text("ФИО")
-                            .font(.caption2)
-                            .foregroundColor(.black)
-                        Spacer()
-                    }.padding(.top, 10)
+                    TitleView("ФИО").padding(.top, 10)
                     TextField("КОТИНА ДАРЬЯ СЕРГЕЕВНА", text: $name)
                         .onChange(of: name, { oldValue, newValue in
                             name = oldValue.uppercased()
                         })
-                    HStack {
-                        Text("Дата и место рождения")
-                            .font(.caption2)
-                            .foregroundColor(.black)
-                        Spacer()
-                    }.padding(.top, 10)
+                    TitleView("Дата и место рождения").padding(.top, 10)
                     TextField("02 АПРЕЛЯ 1997 ГОДА МОСКВА", text: $dateAndPlace)
                         .onChange(of: dateAndPlace, { oldValue, newValue in
                             dateAndPlace = oldValue.uppercased()
                         })
-                    HStack {
-                        Text("Пол")
-                            .font(.caption2)
-                            .foregroundColor(.black)
-                        Spacer()
-                    }.padding(.top, 10)
+                    TitleView("Пол").padding(.top, 10)
                     HStack {
                         Menu {
                             ForEach(sex, id: \.self) { sex in
@@ -143,8 +111,15 @@ struct AddSnilsView: View {
             print(error.localizedDescription)
         }
     }
+
+    private func formatNumber(_ value: String) -> String {
+        let cleanValue = value.replacingOccurrences(of: "-", with: "")
+        let formattedValue = cleanValue.chunkFormatted(withChunkSize: 3, withSeparator: "-")
+        return String(formattedValue.prefix(14))
+    }
 }
 
 #Preview {
     AddSnilsView()
 }
+

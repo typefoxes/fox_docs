@@ -44,7 +44,6 @@ struct ShowPassportIntView: View {
 
     private func sharePassport() -> String {
         let rusName = "\(passport.surname) \(passport.givenName)"
-        let engName = "\(passport.surnameEng) \(passport.givenNameEng)"
         let dateOfBirth = passport.dateOfBirth
         let gender = passport.gender.rawValue
         let placeOfBirth = passport.placeOfBirth
@@ -53,12 +52,12 @@ struct ShowPassportIntView: View {
         let authority = passport.authority
         let number = passport.number
 
-        let passportData = "ФИО РУС: \(rusName)\nФИО АНГЛ: \(engName)\nДата рождения: \(dateOfBirth)\nПол: \(gender)\n Место рождения: \(placeOfBirth)\n Дата выдачи: \(dateOfIssue)\n Дата окончания срока действия: \(dateOfexpire)\n Орган, выдавший документ: \(authority)\n Номер: \(number)"
+        let passportData = "ФИО: \(rusName)\nДата рождения: \(dateOfBirth)\nПол: \(gender)\n Место рождения: \(placeOfBirth)\n Дата выдачи: \(dateOfIssue)\n Дата окончания срока действия: \(dateOfexpire)\n Орган, выдавший документ: \(authority)\n Номер: \(number)"
 
         return passportData
     }
 }
 
 #Preview {
-    ShowPassportIntView(passport: PassportIntModel(surname: "ДОБРОВОЛЬСКАЯ", surnameEng: "DOBROVOLSKAYA", givenName: "ЕЛЕНА АЛЕКСАНДРОВНА", givenNameEng: "ELENA", dateOfBirth: "02.04.1997", gender: .f, placeOfBirth: "Г.МОСКВА", placeOfBirthEng: "RUSSIA", dateOfexpire: "02.06.2024", dateOfIssue: "25.05.2019", authority: "ФМС 77718", number: "73 5960757", type: "Загран"))
+    ShowPassportIntView(passport: PassportIntModel(surname: "ДОБРОВОЛЬСКАЯ", givenName: "ЕЛЕНА АЛЕКСАНДРОВНА", dateOfBirth: "02.04.1997", gender: .f, placeOfBirth: "Г.МОСКВА", dateOfexpire: "02.06.2024", dateOfIssue: "25.05.2019", authority: "ФМС 77718", number: "73 5960757", type: "Загран"))
 }

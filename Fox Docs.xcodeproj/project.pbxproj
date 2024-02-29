@@ -40,7 +40,10 @@
 		988ACD552B7C0F3500189B66 /* SnilsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988ACD542B7C0F3500189B66 /* SnilsModel.swift */; };
 		988ACD572B7C0FB900189B66 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988ACD562B7C0FB900189B66 /* Enums.swift */; };
 		988ACD592B7C12D000189B66 /* ShowSnilsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988ACD582B7C12D000189B66 /* ShowSnilsView.swift */; };
+		98B74D7A2B8A74D6001B3BBC /* AddButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B74D792B8A74D6001B3BBC /* AddButtonView.swift */; };
+		98B74D7E2B8A7F72001B3BBC /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B74D7D2B8A7F72001B3BBC /* MenuView.swift */; };
 		98D202C02B86501D00E02039 /* InnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D202BF2B86501D00E02039 /* InnView.swift */; };
+		98EDCED72B8E6B2400A4C236 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EDCED62B8E6B2400A4C236 /* DividerView.swift */; };
 		98F9F0502B7A531000EC8DAF /* ShowCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9F04F2B7A531000EC8DAF /* ShowCardView.swift */; };
 		98F9F0582B7A6F0700EC8DAF /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9F0572B7A6F0700EC8DAF /* BannerModifier.swift */; };
 		98F9F05C2B7A7C7000EC8DAF /* PassportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9F05B2B7A7C7000EC8DAF /* PassportModel.swift */; };
@@ -82,7 +85,10 @@
 		988ACD542B7C0F3500189B66 /* SnilsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnilsModel.swift; sourceTree = "<group>"; };
 		988ACD562B7C0FB900189B66 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		988ACD582B7C12D000189B66 /* ShowSnilsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSnilsView.swift; sourceTree = "<group>"; };
+		98B74D792B8A74D6001B3BBC /* AddButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonView.swift; sourceTree = "<group>"; };
+		98B74D7D2B8A7F72001B3BBC /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		98D202BF2B86501D00E02039 /* InnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnView.swift; sourceTree = "<group>"; };
+		98EDCED62B8E6B2400A4C236 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		98F9F04F2B7A531000EC8DAF /* ShowCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardView.swift; sourceTree = "<group>"; };
 		98F9F0572B7A6F0700EC8DAF /* BannerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModifier.swift; sourceTree = "<group>"; };
 		98F9F05B2B7A7C7000EC8DAF /* PassportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportModel.swift; sourceTree = "<group>"; };
@@ -213,6 +219,24 @@
 			path = HeaderView;
 			sourceTree = "<group>";
 		};
+		98B74D772B8A74AC001B3BBC /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				980F64C62B795EBB000738EF /* AddCardViewController.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		98B74D782B8A74BA001B3BBC /* BaseAddViews */ = {
+			isa = PBXGroup;
+			children = (
+				98B74D792B8A74D6001B3BBC /* AddButtonView.swift */,
+				98B74D7D2B8A7F72001B3BBC /* MenuView.swift */,
+				98EDCED62B8E6B2400A4C236 /* DividerView.swift */,
+			);
+			path = BaseAddViews;
+			sourceTree = "<group>";
+		};
 		98D202BE2B86500A00E02039 /* Inn */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +244,30 @@
 				98D202BF2B86501D00E02039 /* InnView.swift */,
 			);
 			path = Inn;
+			sourceTree = "<group>";
+		};
+		98EDCED52B8E682000A4C236 /* Passport */ = {
+			isa = PBXGroup;
+			children = (
+				985223872B7BB0F3000A0585 /* AddPassportView.swift */,
+			);
+			path = Passport;
+			sourceTree = "<group>";
+		};
+		98EDCED82B8E80FB00A4C236 /* Snils */ = {
+			isa = PBXGroup;
+			children = (
+				988ACD522B7C06AE00189B66 /* AddSnilsView.swift */,
+			);
+			path = Snils;
+			sourceTree = "<group>";
+		};
+		98F3C0C02B91251B009225BE /* PassportInt */ = {
+			isa = PBXGroup;
+			children = (
+				983E51CD2B7CBD8900AEA8B2 /* AddIntPassportView.swift */,
+			);
+			path = PassportInt;
 			sourceTree = "<group>";
 		};
 		98F9F0592B7A7C0900EC8DAF /* Extensions */ = {
@@ -248,10 +296,11 @@
 		98F9F05D2B7A7D8400EC8DAF /* AddControllers */ = {
 			isa = PBXGroup;
 			children = (
-				980F64C62B795EBB000738EF /* AddCardViewController.swift */,
-				985223872B7BB0F3000A0585 /* AddPassportView.swift */,
-				988ACD522B7C06AE00189B66 /* AddSnilsView.swift */,
-				983E51CD2B7CBD8900AEA8B2 /* AddIntPassportView.swift */,
+				98B74D782B8A74BA001B3BBC /* BaseAddViews */,
+				98F3C0C02B91251B009225BE /* PassportInt */,
+				98EDCED82B8E80FB00A4C236 /* Snils */,
+				98EDCED52B8E682000A4C236 /* Passport */,
+				98B74D772B8A74AC001B3BBC /* Card */,
 				981B82C92B7D0E5E008D3EDA /* AddInnView.swift */,
 				981B82CF2B7D48BA008D3EDA /* AddDriveView.swift */,
 			);
@@ -345,6 +394,8 @@
 				980F64C72B795EBB000738EF /* AddCardViewController.swift in Sources */,
 				98F9F05C2B7A7C7000EC8DAF /* PassportModel.swift in Sources */,
 				988ACD592B7C12D000189B66 /* ShowSnilsView.swift in Sources */,
+				98B74D7E2B8A7F72001B3BBC /* MenuView.swift in Sources */,
+				98EDCED72B8E6B2400A4C236 /* DividerView.swift in Sources */,
 				9877F0962B866FD0006CE9EE /* DriveLicensView.swift in Sources */,
 				9877F09E2B868817006CE9EE /* DocsSectionView.swift in Sources */,
 				9877F0932B8665CA006CE9EE /* ShareLinkButton.swift in Sources */,
@@ -376,6 +427,7 @@
 				983E51CE2B7CBD8900AEA8B2 /* AddIntPassportView.swift in Sources */,
 				983016242B855BCD0073C2B9 /* InternationalPassportView.swift in Sources */,
 				9877F09A2B868176006CE9EE /* HeaderHomeView.swift in Sources */,
+				98B74D7A2B8A74D6001B3BBC /* AddButtonView.swift in Sources */,
 				980F64AF2B78FF85000738EF /* Fox_DocsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

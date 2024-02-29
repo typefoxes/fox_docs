@@ -23,23 +23,22 @@ struct AddInnView: View {
         VStack {
             CardView()
             Spacer(minLength: 0)
-            Button(action: {
-                   saveData()
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Label("Добавить ИНН", systemImage: "lock.circle.fill")
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-                    .padding(.vertical, 12)
-                    .frame(maxWidth: .infinity)
-                    .background {
-                        RoundedRectangle(cornerRadius: 10, style: .continuous)
-                            .fill(.linearGradient(colors: [Color.red, Color.orange], startPoint: .topLeading, endPoint: .bottomTrailing))
-                    }
-            }
-            .disableWithOpacity(number.count != 14 || name.isEmpty || dateOfBirth.count != 10 || placeOfBirth.isEmpty || selectedGender == .none)
+            AddButtonView(saveAction: saveData, presentationMode: presentationMode)
+                .disableWithOpacity(isFormValid())
         }
         .padding()
+    }
+
+    private struct CardTextFieldModifier: ViewModifier {
+        func body(content: Content) -> some View {
+            content
+                .font(.italic(.subheadline)()).underline()
+                .multilineTextAlignment(.leading)
+
+        }
+    }
+    private func isFormValid() -> Bool {
+        return number.count != 14 || name.isEmpty || dateOfBirth.count != 10 || placeOfBirth.isEmpty || selectedGender == .none
     }
     @ViewBuilder
     func CardView() -> some View {
@@ -59,24 +58,10 @@ struct AddInnView: View {
                         HStack {
                             TextField("XXXX XXXX XXXX", text: $number)
                                 .onChange(of: number, { oldValue, newValue in
-                                    number = ""
-                                    let startIndex = oldValue.startIndex
-                                    for index in 0..<oldValue.count {
-                                        let stringIndex = oldValue.index(startIndex, offsetBy: index)
-                                        number += String(oldValue[stringIndex])
-
-                                        if (index + 1) % 5 == 0 && oldValue[stringIndex] != " " {
-                                            number.insert(" ", at: stringIndex)
-                                        }
-                                    }
-                                    if oldValue.last == " " {
-                                        number.removeLast()
-                                    }
-                                    number = String(number.prefix(14))
+                                    number = formatNumber(newValue)
                                 })
-                                .font(.title3)
+                                .modifier(CardTextFieldModifier())
                                 .keyboardType(.numberPad)
-                                .multilineTextAlignment(.leading)
                             Spacer()
                         }
                         /// ФИО
@@ -87,11 +72,11 @@ struct AddInnView: View {
                             Spacer()
                         }.padding(.top, 10)
                         HStack {
-                            TextField("XXXXXX XXXXXX XXXXXX", text: $name)
+                            TextField("ABCD ABCD ABCD", text: $name)
                                 .onChange(of: name, { oldValue, newValue in
                                     name = oldValue.uppercased()
                                 })
-                                .multilineTextAlignment(.leading)
+                                .modifier(CardTextFieldModifier())
                         }
                         /// Дата рождения
                         HStack {
@@ -103,27 +88,9 @@ struct AddInnView: View {
                         HStack {
                             TextField("XX.XX.XXXX", text: $dateOfBirth)
                                 .onChange(of: dateOfBirth, { oldValue, newValue in
-                                    dateOfBirth = oldValue.replacingOccurrences(of: ".", with: "")
-                                    let nonDecimalCharacters = CharacterSet.decimalDigits.inverted
-                                    let updatedTextWithoutDots = dateOfBirth.components(separatedBy: nonDecimalCharacters).joined()
-
-                                    let dateFormatter = DateFormatter()
-                                    dateFormatter.dateFormat = "ddMMyyyy"
-                                    var formattedDate = ""
-                                    var index = 0
-
-                                    for character in updatedTextWithoutDots {
-                                        if index == 2 || index == 4 {
-                                            formattedDate.append(".")
-                                        }
-
-                                        formattedDate.append(character)
-                                        index += 1
-                                    }
-                                    dateOfBirth = formattedDate
-                                    dateOfBirth = String(dateOfBirth.prefix(10))
+                                    dateOfBirth = newValue.dateFormateString(newValue)
                                 })
-                                .multilineTextAlignment(.leading)
+                                .modifier(CardTextFieldModifier())
                                 .keyboardType(.numberPad)
                             Spacer()
                         }
@@ -152,18 +119,20 @@ struct AddInnView: View {
                                     .underline()
                             }
                             Spacer()
-                            TextField("XXXXXXXXX", text: $placeOfBirth)
+                            TextField("New York City", text: $placeOfBirth)
                                 .onChange(of: placeOfBirth, { oldValue, newValue in
                                     placeOfBirth = oldValue.uppercased()
                                 })
                                 .multilineTextAlignment(.trailing)
+                                .modifier(CardTextFieldModifier())
+
                         }
                     }.padding(20)
-                        Image(.herbInn)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 100)
-                            .tint(.innFontInside)
+                    Image(.herbInn)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 100)
+                        .tint(.innFontInside)
                 }
                 .padding(.top, 10)
                 .background {
@@ -178,7 +147,12 @@ struct AddInnView: View {
                 .fill(.innTop)
         }
     }
-    
+    private func formatNumber(_ value: String) -> String {
+        let cleanValue = value.replacingOccurrences(of: " ", with: "")
+        let formattedValue = cleanValue.chunkFormatted(withChunkSize: 4, withSeparator: " ")
+        return String(formattedValue.prefix(14))
+    }
+
     private func saveData() {
         let inn = INNModel(number: number, name: name, gender: selectedGender, dateOfBirth: dateOfBirth, placeOfBirth: placeOfBirth)
         modelContext.insert(inn)

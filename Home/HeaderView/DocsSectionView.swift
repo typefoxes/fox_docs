@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct DocumentCardView: View {
+struct DocumentTypeView: View {
     let documentType: DocumentType
     let onTapAction: () -> Void
 
@@ -22,10 +22,10 @@ struct DocumentCardView: View {
                 .font(.title2)
                 .padding(.top, 20)
         }
-        .padding(10)
         .onTapGesture {
             onTapAction()
         }
+        .padding(10)
         .background(
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(documentType.getGradient())
@@ -53,7 +53,7 @@ struct DocsSectionView: View {
             ScrollView(.horizontal) {
                 LazyHStack {
                     ForEach(allDocuments) { document in
-                        DocumentCardView(documentType: getDocumentType(document.document)) {
+                        DocumentTypeView(documentType: getDocumentType(document.document)) {
                             selectedDocument = document
                         }
                     }

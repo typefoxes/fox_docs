@@ -57,7 +57,7 @@ final class CardViewModel {
 }
 
 enum Bank: String, Codable, Hashable {
-    case noBank = "Выберать банк"
+    case noBank = "Выбрать банк"
     case sber = "Сбер"
     case alfa = "Альфа"
     case tinkoff = "Тинькофф"
@@ -79,3 +79,14 @@ enum BankType: String, Codable, Hashable {
     case others = "Другое"
 }
 
+extension Bank {
+    static var allCases: [Bank] {
+        return [.noBank, .sber, .alfa, .tinkoff, .tinkoffPlatinum, .ozon, .yandex, .vtb, .gazprom, .mkb, .raifazen]
+    }
+}
+
+extension BankType {
+    static var allCases: [BankType] {
+        return [.noType, .visa, .masterCard, .mir, .unionPay, .others]
+    }
+}

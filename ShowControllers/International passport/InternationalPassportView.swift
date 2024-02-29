@@ -49,7 +49,7 @@ struct InternationalPassportView: View {
             .padding(Constants.padding)
             .background(RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous).fill(Color.passportInside))
             .environment(\.colorScheme, .light)
-            divider()
+            DividerView()
             VStack() {
                 HStack {
                     Image(.passportPhoto)
@@ -71,13 +71,13 @@ struct InternationalPassportView: View {
     
     private func passportInformation() -> some View {
         VStack(spacing: Constants.padding) {
-            passportInfoRow(title: Constants.surnameTitle, value: "\(passport.surname) / \(passport.surnameEng)")
-            passportInfoRow(title: Constants.givenNameTitle, value: "\(passport.givenName) / \(passport.givenNameEng)")
+            passportInfoRow(title: Constants.surnameTitle, value: "\(passport.surname)")
+            passportInfoRow(title: Constants.givenNameTitle, value: "\(passport.givenName)")
             HStack {
                 passportInfoRow(title: Constants.sexTitle, value: "\(passport.gender.rawValue)")
                 passportInfoRow(title: Constants.dateOfBirthTitle, value: "\(passport.dateOfBirth)")
             }
-            passportInfoRow(title: Constants.placeOfBirthTitle, value: "\(passport.placeOfBirth) / \(passport.placeOfBirthEng)")
+            passportInfoRow(title: Constants.placeOfBirthTitle, value: "\(passport.placeOfBirth)")
         }
     }
     
@@ -114,18 +114,6 @@ struct InternationalPassportView: View {
                     }
                 }
                 Spacer()
-            }
-        }
-    }
-    
-    private func divider() -> some View {
-        HStack {
-            ForEach(0..<10) { _ in
-                VStack {
-                    VStack {
-                        Color.gray.frame(height: 1 / UIScreen.main.scale)
-                    }
-                }
             }
         }
     }
