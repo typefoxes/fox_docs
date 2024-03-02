@@ -119,7 +119,7 @@ struct AddInnView: View {
                                     .underline()
                             }
                             Spacer()
-                            TextField("New York City", text: $placeOfBirth)
+                            TextField("New York City...", text: $placeOfBirth)
                                 .onChange(of: placeOfBirth, { oldValue, newValue in
                                     placeOfBirth = oldValue.uppercased()
                                 })

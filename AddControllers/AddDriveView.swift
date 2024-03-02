@@ -41,20 +41,7 @@ struct AddDriveView: View {
             VStack {
                 CardView()
                 Spacer(minLength: 0)
-                Button(action: {
-                    saveData()
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Label("Сохранить", systemImage: "")
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                        .padding(.vertical, 12)
-                        .frame(maxWidth: .infinity)
-                        .background {
-                            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                .fill(.linearGradient(colors: [Color.orange, Color.red], startPoint: .topLeading, endPoint: .bottomTrailing))
-                        }
-                }
+                AddButtonView(saveAction: saveData, presentationMode: presentationMode)
             }
             .padding()
         }
@@ -71,194 +58,18 @@ struct AddDriveView: View {
                     .fontWeight(.heavy)
                 VStack {
                     VStack {
-                        HStack {
-                            Text("1. Фамилия РУС").foregroundColor(.white)
-                                .font(.system(.caption2, design: .rounded))
-                                .fontWeight(.heavy)
-                            HStack {
-                                TextField("XXXX", text: $surname)
-                                Spacer()
-                            }
-                        }
-                        HStack {
-                            Text("1. Фамилия АНГЛ").foregroundColor(.white)
-                                .font(.system(.caption2, design: .rounded))
-                                .fontWeight(.heavy)
-                            HStack {
-                                TextField("XXXX", text: $surnameEng)
-                                Spacer()
-                            }
-                        }
-                        HStack {
-                            Text("2. Имя Отчество РУС").foregroundColor(.white)
-                                .font(.system(.caption2, design: .rounded))
-                                .fontWeight(.heavy)
-                            HStack {
-                                TextField("XXXX XXXX", text: $name)
-                                Spacer()
-                            }
-                        }
-                        HStack {
-                            Text("2. Имя Отчество АНГЛ").foregroundColor(.white)
-                                .font(.system(.caption2, design: .rounded))
-                                .fontWeight(.heavy)
-                            HStack {
-                                TextField("XXXX XXXX", text: $nameEng)
-                                Spacer()
-                            }
-                        }
-                        HStack {
-                            Text("3. Дата рождения").foregroundColor(.white)
-                                .font(.system(.caption2, design: .rounded))
-                                .fontWeight(.heavy)
-                            HStack {
-                                TextField("XX.XX.XXXX", text: $dateOfBirth)
-                                    .onChange(of: dateOfBirth, { oldValue, newValue in
-                                        dateOfBirth = oldValue.replacingOccurrences(of: ".", with: "")
-                                        let nonDecimalCharacters = CharacterSet.decimalDigits.inverted
-                                        let updatedTextWithoutDots = dateOfBirth.components(separatedBy: nonDecimalCharacters).joined()
+                        DriveField(title: "1. Фамилия РУС", placeHolder: "XXXX", onChange: false, changeType: .none, text: $surname, keyboardType: .default)
+                        DriveField(title: "1. Фамилия АНГЛ", placeHolder: "XXXX", onChange: false, changeType: .none, text: $surnameEng, keyboardType: .default)
+                        DriveField(title: "2. Имя Отчество РУС", placeHolder: "XXXX XXXX", onChange: false, changeType: .none, text: $name, keyboardType: .default)
+                        DriveField(title: "2. Имя Отчество АНГЛ", placeHolder: "XXXX XXXX", onChange: false, changeType: .none, text: $nameEng, keyboardType: .default)
+                        DriveField(title: "3. Дата рождения", placeHolder: "XX.XX.XXXX", onChange: true, changeType: .date, text: $dateOfBirth, keyboardType: .numberPad)
+                        DriveField(title: "3a. Город рождения", placeHolder: "XXXXXXXX", onChange: false, changeType: .none, text: $cityOfBirth, keyboardType: .default)
+                        DriveField(title: "4a. Дата выдачи", placeHolder: "XX.XX.XXXX", onChange: true, changeType: .date, text: $dateOfIssue, keyboardType: .numberPad)
+                        DriveField(title: "4b. Окончание срока", placeHolder: "XX.XX.XXXX", onChange: true, changeType: .date, text: $dateOfExpire, keyboardType: .numberPad)
+                        DriveField(title: "4c. Кем выдано", placeHolder: "XXXXXXXX XXX", onChange: false, changeType: .none, text: $authority, keyboardType: .default)
+                        DriveField(title: "5. Номер", placeHolder: "XX XX XXXXXX", onChange: true, changeType: .number, text: $number, keyboardType: .numberPad)
+                        DriveField(title: "8. Город выдачи", placeHolder: "XXXXXXXXXX", onChange: false, changeType: .none, text: $cityOfIssue, keyboardType: .default)
 
-                                        let dateFormatter = DateFormatter()
-                                        dateFormatter.dateFormat = "ddMMyyyy"
-                                        var formattedDate = ""
-                                        var index = 0
-
-                                        for character in updatedTextWithoutDots {
-                                            if index == 2 || index == 4 {
-                                                formattedDate.append(".")
-                                            }
-
-                                            formattedDate.append(character)
-                                            index += 1
-                                        }
-                                        dateOfBirth = formattedDate
-                                        dateOfBirth = String(dateOfBirth.prefix(10))
-                                    })
-                                    .multilineTextAlignment(.leading)
-                                    .keyboardType(.numberPad)
-                                Spacer()
-                            }
-                        }
-                        HStack {
-                            Text("3a. Город рождения").foregroundColor(.white)
-                                .font(.system(.caption2, design: .rounded))
-                                .fontWeight(.heavy)
-                            TextField("XXXXXXXX", text: $dateOfBirth)
-                            Spacer()
-                        }
-                        HStack {
-                            Text("4a. Дата выдачи")
-                                .foregroundColor(.white)
-                                .font(.system(.caption2, design: .rounded))
-                                .fontWeight(.heavy)
-                            HStack {
-                                TextField("XX.XX.XXXX", text: $dateOfIssue)
-                                    .onChange(of: dateOfIssue, { oldValue, newValue in
-                                        dateOfIssue = oldValue.replacingOccurrences(of: ".", with: "")
-                                        let nonDecimalCharacters = CharacterSet.decimalDigits.inverted
-                                        let updatedTextWithoutDots = dateOfIssue.components(separatedBy: nonDecimalCharacters).joined()
-
-                                        let dateFormatter = DateFormatter()
-                                        dateFormatter.dateFormat = "ddMMyyyy"
-                                        var formattedDate = ""
-                                        var index = 0
-
-                                        for character in updatedTextWithoutDots {
-                                            if index == 2 || index == 4 {
-                                                formattedDate.append(".")
-                                            }
-
-                                            formattedDate.append(character)
-                                            index += 1
-                                        }
-                                        dateOfIssue = formattedDate
-                                        dateOfIssue = String(dateOfIssue.prefix(10))
-                                    })
-                                    .multilineTextAlignment(.leading)
-                                    .keyboardType(.numberPad)
-                                Spacer()
-                            }
-                        }
-                        HStack {
-                            Text("4b. Окончание срока")
-                                .foregroundColor(.white)
-                                .font(.system(.caption2, design: .rounded))
-                                .fontWeight(.heavy)
-                            HStack {
-                                TextField("XX.XX.XXXX", text: $dateOfExpire)
-                                    .onChange(of: dateOfExpire, { oldValue, newValue in
-                                        dateOfExpire = oldValue.replacingOccurrences(of: ".", with: "")
-                                        let nonDecimalCharacters = CharacterSet.decimalDigits.inverted
-                                        let updatedTextWithoutDots = dateOfExpire.components(separatedBy: nonDecimalCharacters).joined()
-
-                                        let dateFormatter = DateFormatter()
-                                        dateFormatter.dateFormat = "ddMMyyyy"
-                                        var formattedDate = ""
-                                        var index = 0
-
-                                        for character in updatedTextWithoutDots {
-                                            if index == 2 || index == 4 {
-                                                formattedDate.append(".")
-                                            }
-
-                                            formattedDate.append(character)
-                                            index += 1
-                                        }
-                                        dateOfExpire = formattedDate
-                                        dateOfExpire = String(dateOfExpire.prefix(10))
-                                    })
-                                    .multilineTextAlignment(.leading)
-                                    .keyboardType(.numberPad)
-                                Spacer()
-                            }
-                        }
-                        HStack {
-                            Text("4c. Кем выдано")
-                                .foregroundColor(.white)
-                                .font(.system(.caption2, design: .rounded))
-                                .fontWeight(.heavy)
-                            HStack {
-                                TextField("XXXXXXXX XXX", text: $authority)
-                                Spacer()
-                            }
-                        }
-                        HStack {
-                            Text("5. Номер")
-                                .foregroundColor(.white)
-                                .font(.system(.caption2, design: .rounded))
-                                .fontWeight(.heavy)
-                            HStack {
-                                TextField("XX XX XXXXXX", text: $number)
-                                    .onChange(of: number, { oldValue, newValue in
-                                        let formattedText = oldValue.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-                                        var finalText = ""
-                                        var index = 0
-                                        for character in formattedText {
-                                            if index == 2 || index == 4 {
-                                                finalText += " "
-                                            }
-                                            finalText.append(character)
-                                            index += 1
-                                        }
-                                        if finalText.count > 12 {
-                                            finalText = String(finalText.prefix(12))
-                                        }
-                                        number = finalText
-                                    })
-                                    .keyboardType(.numberPad)
-                                Spacer()
-                            }
-                        }
-                        HStack {
-                            Text("8. Город выдачи")
-                                .foregroundColor(.white)
-                                .font(.system(.caption2, design: .rounded))
-                                .fontWeight(.heavy)
-                            HStack {
-                                TextField("XXXXXXXXXX", text: $cityOfIssue)
-                                Spacer()
-                            }
-                        }
                         HStack {
                             Text("9. Категория")
                                 .foregroundColor(.white)
@@ -271,7 +82,6 @@ struct AddDriveView: View {
                                     }
                                     .font(.body)
                                     .foregroundColor(.secondary)
-
                                 }
                                 .sheet(isPresented: $isShowingPicker) {
                                     NavigationView {
@@ -294,7 +104,7 @@ struct AddDriveView: View {
                                                 }
                                             }
                                         }
-                                        .navigationBarItems(trailing: Button("Done") {
+                                        .navigationBarItems(trailing: Button("Сохранить") {
                                             self.isShowingPicker.toggle()
                                         })
                                     }
@@ -353,3 +163,60 @@ struct MultipleSelectionRow: View {
         }
     }
 }
+
+struct DriveField: View {
+    let title: String
+    let placeHolder: String
+    let onChange: Bool
+    let changeType: onChange
+    @Binding var text: String
+    let keyboardType: UIKeyboardType
+
+    var body: some View {
+        HStack {
+            HStack {
+                Text(title)
+                    .font(.system(.caption2, design: .rounded))
+                    .fontWeight(.heavy)
+            }
+           HStack {
+               TextField(placeHolder, text: $text)
+                   .onChange(of: text, { oldValue, newValue in
+                       if onChange {
+                           switch changeType {
+                               case .date: 
+                                   text = newValue .dateFormateString(newValue)
+                               case .none:
+                                   text = newValue.uppercased()
+                               case .number:
+                                   text = formatNumber(newValue)
+                           }
+
+                       }
+               })
+                .keyboardType(keyboardType)
+            }
+        }
+    }
+
+    private func formatNumber(_ value: String) -> String {
+        let formattedText = value.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        var finalText = ""
+        var index = 0
+        for character in formattedText {
+            if index == 2 || index == 4 {
+                finalText += " "
+            }
+            finalText.append(character)
+            index += 1
+        }
+        return String(finalText.prefix(12))
+    }
+}
+
+enum onChange {
+    case none
+    case date
+    case number
+}
+
