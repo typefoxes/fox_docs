@@ -18,6 +18,10 @@
 		981B82CC2B7D29EC008D3EDA /* ShowDriveLicensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B82CB2B7D29EC008D3EDA /* ShowDriveLicensView.swift */; };
 		981B82CE2B7D2ACC008D3EDA /* DriveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B82CD2B7D2ACC008D3EDA /* DriveModel.swift */; };
 		981B82D02B7D48BA008D3EDA /* AddDriveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B82CF2B7D48BA008D3EDA /* AddDriveView.swift */; };
+		982089EA2B93ABBD00BEAC92 /* MainDriveLicenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982089E92B93ABBD00BEAC92 /* MainDriveLicenceView.swift */; };
+		982089EC2B93B86900BEAC92 /* DopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982089EB2B93B86900BEAC92 /* DopView.swift */; };
+		982089EF2B93BCFB00BEAC92 /* MainAddInnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982089EE2B93BCFB00BEAC92 /* MainAddInnView.swift */; };
+		982089F12B93BEB600BEAC92 /* AddInnDopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982089F02B93BEB600BEAC92 /* AddInnDopView.swift */; };
 		983016132B85485C0073C2B9 /* HeaderShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983016122B85485C0073C2B9 /* HeaderShowView.swift */; };
 		983016152B8548880073C2B9 /* CloseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983016142B8548880073C2B9 /* CloseButtonView.swift */; };
 		983016172B8548AB0073C2B9 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983016162B8548AB0073C2B9 /* CardView.swift */; };
@@ -62,6 +66,10 @@
 		981B82CB2B7D29EC008D3EDA /* ShowDriveLicensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDriveLicensView.swift; sourceTree = "<group>"; };
 		981B82CD2B7D2ACC008D3EDA /* DriveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveModel.swift; sourceTree = "<group>"; };
 		981B82CF2B7D48BA008D3EDA /* AddDriveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDriveView.swift; sourceTree = "<group>"; };
+		982089E92B93ABBD00BEAC92 /* MainDriveLicenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDriveLicenceView.swift; sourceTree = "<group>"; };
+		982089EB2B93B86900BEAC92 /* DopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DopView.swift; sourceTree = "<group>"; };
+		982089EE2B93BCFB00BEAC92 /* MainAddInnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAddInnView.swift; sourceTree = "<group>"; };
+		982089F02B93BEB600BEAC92 /* AddInnDopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInnDopView.swift; sourceTree = "<group>"; };
 		983016122B85485C0073C2B9 /* HeaderShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderShowView.swift; sourceTree = "<group>"; };
 		983016142B8548880073C2B9 /* CloseButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButtonView.swift; sourceTree = "<group>"; };
 		983016162B8548AB0073C2B9 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -144,6 +152,26 @@
 				980F64B72B78FF86000738EF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		982089E82B93ABA000BEAC92 /* Drive */ = {
+			isa = PBXGroup;
+			children = (
+				981B82CF2B7D48BA008D3EDA /* AddDriveView.swift */,
+				982089E92B93ABBD00BEAC92 /* MainDriveLicenceView.swift */,
+				982089EB2B93B86900BEAC92 /* DopView.swift */,
+			);
+			path = Drive;
+			sourceTree = "<group>";
+		};
+		982089ED2B93BCE600BEAC92 /* Inn */ = {
+			isa = PBXGroup;
+			children = (
+				981B82C92B7D0E5E008D3EDA /* AddInnView.swift */,
+				982089EE2B93BCFB00BEAC92 /* MainAddInnView.swift */,
+				982089F02B93BEB600BEAC92 /* AddInnDopView.swift */,
+			);
+			path = Inn;
 			sourceTree = "<group>";
 		};
 		983016182B8549170073C2B9 /* BaseShowViews */ = {
@@ -296,13 +324,13 @@
 		98F9F05D2B7A7D8400EC8DAF /* AddControllers */ = {
 			isa = PBXGroup;
 			children = (
+				982089ED2B93BCE600BEAC92 /* Inn */,
+				982089E82B93ABA000BEAC92 /* Drive */,
 				98B74D782B8A74BA001B3BBC /* BaseAddViews */,
 				98F3C0C02B91251B009225BE /* PassportInt */,
 				98EDCED82B8E80FB00A4C236 /* Snils */,
 				98EDCED52B8E682000A4C236 /* Passport */,
 				98B74D772B8A74AC001B3BBC /* Card */,
-				981B82C92B7D0E5E008D3EDA /* AddInnView.swift */,
-				981B82CF2B7D48BA008D3EDA /* AddDriveView.swift */,
 			);
 			path = AddControllers;
 			sourceTree = "<group>";
@@ -405,6 +433,7 @@
 				981B82CA2B7D0E5E008D3EDA /* AddInnView.swift in Sources */,
 				98D202C02B86501D00E02039 /* InnView.swift in Sources */,
 				983016152B8548880073C2B9 /* CloseButtonView.swift in Sources */,
+				982089F12B93BEB600BEAC92 /* AddInnDopView.swift in Sources */,
 				983E51D62B7CEADC00AEA8B2 /* ShowInnView.swift in Sources */,
 				983016132B85485C0073C2B9 /* HeaderShowView.swift in Sources */,
 				981B82CE2B7D2ACC008D3EDA /* DriveModel.swift in Sources */,
@@ -420,14 +449,17 @@
 				980F64B12B78FF85000738EF /* ContentView.swift in Sources */,
 				983016172B8548AB0073C2B9 /* CardView.swift in Sources */,
 				981B82D02B7D48BA008D3EDA /* AddDriveView.swift in Sources */,
+				982089EA2B93ABBD00BEAC92 /* MainDriveLicenceView.swift in Sources */,
 				983016212B85535F0073C2B9 /* SnilsView.swift in Sources */,
 				9830161E2B854C420073C2B9 /* PassportView.swift in Sources */,
 				980F64BF2B790881000738EF /* CardsModel.swift in Sources */,
 				988ACD532B7C06AE00189B66 /* AddSnilsView.swift in Sources */,
 				983E51CE2B7CBD8900AEA8B2 /* AddIntPassportView.swift in Sources */,
+				982089EF2B93BCFB00BEAC92 /* MainAddInnView.swift in Sources */,
 				983016242B855BCD0073C2B9 /* InternationalPassportView.swift in Sources */,
 				9877F09A2B868176006CE9EE /* HeaderHomeView.swift in Sources */,
 				98B74D7A2B8A74D6001B3BBC /* AddButtonView.swift in Sources */,
+				982089EC2B93B86900BEAC92 /* DopView.swift in Sources */,
 				980F64AF2B78FF85000738EF /* Fox_DocsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

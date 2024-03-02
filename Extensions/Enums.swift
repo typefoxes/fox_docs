@@ -106,3 +106,9 @@ enum DocumentType {
         }
     }
 }
+
+enum onChangeAddView {
+    case none
+    case date
+    case number
+}
