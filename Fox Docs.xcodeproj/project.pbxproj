@@ -18,7 +18,7 @@
 		981B82CC2B7D29EC008D3EDA /* ShowDriveLicensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B82CB2B7D29EC008D3EDA /* ShowDriveLicensView.swift */; };
 		981B82CE2B7D2ACC008D3EDA /* DriveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B82CD2B7D2ACC008D3EDA /* DriveModel.swift */; };
 		981B82D02B7D48BA008D3EDA /* AddDriveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B82CF2B7D48BA008D3EDA /* AddDriveView.swift */; };
-		982089EA2B93ABBD00BEAC92 /* MainDriveLicenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982089E92B93ABBD00BEAC92 /* MainDriveLicenceView.swift */; };
+		982089EA2B93ABBD00BEAC92 /* AddDriveBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982089E92B93ABBD00BEAC92 /* AddDriveBodyView.swift */; };
 		982089EC2B93B86900BEAC92 /* DopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982089EB2B93B86900BEAC92 /* DopView.swift */; };
 		982089EF2B93BCFB00BEAC92 /* MainAddInnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982089EE2B93BCFB00BEAC92 /* MainAddInnView.swift */; };
 		982089F12B93BEB600BEAC92 /* AddInnDopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982089F02B93BEB600BEAC92 /* AddInnDopView.swift */; };
@@ -35,6 +35,9 @@
 		983E51D62B7CEADC00AEA8B2 /* ShowInnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E51D52B7CEADC00AEA8B2 /* ShowInnView.swift */; };
 		985223862B7B8E39000A0585 /* ShowPassportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985223852B7B8E39000A0585 /* ShowPassportView.swift */; };
 		985223882B7BB0F3000A0585 /* AddPassportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985223872B7BB0F3000A0585 /* AddPassportView.swift */; };
+		9864F2392B94D37C00CF7DE0 /* UniversalViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9864F2382B94D37C00CF7DE0 /* UniversalViews.swift */; };
+		9864F23B2B94E4A400CF7DE0 /* AddSnilsBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9864F23A2B94E4A400CF7DE0 /* AddSnilsBody.swift */; };
+		9864F23D2B94E87B00CF7DE0 /* AddCardBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9864F23C2B94E87B00CF7DE0 /* AddCardBodyView.swift */; };
 		9877F0932B8665CA006CE9EE /* ShareLinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9877F0922B8665CA006CE9EE /* ShareLinkButton.swift */; };
 		9877F0962B866FD0006CE9EE /* DriveLicensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9877F0952B866FD0006CE9EE /* DriveLicensView.swift */; };
 		9877F09A2B868176006CE9EE /* HeaderHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9877F0992B868176006CE9EE /* HeaderHomeView.swift */; };
@@ -66,7 +69,7 @@
 		981B82CB2B7D29EC008D3EDA /* ShowDriveLicensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDriveLicensView.swift; sourceTree = "<group>"; };
 		981B82CD2B7D2ACC008D3EDA /* DriveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveModel.swift; sourceTree = "<group>"; };
 		981B82CF2B7D48BA008D3EDA /* AddDriveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDriveView.swift; sourceTree = "<group>"; };
-		982089E92B93ABBD00BEAC92 /* MainDriveLicenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDriveLicenceView.swift; sourceTree = "<group>"; };
+		982089E92B93ABBD00BEAC92 /* AddDriveBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDriveBodyView.swift; sourceTree = "<group>"; };
 		982089EB2B93B86900BEAC92 /* DopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DopView.swift; sourceTree = "<group>"; };
 		982089EE2B93BCFB00BEAC92 /* MainAddInnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAddInnView.swift; sourceTree = "<group>"; };
 		982089F02B93BEB600BEAC92 /* AddInnDopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInnDopView.swift; sourceTree = "<group>"; };
@@ -83,6 +86,9 @@
 		983E51D52B7CEADC00AEA8B2 /* ShowInnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowInnView.swift; sourceTree = "<group>"; };
 		985223852B7B8E39000A0585 /* ShowPassportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPassportView.swift; sourceTree = "<group>"; };
 		985223872B7BB0F3000A0585 /* AddPassportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPassportView.swift; sourceTree = "<group>"; };
+		9864F2382B94D37C00CF7DE0 /* UniversalViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalViews.swift; sourceTree = "<group>"; };
+		9864F23A2B94E4A400CF7DE0 /* AddSnilsBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSnilsBody.swift; sourceTree = "<group>"; };
+		9864F23C2B94E87B00CF7DE0 /* AddCardBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardBodyView.swift; sourceTree = "<group>"; };
 		9877F0922B8665CA006CE9EE /* ShareLinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLinkButton.swift; sourceTree = "<group>"; };
 		9877F0952B866FD0006CE9EE /* DriveLicensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLicensView.swift; sourceTree = "<group>"; };
 		9877F0992B868176006CE9EE /* HeaderHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderHomeView.swift; sourceTree = "<group>"; };
@@ -158,7 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				981B82CF2B7D48BA008D3EDA /* AddDriveView.swift */,
-				982089E92B93ABBD00BEAC92 /* MainDriveLicenceView.swift */,
+				982089E92B93ABBD00BEAC92 /* AddDriveBodyView.swift */,
 				982089EB2B93B86900BEAC92 /* DopView.swift */,
 			);
 			path = Drive;
@@ -220,6 +226,15 @@
 			path = "International passport";
 			sourceTree = "<group>";
 		};
+		9864F2372B94D35100CF7DE0 /* UniversalViews */ = {
+			isa = PBXGroup;
+			children = (
+				98B74D782B8A74BA001B3BBC /* BaseAddViews */,
+				9864F2382B94D37C00CF7DE0 /* UniversalViews.swift */,
+			);
+			path = UniversalViews;
+			sourceTree = "<group>";
+		};
 		9877F0942B866F57006CE9EE /* DriveLicens */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				980F64C62B795EBB000738EF /* AddCardViewController.swift */,
+				9864F23C2B94E87B00CF7DE0 /* AddCardBodyView.swift */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -286,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				988ACD522B7C06AE00189B66 /* AddSnilsView.swift */,
+				9864F23A2B94E4A400CF7DE0 /* AddSnilsBody.swift */,
 			);
 			path = Snils;
 			sourceTree = "<group>";
@@ -324,13 +341,13 @@
 		98F9F05D2B7A7D8400EC8DAF /* AddControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9864F2372B94D35100CF7DE0 /* UniversalViews */,
 				982089ED2B93BCE600BEAC92 /* Inn */,
 				982089E82B93ABA000BEAC92 /* Drive */,
-				98B74D782B8A74BA001B3BBC /* BaseAddViews */,
-				98F3C0C02B91251B009225BE /* PassportInt */,
 				98EDCED82B8E80FB00A4C236 /* Snils */,
-				98EDCED52B8E682000A4C236 /* Passport */,
 				98B74D772B8A74AC001B3BBC /* Card */,
+				98F3C0C02B91251B009225BE /* PassportInt */,
+				98EDCED52B8E682000A4C236 /* Passport */,
 			);
 			path = AddControllers;
 			sourceTree = "<group>";
@@ -447,11 +464,13 @@
 				985223882B7BB0F3000A0585 /* AddPassportView.swift in Sources */,
 				980F64C32B79572E000738EF /* Extensions.swift in Sources */,
 				980F64B12B78FF85000738EF /* ContentView.swift in Sources */,
+				9864F23D2B94E87B00CF7DE0 /* AddCardBodyView.swift in Sources */,
 				983016172B8548AB0073C2B9 /* CardView.swift in Sources */,
 				981B82D02B7D48BA008D3EDA /* AddDriveView.swift in Sources */,
-				982089EA2B93ABBD00BEAC92 /* MainDriveLicenceView.swift in Sources */,
+				982089EA2B93ABBD00BEAC92 /* AddDriveBodyView.swift in Sources */,
 				983016212B85535F0073C2B9 /* SnilsView.swift in Sources */,
 				9830161E2B854C420073C2B9 /* PassportView.swift in Sources */,
+				9864F2392B94D37C00CF7DE0 /* UniversalViews.swift in Sources */,
 				980F64BF2B790881000738EF /* CardsModel.swift in Sources */,
 				988ACD532B7C06AE00189B66 /* AddSnilsView.swift in Sources */,
 				983E51CE2B7CBD8900AEA8B2 /* AddIntPassportView.swift in Sources */,
@@ -459,6 +478,7 @@
 				983016242B855BCD0073C2B9 /* InternationalPassportView.swift in Sources */,
 				9877F09A2B868176006CE9EE /* HeaderHomeView.swift in Sources */,
 				98B74D7A2B8A74D6001B3BBC /* AddButtonView.swift in Sources */,
+				9864F23B2B94E4A400CF7DE0 /* AddSnilsBody.swift in Sources */,
 				982089EC2B93B86900BEAC92 /* DopView.swift in Sources */,
 				980F64AF2B78FF85000738EF /* Fox_DocsApp.swift in Sources */,
 			);

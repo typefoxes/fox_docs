@@ -64,6 +64,11 @@ struct AddIntPassportView: View {
                         .onChange(of: placeOfBirth, { oldValue, newValue in
                             placeOfBirth = oldValue.uppercased()
                         })
+                    Picker("Пол", selection: $selectedGender) {
+                        ForEach(gender, id: \.self) { sex in
+                            Text(sex.rawValue.capitalized).tag(sex)
+                        }
+                    }
                 }
             }
         }

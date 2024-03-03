@@ -29,8 +29,14 @@ struct DriveField: View {
                                 text = newValue.dateFormateString(newValue)
                             case .none:
                                 text = newValue.uppercased()
-                            case .number:
+                            case .cardNumber:
                                 text = formatNumber(newValue)
+                            case .cvv:
+                                break
+                            case .snilsNumber:
+                                break
+                            case .innNumber:
+                                break
                         }
                     })
                     .keyboardType(keyboardType)

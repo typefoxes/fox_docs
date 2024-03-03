@@ -30,8 +30,14 @@ struct AddInnField: View {
                                 text = newValue.dateFormateString(newValue)
                             case .none:
                                 text = newValue.uppercased()
-                            case .number:
+                            case .innNumber:
                                 text = formatNumber(newValue)
+                            case .cvv:
+                                break
+                            case .cardNumber:
+                                break
+                            case .snilsNumber:
+                                break
                         }
                     })
                     .font(.footnote)
@@ -45,38 +51,5 @@ struct AddInnField: View {
         let cleanValue = value.replacingOccurrences(of: " ", with: "")
         let formattedValue = cleanValue.chunkFormatted(withChunkSize: 4, withSeparator: " ")
         return String(formattedValue.prefix(14))
-    }
-}
-
-struct AddInnMenu: View {
-    let title: String
-    let genders: [Sex]
-    @Binding var selectedGender: Sex
-
-    var body: some View {
-        VStack {
-            HStack {
-                Text(title)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                Spacer()
-            }
-            HStack {
-                Menu {
-                    ForEach(genders, id: \.self) { gender in
-                        Button(action: { selectedGender = gender
-                        }) {
-                            Text(gender.rawValue).tag(gender)
-                        }
-                    }
-                } label: {
-                    Text(selectedGender.rawValue)
-                        .font(.callout)
-                        .foregroundColor(.secondary)
-                        .underline()
-                }
-                Spacer()
-            }
-        }
     }
 }

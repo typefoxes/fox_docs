@@ -11,10 +11,10 @@ struct AddInnView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    @State private var number: String = ""
-    @State private var name: String = ""
-    @State private var dateOfBirth: String = ""
-    @State private var placeOfBirth: String = ""
+    @State private var number: String = .empty
+    @State private var name: String = .empty
+    @State private var dateOfBirth: String = .empty
+    @State private var placeOfBirth: String = .empty
     @State private var selectedGender: Sex = .none
 
     @State private var genders: [Sex] = [.female, .male]
@@ -22,7 +22,7 @@ struct AddInnView: View {
     var body: some View {
         VStack {
             MainAddInnView(number: $number, name: $name, dateOfBirth: $dateOfBirth, placeOfBirth: $placeOfBirth, selectedGender: $selectedGender, genders: $genders)
-            Spacer(minLength: 0)
+            Spacer()
             AddButtonView(saveAction: saveData, presentationMode: presentationMode)
                 .disableWithOpacity(isFormValid())
         }

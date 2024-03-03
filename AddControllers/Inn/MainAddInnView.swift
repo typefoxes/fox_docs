@@ -24,11 +24,13 @@ struct MainAddInnView: View {
             VStack() {
                 HStack {
                     VStack {
-                        AddInnField(title: "Номер", placeHolder: "XXXX XXXX XXXX", changeType: .number, text: $number, keyboardType: .numberPad)
+                        AddInnField(title: "Номер", placeHolder: "XXXX XXXX XXXX", changeType: .innNumber, text: $number, keyboardType: .numberPad)
                         AddInnField(title: "ФИО", placeHolder: "ABCD ABCD ABCD", changeType: .none, text: $name, keyboardType: .default)
                         AddInnField(title: "Дата рождения", placeHolder: "XX.XX.XXXX", changeType: .date, text: $dateOfBirth, keyboardType: .numberPad)
                         HStack {
-                            AddInnMenu(title: "Пол", genders: genders, selectedGender: $selectedGender)
+                            GenericMenu(title: "Пол", options: genders, selection: $selectedGender, content: { gender in
+                                Text(gender.rawValue)
+                            }, spacer: true)
                             AddInnField(title: "Место рождения", placeHolder: "New York City...", changeType: .none, text: $placeOfBirth, keyboardType: .default)
                         }.padding(.top, 10)
                     }.padding(20)

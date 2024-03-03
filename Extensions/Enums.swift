@@ -46,7 +46,7 @@ enum DriveCategory: String, Codable, Hashable {
     case tb = "Tb"
 }
 
-enum ActiveKeyboardFields {
+enum ActiveKeyboardFields: Hashable, CaseIterable {
     case cardNumber
     case cardHolderName
     case expirationDate
@@ -110,5 +110,8 @@ enum DocumentType {
 enum onChangeAddView {
     case none
     case date
-    case number
+    case cardNumber
+    case snilsNumber
+    case innNumber
+    case cvv
 }

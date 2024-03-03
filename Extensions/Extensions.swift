@@ -54,4 +54,6 @@ extension String {
         result = formattedDate
         return String(result.prefix(10))
     }
+
+    static let empty = ""
 }
