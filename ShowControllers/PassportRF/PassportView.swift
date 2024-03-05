@@ -63,23 +63,21 @@ struct PassportDetailsView: View {
     let passport: PassportModel
     var copyAction: (String) -> Void
 
+    func whoGiveCopyAction() {
+        copyAction(passport.whoGive)
+    }
+
+    func numberCopyAction() {
+        copyAction(passport.seriaAndNumber)
+    }
     var body: some View {
         VStack(spacing: Constants.spacing) {
-            TextWithCopyButton(title: Constants.whoGiveTitle, text: passport.whoGive, copyAction: copyAction)
+            DetailRow(title: Constants.whoGiveTitle, value: passport.whoGive, position: .vertical, action: whoGiveCopyAction)
             HStack(spacing: Constants.spacing) {
-                TextWithDetail(title: Constants.dateTitle, detail: passport.dateOfVidachy)
-                TextWithDetail(title: Constants.codeTitle, detail: passport.codePodrazdelenia)
+                DetailRow(title: Constants.dateTitle, value: passport.dateOfVidachy, position: .vertical)
+                DetailRow(title: Constants.codeTitle, value: passport.codePodrazdelenia, position: .vertical)
             }
-
-            HStack {
-                Text(passport.seriaAndNumber)
-                    .font(.title3)
-                    .foregroundColor(.passport)
-                    .bold()
-
-                CopyButton(text: passport.seriaAndNumber.replacingOccurrences(of: " ", with: ""), copyAction: copyAction)
-                Spacer()
-            }
+            DetailRow(title: .empty, value: passport.seriaAndNumber, position: .none, action: numberCopyAction)
         }
         .padding(Constants.spacing)
         .background(
@@ -89,97 +87,16 @@ struct PassportDetailsView: View {
     }
 }
 
-struct TextWithCopyButton: View {
-    
-    private enum Constants {
-        static let lineLimit: Int = 3
-    }
-    
-    let title: String
-    let text: String
-    var copyAction: (String) -> Void
-
-    var body: some View {
-        VStack {
-            HStack {
-                Text(title)
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-                Spacer()
-            }
-            HStack {
-                Text(text)
-                    .font(.caption2)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(Constants.lineLimit)
-                    .bold()
-                    .foregroundColor(.black)
-                
-                CopyButton(text: text, copyAction: copyAction)
-                Spacer()
-            }
-        }
-    }
-}
-
-struct TextWithDetail: View {
-    
-    private enum Constants {
-        static let spacing: CGFloat = 5
-        static let padding: CGFloat = 10
-    }
-    
-    let title: String
-    let detail: String
-
-    var body: some View {
-        VStack(spacing: Constants.spacing) {
-            HStack {
-                Text(title)
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-                Spacer()
-            }
-
-            HStack {
-                Text(detail)
-                    .font(.caption2)
-                    .foregroundColor(.black)
-                Spacer()
-            }
-        }
-        .padding(.top, Constants.padding)
-    }
-}
-
-struct CopyButton: View {
-    
-    private enum Constants {
-        static let copyImage: Image = Image("CopyImage")
-        static let copyImageHeight: CGFloat = 15
-    }
-    
-    let text: String
-    var copyAction: (String) -> Void
-
-    var body: some View {
-        Button(action: {
-            copyAction(text)
-        }) {
-            Constants.copyImage
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: Constants.copyImageHeight)
-                .tint(.secondary)
-        }
-    }
-}
-
 struct PassportPhotoView: View {
 
     private enum Constants {
         static let padding: CGFloat = 10
         static let cornerRadius: CGFloat = 10
+        static let imageFrame: CGFloat = 130
+        static let nameTitle: String = "ФИО"
+        static let genderTitle: String = "Пол"
+        static let dateOfBirthTitle: String = "Дата рождения"
+        static let placeOfBirthTitle: String = "Место рождения"
     }
 
     let image: Image
@@ -189,77 +106,23 @@ struct PassportPhotoView: View {
     let placeOfBirth: String
     var shareAction: String
     var shareTitle: String
-
+    
     var body: some View {
         VStack {
             HStack {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(height: 130)
-                    .cornerRadius(10)
-                
-                VStack(alignment: .leading, spacing: 15) {
-                    VStack() {
-                        HStack {
-                            Text("ФИО")
-                                .font(.caption2)
-                                .foregroundColor(.secondary)
-                            Spacer()
-                        }
-                        HStack {
-                            Text(fullName)
-                                .multilineTextAlignment(.leading)
-                                .lineLimit(3)
-                                .font(.caption2)
-                                .foregroundColor(.black)
-                            Spacer()
-                        }
-                    }
+                    .frame(height: Constants.imageFrame)
+                    .cornerRadius(Constants.cornerRadius)
+
+                VStack(alignment: .leading, spacing: Constants.padding) {
+                    DetailRow(title: Constants.nameTitle, value: fullName, position: .vertical)
                     HStack {
-                        VStack {
-                            HStack {
-                                Text("Пол")
-                                    .font(.caption2)
-                                    .foregroundColor(.secondary)
-                                Spacer()
-                            }
-                            HStack {
-                                Text(sex)
-                                    .font(.caption2)
-                                    .foregroundColor(.black)
-                                Spacer()
-                            }
-                        }
-                        VStack {
-                            HStack {
-                                Text("Дата рождения")
-                                    .font(.caption2)
-                                    .foregroundColor(.secondary)
-                                Spacer()
-                            }
-                            HStack {
-                                Text(dateOfBirth)
-                                    .font(.caption2)
-                                    .foregroundColor(.black)
-                                Spacer()
-                            }
-                        }
+                        DetailRow(title: Constants.genderTitle, value: sex, position: .vertical)
+                        DetailRow(title: Constants.dateOfBirthTitle, value: dateOfBirth, position: .vertical)
                     }
-                    VStack {
-                        HStack {
-                            Text("Место рождения")
-                                .font(.caption2)
-                                .foregroundColor(.secondary)
-                            Spacer()
-                        }
-                        HStack {
-                            Text(placeOfBirth)
-                                .font(.caption2)
-                                .foregroundColor(.black)
-                            Spacer()
-                        }
-                    }
+                    DetailRow(title: Constants.placeOfBirthTitle, value: placeOfBirth, position: .vertical)
                 }
             }
             ShareLinkButton(action: shareAction, shareTitle: shareTitle)

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DriveLicensBodyView: View {
     private enum Constants {
+        static let mainTitle: String = "ВОДИТЕЛЬСКОЕ УДОСТОВЕРЕНИЕ"
         static let pointOne: String = "1."
         static let pointTwo: String = "2."
         static let pointThree: String = "3."
@@ -30,25 +31,25 @@ struct DriveLicensBodyView: View {
     
     var body: some View {
         VStack {
-            Text("ВОДИТЕЛЬСКОЕ УДОСТОВЕРЕНИЕ")
+            Text(Constants.mainTitle)
                 .foregroundColor(.white)
                 .padding(.top, Constants.padding)
                 .font(.system(.body, design: .rounded))
                 .fontWeight(.heavy)
             
             VStack(spacing: Constants.padding) {
-                DriveDetailRow(title: Constants.pointOne, value: "\(drive.surname) / \(drive.surnameEng)")
-                DriveDetailRow(title: Constants.pointTwo, value: "\(drive.name) / \(drive.nameEng)")
-                DriveDetailRow(title: Constants.pointThree, value: "\(drive.dateOfBirth)")
-                DriveDetailRow(title: Constants.pointThreeA, value: "\(drive.cityOfBirth)")
-                DriveDetailRow(title: Constants.pointFourA, value: "\(drive.dateOfIssue)")
-                DriveDetailRow(title: Constants.pointFourB, value: "\(drive.dateOfExpire)")
-                DriveDetailRow(title: Constants.pointFourC, value: "\(drive.authority)")
-                DriveDetailRow(title: Constants.pointFive, value: "\(drive.number)")
-                DriveDetailRow(title: Constants.pointSix, value: Constants.emptyLine)
-                DriveDetailRow(title: Constants.pointSeven, value: Constants.emptyLine)
-                DriveDetailRow(title: Constants.pointEight, value: "\(drive.cityOfIssue)")
-                DriveDetailRow(title: Constants.pointNine, value: drive.category.map { String(describing: $0.rawValue) }.joined(separator: ", "))
+                DetailRow(title: Constants.pointOne, value: "\(drive.surname) / \(drive.surnameEng)", position: .horizontal)
+                DetailRow(title: Constants.pointTwo, value: "\(drive.name) / \(drive.nameEng)", position: .horizontal)
+                DetailRow(title: Constants.pointThree, value: "\(drive.dateOfBirth)", position: .horizontal)
+                DetailRow(title: Constants.pointThreeA, value: "\(drive.cityOfBirth)", position: .horizontal)
+                DetailRow(title: Constants.pointFourA, value: "\(drive.dateOfIssue)", position: .horizontal)
+                DetailRow(title: Constants.pointFourB, value: "\(drive.dateOfExpire)", position: .horizontal)
+                DetailRow(title: Constants.pointFourC, value: "\(drive.authority)", position: .horizontal)
+                DetailRow(title: Constants.pointFive, value: "\(drive.number)", position: .horizontal)
+                DetailRow(title: Constants.pointSix, value: Constants.emptyLine, position: .horizontal)
+                DetailRow(title: Constants.pointSeven, value: Constants.emptyLine, position: .horizontal)
+                DetailRow(title: Constants.pointEight, value: "\(drive.cityOfIssue)", position: .horizontal)
+                DetailRow(title: Constants.pointNine, value: drive.category.map { String(describing: $0.rawValue) }.joined(separator: ", "), position: .horizontal)
             }
             .padding()
             .background(
@@ -64,23 +65,3 @@ struct DriveLicensBodyView: View {
         ShareLinkButton(action: shareAction, shareTitle: "Водительское удостоверение")
     }
 }
-
-struct DriveDetailRow: View {
-    let title: String
-    let value: String
-    
-    var body: some View {
-        HStack {
-            Text(title)
-                .foregroundColor(.white)
-                .font(.system(.caption, design: .rounded))
-                .fontWeight(.heavy)
-            Text(value)
-                .foregroundColor(.white)
-                .font(.system(.caption, design: .rounded))
-                .fontWeight(.heavy)
-            Spacer()
-        }
-    }
-}
-

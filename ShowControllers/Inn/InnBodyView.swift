@@ -59,55 +59,15 @@ struct InnDetailsView: View {
     
     var body: some View {
         VStack(spacing: Constants.spacing) {
-            DetailInnRow(title: Constants.numberTitle, value: inn.number, action: { copyAction(inn.number.replacingOccurrences(of: " ", with: "")) })
-            DetailInnRow(title: Constants.nameTitle, value: inn.name)
+            DetailRow(title: Constants.numberTitle, value: inn.number, position: .vertical, action: { copyAction(inn.number.replacingOccurrences(of: " ", with: "")) })
+            DetailRow(title: Constants.nameTitle, value: inn.name, position: .vertical)
             HStack {
-                DetailInnRow(title: Constants.dateTitle, value: inn.dateOfBirth)
-                DetailInnRow(title: Constants.placeTitle, value: inn.placeOfBirth)
+                DetailRow(title: Constants.dateTitle, value: inn.dateOfBirth, position: .vertical)
+                DetailRow(title: Constants.placeTitle, value: inn.placeOfBirth, position: .vertical)
             }
-            DetailInnRow(title: Constants.genderTitle, value: inn.gender.rawValue)
+            DetailRow(title: Constants.genderTitle, value: inn.gender.rawValue, position: .vertical)
         }
         .padding(Constants.spacing)
         .background(RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous).fill(.innInside))
-    }
-}
-
-struct DetailInnRow: View {
-
-    private enum Constants {
-        static let copyImage: Image = Image("CopyImage")
-        static let copyImageHeight: CGFloat = 15
-        static let padding: CGFloat = 10
-    }
-
-    let title: String
-    let value: String
-    var action: (() -> Void)? = nil
-    
-    var body: some View {
-        VStack {
-            HStack {
-                Text(title)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                Spacer()
-            }
-            HStack {
-                Text(value)
-                    .font(.caption)
-                    .foregroundColor(.innFontInside)
-                if let action = action {
-                    Button(action: action) {
-                        Constants.copyImage
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: Constants.copyImageHeight)
-                            .tint(.innFontInside)
-                    }
-                }
-                Spacer()
-            }
-        }
-        .padding(.top, action == nil ? .zero : Constants.padding)
     }
 }

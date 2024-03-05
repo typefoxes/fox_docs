@@ -47,6 +47,7 @@
 		98D148352B9770660011AD85 /* AddTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D148342B9770660011AD85 /* AddTextFields.swift */; };
 		98D148382B97715A0011AD85 /* GenericMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D148372B97715A0011AD85 /* GenericMenu.swift */; };
 		98D1483A2B9779140011AD85 /* MultipleSelectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D148392B9779140011AD85 /* MultipleSelectionRow.swift */; };
+		98D1483C2B979F050011AD85 /* ShowDetailRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D1483B2B979F050011AD85 /* ShowDetailRow.swift */; };
 		98D202C02B86501D00E02039 /* InnBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D202BF2B86501D00E02039 /* InnBodyView.swift */; };
 		98EDCED72B8E6B2400A4C236 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EDCED62B8E6B2400A4C236 /* DividerView.swift */; };
 		98F9F0502B7A531000EC8DAF /* ShowCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9F04F2B7A531000EC8DAF /* ShowCardView.swift */; };
@@ -97,6 +98,7 @@
 		98D148342B9770660011AD85 /* AddTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTextFields.swift; sourceTree = "<group>"; };
 		98D148372B97715A0011AD85 /* GenericMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericMenu.swift; sourceTree = "<group>"; };
 		98D148392B9779140011AD85 /* MultipleSelectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectionRow.swift; sourceTree = "<group>"; };
+		98D1483B2B979F050011AD85 /* ShowDetailRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailRow.swift; sourceTree = "<group>"; };
 		98D202BF2B86501D00E02039 /* InnBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnBodyView.swift; sourceTree = "<group>"; };
 		98EDCED62B8E6B2400A4C236 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		98F9F04F2B7A531000EC8DAF /* ShowCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardView.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				98D148342B9770660011AD85 /* AddTextFields.swift */,
 				98D148372B97715A0011AD85 /* GenericMenu.swift */,
 				98D148392B9779140011AD85 /* MultipleSelectionRow.swift */,
+				98D1483B2B979F050011AD85 /* ShowDetailRow.swift */,
 			);
 			path = BaseShowViews;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				98F9F0582B7A6F0700EC8DAF /* BannerModifier.swift in Sources */,
 				985223862B7B8E39000A0585 /* ShowPassportView.swift in Sources */,
 				981B82CC2B7D29EC008D3EDA /* ShowDriveLicensView.swift in Sources */,
+				98D1483C2B979F050011AD85 /* ShowDetailRow.swift in Sources */,
 				988ACD572B7C0FB900189B66 /* Enums.swift in Sources */,
 				983E51D02B7CC8C800AEA8B2 /* PassportIntModel.swift in Sources */,
 				985223882B7BB0F3000A0585 /* AddPassportView.swift in Sources */,

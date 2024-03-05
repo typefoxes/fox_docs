@@ -64,10 +64,10 @@ struct SnilsDetailsView: View {
 
     var body: some View {
         VStack(spacing: Constants.spacing) {
-            DetailSnilsRow(title: Constants.titleNumber, value: snils.number, action: { copyAction(snils.number) })
-            DetailSnilsRow(title: Constants.titleName, value: snils.name)
-            DetailSnilsRow(title: Constants.titleDate, value: snils.dateAndPlace)
-            DetailSnilsRow(title: Constants.titleGender, value: snils.sex.rawValue)
+            DetailRow(title: Constants.titleNumber, value: snils.number, position: .vertical, action: { copyAction(snils.number) })
+            DetailRow(title: Constants.titleName, value: snils.name, position: .vertical)
+            DetailRow(title: Constants.titleDate, value: snils.dateAndPlace, position: .vertical)
+            DetailRow(title: Constants.titleGender, value: snils.sex.rawValue, position: .vertical)
         }
         .padding(.horizontal, Constants.padding)
         .padding(.top, Constants.spacing)
@@ -77,46 +77,5 @@ struct SnilsDetailsView: View {
             RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous)
                 .fill(Color.snils)
         )
-    }
-}
-
-struct DetailSnilsRow: View {
-
-    private enum Constants {
-        static let copyImage: Image = Image("CopyImage")
-        
-        static let imageHeight: CGFloat = 15
-        static let padding: CGFloat = 10
-    }
- 
-    let title: String
-    let value: String
-    var action: (() -> Void)? = nil
-
-    var body: some View {
-        VStack {
-            HStack {
-                Text(title)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                Spacer()
-            }
-            HStack {
-                Text(value)
-                    .font(.caption)
-                    .foregroundColor(.black)
-                if let action = action {
-                    Button(action: action) {
-                        Constants.copyImage
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: Constants.imageHeight)
-                            .tint(.secondary)
-                    }
-                }
-                Spacer()
-            }
-        }
-        .padding(.top, action == nil ? .zero : Constants.padding)
     }
 }

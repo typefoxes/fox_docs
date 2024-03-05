@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct InternationalPassportView: View {
-    
+
     let passport: PassportIntModel
     var copyAction: (String) -> Void
     var shareAction: String
-    
+
     private enum Constants {
         static let titleRussiaFederation: String = "РОССИЙСКАЯ ФЕДЕРАЦИЯ / RUSSIAN FEDERATION"
         static let surnameTitle: String = "Фамилия / Surname"
@@ -35,7 +35,7 @@ struct InternationalPassportView: View {
         static let cornerRadius: CGFloat = 10
 
     }
-    
+
     var body: some View {
         VStack {
             Text(Constants.titleRussiaFederation)
@@ -68,53 +68,27 @@ struct InternationalPassportView: View {
         .background(RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous).fill(Color.passport))
         ShareLinkButton(action: shareAction, shareTitle: Constants.passportType)
     }
-    
+
     private func passportInformation() -> some View {
         VStack(spacing: Constants.padding) {
-            passportInfoRow(title: Constants.surnameTitle, value: "\(passport.surname)")
-            passportInfoRow(title: Constants.givenNameTitle, value: "\(passport.givenName)")
+            DetailRow(title: Constants.surnameTitle, value: "\(passport.surname)", position: .vertical)
+            DetailRow(title: Constants.givenNameTitle, value: "\(passport.givenName)", position: .vertical)
             HStack {
-                passportInfoRow(title: Constants.sexTitle, value: "\(passport.gender.rawValue)")
-                passportInfoRow(title: Constants.dateOfBirthTitle, value: "\(passport.dateOfBirth)")
+                DetailRow(title: Constants.sexTitle, value: "\(passport.gender.rawValue)", position: .vertical)
+                DetailRow(title: Constants.dateOfBirthTitle, value: "\(passport.dateOfBirth)", position: .vertical)
             }
-            passportInfoRow(title: Constants.placeOfBirthTitle, value: "\(passport.placeOfBirth)")
+            DetailRow(title: Constants.placeOfBirthTitle, value: "\(passport.placeOfBirth)", position: .vertical)
         }
     }
-    
+
     private func importantDates() -> some View {
         VStack(spacing: Constants.padding) {
-            passportInfoRow(title: Constants.dateOfIssueTitle, value: "\(passport.dateOfIssue)")
-            passportInfoRow(title: Constants.dateOfExpireTitle, value: "\(passport.dateOfexpire)")
-            passportInfoRow(title: Constants.authorityTitle, value: "\(passport.authority)")
-            passportInfoRow(title: Constants.passportNoTitle, value: "\(passport.number)", isBold: true, action: {
+            DetailRow(title: Constants.dateOfIssueTitle, value: "\(passport.dateOfIssue)", position: .vertical)
+            DetailRow(title: Constants.dateOfExpireTitle, value: "\(passport.dateOfexpire)", position: .vertical)
+            DetailRow(title: Constants.authorityTitle, value: "\(passport.authority)", position: .vertical)
+            DetailRow(title: Constants.passportNoTitle, value: "\(passport.number)", position: .vertical, action: {
                 copyAction(passport.number)
             })
-        }
-    }
-    
-    
-    private func passportInfoRow(title: String, value: String, isBold: Bool = false, action: (() -> Void)? = nil) -> some View {
-        VStack { HStack {
-            Text(title)
-                .font(.caption2)
-                .foregroundColor(.secondary)
-            Spacer()
-        }.padding(.top, Constants.padding)
-            HStack {
-                Text(value)
-                    .font(isBold ? .caption2.bold() : .caption2)
-                    .foregroundColor(.black)
-                if let action = action {
-                    Button(action: action) {
-                        Constants.copyImage
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: Constants.copyImageHeight)
-                            .tint(.secondary)
-                    }
-                }
-                Spacer()
-            }
         }
     }
 }
