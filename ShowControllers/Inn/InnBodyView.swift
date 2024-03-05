@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InnView: View {
+struct InnBodyView: View {
 
     private enum Constants {
         static let titleMain: String = "СВИДЕТЕЛЬСТВО"

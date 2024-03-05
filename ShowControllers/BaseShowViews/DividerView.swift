@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-
+/// Структура для создания разделителя.
+/// Вью, представляющее собой горизонтальную линию разделителя.
 struct DividerView: View {
     var body: some View {
         HStack {
@@ -21,6 +22,3 @@ struct DividerView: View {
     }
 }
 
-#Preview {
-    DividerView()
-}

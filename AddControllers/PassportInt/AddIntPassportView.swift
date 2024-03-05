@@ -26,7 +26,7 @@ struct AddIntPassportView: View {
         VStack {
             PassportIntAddView()
             Spacer(minLength: 50)
-            AddButtonView(saveAction: saveData, presentationMode: presentationMode)
+            BaseButtonView(title: .save, saveAction: saveData, presentationMode: presentationMode)
                 .disableWithOpacity(number.count != 10 || surname.isEmpty || selectedGender == .none || givenName.isEmpty || placeOfBirth.isEmpty || authority.isEmpty)
         }
         .padding()

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DriveLicensView: View {
+struct DriveLicensBodyView: View {
     private enum Constants {
         static let pointOne: String = "1."
         static let pointTwo: String = "2."

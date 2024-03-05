@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddDriveView: View {
+struct AddDriveMainView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -23,7 +23,6 @@ struct AddDriveView: View {
     @State private var authority: String = .empty
     @State private var number: String = .empty
     @State private var cityOfIssue: String = .empty
-
     @State private var selectedCategories: [DriveCategory] = []
 
     var body: some View {
@@ -31,7 +30,7 @@ struct AddDriveView: View {
             VStack {
                 AddDriveBodyView(surname: $surname, surnameEng: $surnameEng, name: $name, nameEng: $nameEng, dateOfBirth: $dateOfBirth, cityOfBirth: $cityOfBirth, cityOfBirthEng: $cityOfBirthEng, dateOfIssue: $dateOfIssue, dateOfExpire: $dateOfExpire, authority: $authority, number: $number, cityOfIssue: $cityOfIssue, selectedCategories: $selectedCategories)
                 Spacer()
-                AddButtonView(saveAction: saveData, presentationMode: presentationMode)
+                BaseButtonView(title: .save, saveAction: saveData, presentationMode: presentationMode)
                     .disableWithOpacity(surname.isEmpty || surnameEng.isEmpty || name.isEmpty || nameEng.isEmpty || dateOfBirth.isEmpty || cityOfBirth.isEmpty || cityOfBirthEng.isEmpty || dateOfIssue.isEmpty || dateOfExpire.isEmpty || authority.isEmpty || number.isEmpty)
             }
             .padding()
@@ -51,5 +50,5 @@ struct AddDriveView: View {
 }
 
 #Preview {
-    AddDriveView()
+    AddDriveMainView()
 }

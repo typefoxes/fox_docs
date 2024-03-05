@@ -22,14 +22,15 @@ struct HeaderHomeView: View {
                 Text("+")
                     .bold()
                     .font(.system(.largeTitle, design: .rounded))
+                    .foregroundColor(.primary)
             }
         .actionSheet(isPresented: $showSheet, content: { sheet })
-        .sheet(isPresented: $showAddCardView) { AddCardViewController() }
-        .sheet(isPresented: $showAddSnilsView) { AddSnilsView() }
+        .sheet(isPresented: $showAddCardView) { AddCardMainView() }
+        .sheet(isPresented: $showAddSnilsView) { AddSnilsMainView() }
         .sheet(isPresented: $showAddPassportView) { AddPassportView() }
         .sheet(isPresented: $showAddPassportIntView) { AddIntPassportView() }
-        .sheet(isPresented: $showAddInnView) { AddInnView() }
-        .sheet(isPresented: $showAddDriveView) { AddDriveView() }
+        .sheet(isPresented: $showAddInnView) { AddInnMainView() }
+        .sheet(isPresented: $showAddDriveView) { AddDriveMainView() }
     }
     
     private var sheet: ActionSheet {

@@ -20,7 +20,7 @@ struct ShowPassportIntView: View {
                 HeaderShowView(showAlert: $showAlert, title: "Загранпаспорт", deleteAction: deleteData, presentationMode: presentationMode)
                 InternationalPassportView(passport: passport, copyAction: copyTapped, shareAction: sharePassport())
                 Spacer()
-                CloseButtonView(presentationMode: presentationMode)
+                BaseButtonView(title: .close, presentationMode: presentationMode)
             }
             .padding()
     }

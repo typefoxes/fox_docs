@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddSnilsView: View {
+struct AddSnilsMainView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -20,7 +20,7 @@ struct AddSnilsView: View {
             VStack {
                 AddSnilsBodyView(number: $number, name: $name, dateAndPlace: $dateAndPlace, selectedSex: $selectedSex)
                 Spacer()
-                AddButtonView(saveAction: saveData, presentationMode: presentationMode)
+                BaseButtonView(title: .save, saveAction: saveData, presentationMode: presentationMode)
                     .disableWithOpacity(number.count != 14 || name.isEmpty || dateAndPlace.isEmpty || selectedSex == .none)
             }
             .padding()
@@ -39,6 +39,6 @@ struct AddSnilsView: View {
 }
 
 #Preview {
-    AddSnilsView()
+    AddSnilsMainView()
 }
 

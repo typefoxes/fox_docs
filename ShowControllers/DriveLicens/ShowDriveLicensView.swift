@@ -19,9 +19,9 @@ struct ShowDriveLicensView: View {
         NavigationStack {
             VStack {
                 HeaderShowView(showAlert: $showAlert, title: "", deleteAction: deleteData, presentationMode: presentationMode)
-                DriveLicensView(drive: drive, shareAction: shareDrive())
+                DriveLicensBodyView(drive: drive, shareAction: shareDrive())
                 Spacer(minLength: 0)
-                CloseButtonView(presentationMode: presentationMode)
+                BaseButtonView(title: .close, presentationMode: presentationMode)
             }
             .padding()
         }

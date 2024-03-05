@@ -1,51 +1,23 @@
 //
-//  UniversalViews.swift
+//  AddTextFields.swift
 //  Fox Docs
 //
-//  Created by Дарья Котина on 03.03.2024.
+//  Created by Дарья Котина on 05.03.2024.
 //
 
 import SwiftUI
 
-struct GenericMenu<Option: Hashable, Content: View>: View {
-    let title: String?
-    let options: [Option]
-    @Binding var selection: Option
-    let content: (Option) -> Content
-    var spacer: Bool
-
-    var body: some View {
-        VStack {
-            HStack {
-                Text(title ?? "")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                Spacer()
-            }
-            HStack {
-                Menu {
-                    ForEach(options, id: \.self) { option in
-                        Button(action: {
-                            selection = option
-                        }) {
-                            content(option)
-                                .tag(option)
-                        }
-                    }
-                } label: {
-                    content(selection)
-                        .font(.callout)
-                        .foregroundColor(.secondary)
-                        .underline()
-                }
-                if spacer {
-                    Spacer()
-                }
-            }
-        }
-    }
-}
-
+/// Структура для создания текстового поля ввода с дополнительными возможностями.
+///
+/// - Parameters:
+///   - title: Заголовок текстового поля (необязательный).
+///   - placeHolder: Плейсхолдер текстового поля.
+///   - changeType: Обработчик изменений текста в текстовом поле.
+///   - text: Ссылка на текущее значение текстового поля.
+///   - keyboardType: Тип клавиатуры для текстового поля.
+///   - titlePosition: Положение заголовка относительно текстового поля.
+///
+/// - Note: Тип `changeType` должен соответствовать протоколу `onChangeAddView`.
 struct AddField: View {
     let title: String?
     let placeHolder: String
@@ -54,6 +26,8 @@ struct AddField: View {
     let keyboardType: UIKeyboardType
     let titlePosition: TitlePositions
 
+    /// Функция для создания текстового поля ввода.
+    /// - Returns: Вью, содержащее текстовое поле ввода.
     func textFieldBuilder() -> some View {
         HStack {
             HStack {
@@ -72,6 +46,8 @@ struct AddField: View {
                                 text =  String(newValue.chunkFormatted(withChunkSize: 3, withSeparator: "-").prefix(14))
                             case .innNumber:
                                 text = String(newValue.chunkFormatted(withChunkSize: 4, withSeparator: " ").prefix(14))
+                            case .fullDate:
+                                text = newValue.dateFormateString(newValue)
                         }
                     })
                     .keyboardType(keyboardType)
@@ -79,6 +55,8 @@ struct AddField: View {
         }
     }
 
+/// Функция для создания заголовка текстового поля.
+/// - Returns: Вью, содержащее заголовок текстового поля.
     func titleBuilder() -> some View {
         HStack {
             Text(title ?? "")
@@ -108,8 +86,3 @@ struct AddField: View {
     }
 }
 
-enum TitlePositions {
-    case vertical
-    case horizontal
-    case none
-}

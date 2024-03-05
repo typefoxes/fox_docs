@@ -26,7 +26,7 @@ struct ShowSnilsView: View {
                 HeaderShowView(showAlert: $showAlert, title: Constants.headerTitle, deleteAction: deleteData, presentationMode: presentationMode)
                 SnilsView(snils: snils, copyAction: copyTapped, shareAction: shareSnils())
                 Spacer()
-                CloseButtonView(presentationMode: presentationMode)
+                BaseButtonView(title: .close, presentationMode: presentationMode)
             }
             .padding()
         }

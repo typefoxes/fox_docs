@@ -20,7 +20,7 @@ struct CardViewController: View {
                 HeaderShowView(showAlert: $showAlert, title: "Банковская карта", deleteAction: deleteData, presentationMode: presentationMode)
                 CardView(card: card, copyAction: copyTapped, shareAction: shareCard())
                 Spacer()
-                CloseButtonView(presentationMode: presentationMode)
+                BaseButtonView(title: .close, presentationMode: presentationMode)
             }
             .padding()
     }

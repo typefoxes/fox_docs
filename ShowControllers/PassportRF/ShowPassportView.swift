@@ -22,7 +22,7 @@ struct ShowPassportView: View {
 
                 PassportView(passport: passport, copyAction: copyTapped, shareAction: sharePassport(), shareTitle: makeShortName())
                 Spacer()
-                CloseButtonView(presentationMode: presentationMode)
+                BaseButtonView(title: .close, presentationMode: presentationMode)
             }
             .padding()
         }

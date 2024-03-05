@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddCardViewController: View {
+struct AddCardMainView: View {
 
     private enum Constants {
         static let toolbarButton: String = "Следующий"
@@ -32,7 +32,7 @@ struct AddCardViewController: View {
                 AddCardBodyView(name: $name, cvv: $cvv, type: $type, date: $date, number: $number, selectedBank: $selectedBank, selectedType: $selectedType)
                     .padding(.top, Constants.padding)
                 Spacer()
-                AddButtonView(saveAction: saveData, presentationMode: presentationMode)
+                BaseButtonView(title: .save, saveAction: saveData, presentationMode: presentationMode)
                     .disableWithOpacity(number.count != 19 || date.count != 5 || name.isEmpty || cvv.count != 3 || selectedType == .noType || selectedBank == .noBank)
             }
             .padding()
@@ -73,8 +73,8 @@ struct AddCardViewController: View {
     }
 }
 
-struct AddCardViewController_Previews: PreviewProvider {
+struct AddCardMainView_Previews: PreviewProvider {
     static var previews: some View {
-        AddCardViewController()
+        AddCardMainView()
     }
 }

@@ -114,4 +114,21 @@ enum onChangeAddView {
     case snilsNumber
     case innNumber
     case cvv
+    case fullDate
+}
+
+/// Перечисление, определяющее положение заголовка относительно текстового поля.
+/// - Parameters:
+///   - vertical: Заголовок расположен над текстовым полем
+///   - horizontal: Заголовок расположен слева от текстового поля.
+///   - none: Отсутствует заголовок.
+enum TitlePositions {
+    case vertical
+    case horizontal
+    case none
+}
+
+enum TitleButton: String, Codable, Hashable {
+    case save = "Сохранить"
+    case close = "Закрыть"
 }
