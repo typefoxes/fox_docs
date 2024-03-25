@@ -5,13 +5,11 @@
 //  Created by Fox on 12.02.2024.
 //
 
-import Foundation
-import UIKit
 import SwiftData
 import SwiftUI
 
 @Model
-final class PassportModel {
+final class PassportModel: Identifiable {
     var id = UUID()
     var fullName: String
     var seriaAndNumber: String
@@ -23,7 +21,17 @@ final class PassportModel {
     var type: String
     var sex: Sex
 
-    init(fullName: String, seriaAndNumber: String, dateOfVidachy: String, whoGive: String, codePodrazdelenia: String, dateOfBirth: String, placeOfBirth: String, type: String, sex: Sex) {
+    init(
+        fullName: String,
+        seriaAndNumber: String,
+        dateOfVidachy: String,
+        whoGive: String,
+        codePodrazdelenia: String,
+        dateOfBirth: String,
+        placeOfBirth: String,
+        type: String,
+        sex: Sex
+    ) {
         self.fullName = fullName
         self.seriaAndNumber = seriaAndNumber
         self.dateOfVidachy = dateOfVidachy

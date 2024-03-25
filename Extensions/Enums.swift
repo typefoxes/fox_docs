@@ -4,7 +4,10 @@
 //
 //  Created by Fox on 13.02.2024.
 //
-
+import SwiftData
+import SwiftUI
+import UIKit
+import Foundation
 
 enum Sex: String, Codable, Hashable {
     case female = "Женский"
@@ -43,7 +46,7 @@ enum DriveCategory: String, Codable, Hashable {
     case tb = "Tb"
 }
 
-enum ActiveKeyboardFields {
+enum ActiveKeyboardFields: Hashable, CaseIterable {
     case cardNumber
     case cardHolderName
     case expirationDate
@@ -66,11 +69,71 @@ extension DriveCategory {
     }
 }
 
-enum Documents {
-    case drive(DriveModel)
-    case inn(INNModel)
-    case passportRF(PassportModel)
-    case passportInt(PassportIntModel)
+enum DocumentType {
+    case passport(PassportModel)
     case snils(SnilsModel)
+    case passportInt(PassportIntModel)
+    case inn(INNModel)
+    case drive(DriveModel)
+
+    func getType() -> String {
+        switch self {
+        case .passport(let document): return document.type
+        case .snils(let document): return document.type
+        case .passportInt(let document): return document.type
+        case .inn(let document): return document.type
+        case .drive(let document): return document.type
+        }
+    }
+
+    func getNumber() -> String {
+        switch self {
+        case .passport(let document): return document.seriaAndNumber
+        case .snils(let document): return document.number
+        case .passportInt(let document): return document.number
+        case .inn(let document): return document.number
+        case .drive(let document): return document.number
+        }
+    }
+
+    func getGradient() -> LinearGradient {
+        switch self {
+            case .passport:
+                return LinearGradient(colors: [Color.blue, Color.green], startPoint: .topLeading, endPoint: .bottomTrailing)
+            case .snils: 
+                return LinearGradient(colors: [Color.red, Color.orange], startPoint: .topLeading, endPoint: .bottomTrailing)
+            case .passportInt:
+                return LinearGradient(colors: [Color.yellow, Color.purple], startPoint: .topLeading, endPoint: .bottomTrailing)
+            case .inn:
+                return LinearGradient(colors: [Color.gray, Color.black], startPoint: .topLeading, endPoint: .bottomTrailing)
+            case .drive:
+                return LinearGradient(colors: [Color.pink, Color.purple], startPoint: .topLeading, endPoint: .bottomTrailing)
+        }
+    }
 }
 
+enum onChangeAddView {
+    case none
+    case date
+    case cardNumber
+    case snilsNumber
+    case innNumber
+    case cvv
+    case fullDate
+}
+
+/// Перечисление, определяющее положение заголовка относительно текстового поля.
+/// - Parameters:
+///   - vertical: Заголовок расположен над текстовым полем
+///   - horizontal: Заголовок расположен слева от текстового поля.
+///   - none: Отсутствует заголовок.
+enum TitlePositions {
+    case vertical
+    case horizontal
+    case none
+}
+
+enum TitleButton: String, Codable, Hashable {
+    case save = "Сохранить"
+    case close = "Закрыть"
+}

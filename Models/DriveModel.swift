@@ -11,8 +11,8 @@ import SwiftData
 import SwiftUI
 
 @Model
-final class DriveModel {
-
+final class DriveModel: Identifiable {
+    var id = UUID()
     var surname: String
     var surnameEng: String
     var name: String

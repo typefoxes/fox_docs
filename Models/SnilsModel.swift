@@ -11,15 +11,21 @@ import SwiftData
 import SwiftUI
 
 @Model
-final class SnilsModel {
-
+final class SnilsModel: Identifiable {
+    var id = UUID()
     var number: String
     var name: String
     var dateAndPlace: String
     var sex: Sex
-    var type: String
+    var type: String = "СНИЛС"
 
-    init(number: String, name: String, dateAndPlace: String, sex: Sex, type: String) {
+    init(
+        number: String,
+        name: String,
+        dateAndPlace: String,
+        sex: Sex,
+        type: String = "СНИЛС"
+    ) {
         self.number = number
         self.name = name
         self.dateAndPlace = dateAndPlace
