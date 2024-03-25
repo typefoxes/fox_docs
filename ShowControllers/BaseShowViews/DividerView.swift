@@ -9,6 +9,9 @@ import SwiftUI
 /// Структура для создания разделителя.
 /// Вью, представляющее собой горизонтальную линию разделителя.
 struct DividerView: View {
+
+    // MARK: - Body
+
     var body: some View {
         HStack {
             ForEach(0..<10) { _ in

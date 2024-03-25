@@ -8,24 +8,46 @@
 import SwiftUI
 
 struct ShowInnView: View {
+
+    // MARK: - Properties
+
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
     @State private var showAlert = false
 
     let inn: INNModel
     
+    // MARK: - Body
+
     var body: some View {
         NavigationStack {
             VStack {
-                HeaderShowView(showAlert: $showAlert, title: "ИНН", deleteAction: deleteData, presentationMode: presentationMode)
-                InnBodyView(inn: inn, copyAction: copyTapped, shareAction: shareInn())
+                HeaderShowView(
+                    showAlert: $showAlert,
+                    title: "ИНН",
+                    deleteAction: deleteData,
+                    presentationMode: presentationMode
+                )
+                InnBodyView(
+                    inn: inn,
+                    copyAction: copyTapped,
+                    shareAction: shareInn()
+                )
+                .environment(
+                    \.colorScheme,
+                     .light
+                )
                 Spacer()
-                BaseButtonView(title: .close, presentationMode: presentationMode)
+                BaseButtonView(
+                    title: .close,
+                    presentationMode: presentationMode
+                )
             }
             .padding()
         }
     }
+
+    // MARK: - Private functions
 
     private func copyTapped(text: String) {
         let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
@@ -55,8 +77,4 @@ struct ShowInnView: View {
 
         return cardData
     }
-}
-
-#Preview {
-    ShowInnView(inn: INNModel(number: "1324 1234 1272", name: "КОТИНА ДАРЬЯ СЕРГЕЕВНА", gender: .female, dateOfBirth: "02.04.1997", placeOfBirth: "МОСКВА"))
 }

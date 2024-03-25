@@ -24,7 +24,19 @@ final class PassportIntModel: Identifiable {
     var number: String
     var type = "Загранпаспорт"
 
-    init(id: UUID = UUID(), surname: String, givenName: String, dateOfBirth: String, gender: Gender, placeOfBirth: String, dateOfexpire: String, dateOfIssue: String, authority: String, number: String, type: String = "Загранпаспорт") {
+    init(
+        id: UUID = UUID(),
+        surname: String,
+        givenName: String,
+        dateOfBirth: String,
+        gender: Gender,
+        placeOfBirth: String,
+        dateOfexpire: String,
+        dateOfIssue: String,
+        authority: String,
+        number: String,
+        type: String = "Загранпаспорт"
+    ) {
         self.id = id
         self.surname = surname
         self.givenName = givenName

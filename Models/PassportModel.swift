@@ -21,7 +21,17 @@ final class PassportModel: Identifiable {
     var type: String
     var sex: Sex
 
-    init(fullName: String, seriaAndNumber: String, dateOfVidachy: String, whoGive: String, codePodrazdelenia: String, dateOfBirth: String, placeOfBirth: String, type: String, sex: Sex) {
+    init(
+        fullName: String,
+        seriaAndNumber: String,
+        dateOfVidachy: String,
+        whoGive: String,
+        codePodrazdelenia: String,
+        dateOfBirth: String,
+        placeOfBirth: String,
+        type: String,
+        sex: Sex
+    ) {
         self.fullName = fullName
         self.seriaAndNumber = seriaAndNumber
         self.dateOfVidachy = dateOfVidachy

@@ -7,6 +7,9 @@
 
 import SwiftUI
 struct AddSnilsBodyView: View {
+
+    // MARK: - Constants
+
     private enum Constants {
         static let number: String = "Номер"
         static let numberPlaceholder: String = "XXX-XXX-XXX XX"
@@ -20,46 +23,86 @@ struct AddSnilsBodyView: View {
         static let cornerRadius: CGFloat = 10
     }
 
+    // MARK: - Properties
+
     @Binding var number: String
     @Binding var name: String
     @Binding var dateAndPlace: String
     @Binding var selectedSex: Sex
     private let sex: [Sex] = [.female, .male]
 
+    // MARK: - Body
+
     var body: some View {
         VStack {
             MainTitleView()
             VStack() {
                 VStack(spacing: Constants.spacing) {
-                    AddField(title: Constants.number, placeHolder: Constants.numberPlaceholder, changeType: .snilsNumber, text: $number, keyboardType: .numberPad, titlePosition: .vertical)
-                    AddField(title: Constants.name, placeHolder: Constants.namePlaceholder, changeType: .none, text: $name, keyboardType: .default, titlePosition: .vertical)
-                    AddField(title: Constants.dateAndPlace, placeHolder: Constants.dateAndPlacePlaceholder, changeType: .none, text: $dateAndPlace, keyboardType: .default, titlePosition: .vertical)
-                    GenericMenu(title: Constants.gender, options: sex, selection: $selectedSex, content: {
+                    AddField(
+                        title: Constants.number,
+                        placeHolder: Constants.numberPlaceholder,
+                        changeType: .snilsNumber,
+                        text: $number,
+                        keyboardType: .numberPad,
+                        titlePosition: .vertical
+                    )
+                    AddField(
+                        title: Constants.name,
+                        placeHolder: Constants.namePlaceholder,
+                        changeType: .none,
+                        text: $name,
+                        keyboardType: .default,
+                        titlePosition: .vertical
+                    )
+                    AddField(
+                        title: Constants.dateAndPlace,
+                        placeHolder: Constants.dateAndPlacePlaceholder,
+                        changeType: .none,
+                        text: $dateAndPlace,
+                        keyboardType: .default,
+                        titlePosition: .vertical
+                    )
+                    GenericMenu(title: Constants.gender,
+                                options: sex,
+                                selection: $selectedSex,
+                                content: {
                         gender in Text(gender.rawValue)
-                    }, spacer: true)
+                    },
+                                spacer: true)
                 }.padding(Constants.spacing)
             }
             .frame(height: Constants.frameHeight)
             .environment(\.colorScheme, .light)
             .background {
-                RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous)
+                RoundedRectangle(
+                    cornerRadius: Constants.cornerRadius,
+                    style: .continuous
+                )
                     .fill(Color.snils)
             }
         }
         .background {
-            RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous)
+            RoundedRectangle(
+                cornerRadius: Constants.cornerRadius,
+                style: .continuous
+            )
                 .fill(Color.snilsHead)
         }
     }
 }
 
+// MARK: - MainTitleView
 struct MainTitleView: View {
+
+    // MARK: - Constants
 
     private enum Constants {
         static let title: String = "СТРАХОВОЕ СВИДЕТЕЛЬСТВО"
         static let subTitle: String = "ОБЯЗАТЕЛЬНОГО ПЕНСИОННОГО СТРАХОВАНИЯ"
         static let padding: CGFloat = 10
     }
+
+    // MARK: - Body
 
     var body: some View {
         VStack {

@@ -8,64 +8,120 @@
 import SwiftUI
 
 struct AddIntPassportView: View {
+
+    // MARK: - Constants
+
+    private enum Constants {
+        static let save = "Сохранить"
+        static let passportData = "Паспортные данные"
+        static let dateOfIssue = "Дата выдачи / Date of issue"
+        static let dateOfexpire = "Окончания срока/ Date of expire"
+        static let authority = "Орган выдачи / Authority"
+        static let passportNo = "Номер паспорта / Passport No."
+        static let personalData = "Личные данные"
+        static let surname = "Фамилия / Surname"
+        static let givenName = "Имя / Given name"
+        static let dateOfBirth = "Дата рождения / Date of birth"
+        static let placeOfBirth = "Место рождения / Place of birth"
+        static let gender = "Пол"
+        static let spacer: CGFloat = 50
+    }
+
+    // MARK: - Private properties
+
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    @State private var surname: String = ""
-    @State private var givenName: String = ""
+    @State private var surname: String = .empty
+    @State private var givenName: String = .empty
     @State private var dateOfBirth: Date = Date()
     @State private var selectedGender: Gender = .none
     @State private var gender: [Gender] = [.none, .f, .m]
-    @State private var placeOfBirth: String = ""
+    @State private var placeOfBirth: String = .empty
     @State private var dateOfIssue: Date = Date()
     @State private var dateOfexpire: Date = Date()
-    @State private var authority: String = ""
-    @State private var number: String = ""
+    @State private var authority: String = .empty
+    @State private var number: String = .empty
+
+    // MARK: - Body
 
     var body: some View {
         VStack {
             PassportIntAddView()
-            Spacer(minLength: 50)
-            BaseButtonView(title: .save, saveAction: saveData, presentationMode: presentationMode)
-                .disableWithOpacity(number.count != 10 || surname.isEmpty || selectedGender == .none || givenName.isEmpty || placeOfBirth.isEmpty || authority.isEmpty)
+            Spacer(minLength: Constants.spacer)
+            BaseButtonView(
+                title: .save,
+                saveAction: saveData,
+                presentationMode: presentationMode
+            )
+                .disableWithOpacity(isDisabled())
         }
         .padding()
     }
 
-    func PassportIntAddView() -> some View {
+    // MARK: - Private functions
+
+   private func PassportIntAddView() -> some View {
         ZStack {
             List {
-                Section(header: Text("Паспортные данные")) {
-                    DatePicker("Дата выдачи / Date of issue", selection: $dateOfIssue, displayedComponents: .date)
-                        .environment(\.locale, Locale(identifier: "ru_RU"))
-                    DatePicker("Окончания срока/ Date of expire", selection: $dateOfexpire, displayedComponents: .date)
-                        .environment(\.locale, Locale(identifier: "ru_RU"))
-
-                    TextField("Орган выдачи / Authority", text: $authority)
-                    TextField("Номер паспорта / Passport No.", text: $number)
+                Section(header: Text(Constants.passportData)) {
+                    DatePicker(
+                        Constants.dateOfIssue,
+                        selection: $dateOfIssue,
+                        displayedComponents: .date
+                    )
+                    DatePicker(
+                        Constants.dateOfexpire,
+                        selection: $dateOfexpire,
+                        displayedComponents: .date
+                    )
+                    TextField(
+                        Constants.authority,
+                        text: $authority
+                    )
+                    TextField(
+                        Constants.passportNo,
+                        text: $number
+                    )
                         .onChange(of: number, { oldValue, newValue in
                             number = formatNumber(newValue)
                         })
                         .keyboardType(.numberPad)
                 }
 
-                Section(header: Text("Личные данные")) {
-                    TextField("Фамилия / Surname", text: $surname)
+                Section(header: Text(Constants.personalData)) {
+                    TextField(
+                        Constants.surname,
+                        text: $surname
+                    )
                         .onChange(of: surname, { oldValue, newValue in
                             surname = oldValue.uppercased()
                         })
-                    TextField("Имя / Given name", text: $givenName)
+                    TextField(
+                        Constants.givenName,
+                        text: $givenName
+                    )
                         .onChange(of: surname, { oldValue, newValue in
                             surname = oldValue.uppercased()
                         })
-                    DatePicker("Дата рождения / Date of birth", selection: $dateOfBirth, displayedComponents: .date)
-                        .environment(\.locale, Locale(identifier: "ru_RU"))
-                    TextField("Место рождения / Place of birth", text: $placeOfBirth)
+                    DatePicker(
+                        Constants.dateOfBirth,
+                        selection: $dateOfBirth,
+                        displayedComponents: .date
+                    )
+                    TextField(
+                        Constants.placeOfBirth,
+                        text: $placeOfBirth
+                    )
                         .onChange(of: placeOfBirth, { oldValue, newValue in
                             placeOfBirth = oldValue.uppercased()
                         })
-                    Picker("Пол", selection: $selectedGender) {
-                        ForEach(gender, id: \.self) { sex in
+                    Picker(
+                        Constants.gender,
+                        selection: $selectedGender
+                    ) {
+                        ForEach(gender, id: \.self) { 
+                            sex in
                             Text(sex.rawValue.capitalized).tag(sex)
                         }
                     }
@@ -86,7 +142,23 @@ struct AddIntPassportView: View {
     private func saveData() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
-        let passport = PassportIntModel(surname: surname, givenName: givenName, dateOfBirth: dateFormatter.string(from: dateOfBirth), gender: selectedGender, placeOfBirth: placeOfBirth, dateOfexpire: dateFormatter.string(from: dateOfexpire), dateOfIssue: dateFormatter.string(from: dateOfIssue), authority: authority, number: number)
+        let passport = PassportIntModel(
+            surname: surname,
+            givenName: givenName,
+            dateOfBirth: dateFormatter.string(
+                from: dateOfBirth
+            ),
+            gender: selectedGender,
+            placeOfBirth: placeOfBirth,
+            dateOfexpire: dateFormatter.string(
+                from: dateOfexpire
+            ),
+            dateOfIssue: dateFormatter.string(
+                from: dateOfIssue
+            ),
+            authority: authority,
+            number: number
+        )
         modelContext.insert(passport)
         do {
             try modelContext.save()
@@ -95,8 +167,9 @@ struct AddIntPassportView: View {
             print(error.localizedDescription)
         }
     }
+
+    private func isDisabled() -> Bool {
+        return number.count != 10 || surname.isEmpty || selectedGender == .none || givenName.isEmpty || placeOfBirth.isEmpty || authority.isEmpty
+    }
 }
 
-#Preview {
-    AddIntPassportView()
-}

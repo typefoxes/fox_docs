@@ -8,22 +8,40 @@
 import SwiftUI
 
 struct ShowPassportIntView: View {
+
+    // MARK: - Properties
+
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
     @State private var showAlert = false
 
     let passport: PassportIntModel
 
+    // MARK: - Body
+
     var body: some View {
             VStack {
-                HeaderShowView(showAlert: $showAlert, title: "Загранпаспорт", deleteAction: deleteData, presentationMode: presentationMode)
-                InternationalPassportView(passport: passport, copyAction: copyTapped, shareAction: sharePassport())
+                HeaderShowView(
+                    showAlert: $showAlert,
+                    title: "Загранпаспорт",
+                    deleteAction: deleteData,
+                    presentationMode: presentationMode
+                )
+                InternationalPassportView(
+                    passport: passport,
+                    copyAction: copyTapped,
+                    shareAction: sharePassport()
+                )
                 Spacer()
-                BaseButtonView(title: .close, presentationMode: presentationMode)
+                BaseButtonView(
+                    title: .close,
+                    presentationMode: presentationMode
+                )
             }
             .padding()
     }
+
+    // MARK: - Private functions
 
     private func copyTapped(text: String) {
         let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
@@ -56,8 +74,4 @@ struct ShowPassportIntView: View {
 
         return passportData
     }
-}
-
-#Preview {
-    ShowPassportIntView(passport: PassportIntModel(surname: "ДОБРОВОЛЬСКАЯ", givenName: "ЕЛЕНА АЛЕКСАНДРОВНА", dateOfBirth: "02.04.1997", gender: .f, placeOfBirth: "Г.МОСКВА", dateOfexpire: "02.06.2024", dateOfIssue: "25.05.2019", authority: "ФМС 77718", number: "73 5960757", type: "Загран"))
 }

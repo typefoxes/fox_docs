@@ -8,11 +8,21 @@ import SwiftData
 import SwiftUI
 
 struct CardSectionView: View {
+
+    // MARK: - Private properties
+
     @State private var selectedCard: CardViewModel?
     @Query private var cards: [CardViewModel]
 
+    private enum Constants {
+        static let headerTitle: String = "Карты"
+        static let frameHeight: CGFloat = 200
+    }
+
+    // MARK: - Body
+
     var body: some View {
-        Section(header: Text("Карты").bold()) {
+        Section(header: Text(Constants.headerTitle).bold()) {
             ScrollView(.horizontal) {
                 LazyHStack {
                     ForEach(cards) { card in
@@ -23,7 +33,7 @@ struct CardSectionView: View {
                     }
                 }
             }
-            .frame(height: 200)
+            .frame(height: Constants.frameHeight)
         }
         .sheet(item: $selectedCard) { card in
             CardViewController(card: card)
@@ -31,8 +41,23 @@ struct CardSectionView: View {
     }
 }
 
+// MARK: - CardHomeView
+
 struct CardHomeView: View {
+
+    // MARK: - Private properties
+
     let card: CardViewModel
+
+    private enum Constants {
+        static let bankTitleFrame: CGFloat = 35
+        static let bankTypeFrame: CGFloat = 25
+        static let padding: CGFloat = 50
+        static let subViewCornerRadius: CGFloat = 20
+        static let mainViewCornerRadius: CGFloat = 10
+    }
+
+    // MARK: - Body
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -44,25 +69,27 @@ struct CardHomeView: View {
                 Image(card.bank.rawValue)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(height: 35)
+                    .frame(height: Constants.bankTitleFrame)
                     .padding(.trailing)
                 Spacer()
                 Image(card.type.rawValue)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(height: 25)
+                    .frame(height: Constants.bankTypeFrame)
             }
-            .padding(.top, 50)
+            .padding(.top, Constants.padding)
         }
         .padding()
         .background(
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: Constants.subViewCornerRadius)
                 .fill(card.gradient)
         )
-        .cornerRadius(10)
+        .cornerRadius(Constants.mainViewCornerRadius)
         .foregroundColor(.white)
     }
 }
+
+// MARK: - Preview
 #Preview {
     CardSectionView()
         .modelContainer(for: [CardViewModel.self], inMemory: true)

@@ -98,11 +98,16 @@ enum DocumentType {
 
     func getGradient() -> LinearGradient {
         switch self {
-        case .passport: return LinearGradient(colors: [Color.blue, Color.green], startPoint: .topLeading, endPoint: .bottomTrailing)
-        case .snils: return LinearGradient(colors: [Color.red, Color.orange], startPoint: .topLeading, endPoint: .bottomTrailing)
-        case .passportInt: return LinearGradient(colors: [Color.yellow, Color.purple], startPoint: .topLeading, endPoint: .bottomTrailing)
-        case .inn: return LinearGradient(colors: [Color.gray, Color.black], startPoint: .topLeading, endPoint: .bottomTrailing)
-        case .drive: return LinearGradient(colors: [Color.pink, Color.purple], startPoint: .topLeading, endPoint: .bottomTrailing)
+            case .passport:
+                return LinearGradient(colors: [Color.blue, Color.green], startPoint: .topLeading, endPoint: .bottomTrailing)
+            case .snils: 
+                return LinearGradient(colors: [Color.red, Color.orange], startPoint: .topLeading, endPoint: .bottomTrailing)
+            case .passportInt:
+                return LinearGradient(colors: [Color.yellow, Color.purple], startPoint: .topLeading, endPoint: .bottomTrailing)
+            case .inn:
+                return LinearGradient(colors: [Color.gray, Color.black], startPoint: .topLeading, endPoint: .bottomTrailing)
+            case .drive:
+                return LinearGradient(colors: [Color.pink, Color.purple], startPoint: .topLeading, endPoint: .bottomTrailing)
         }
     }
 }

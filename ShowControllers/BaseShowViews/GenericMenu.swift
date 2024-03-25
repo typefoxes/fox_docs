@@ -17,16 +17,20 @@ import SwiftUI
 ///
 /// - Note: Тип `Option` должен соответствовать протоколу `Hashable`, а тип `Content` - протоколу `View`.
 struct GenericMenu<Option: Hashable, Content: View>: View {
+
+    // MARK: - Properties
+
     let title: String?
     let options: [Option]
     @Binding var selection: Option
     let content: (Option) -> Content
     var spacer: Bool
 
+    // MARK: - Body
     var body: some View {
         VStack {
             HStack {
-                Text(title ?? "")
+                Text(title ?? .empty)
                     .font(.caption)
                     .foregroundColor(.secondary)
                 Spacer()

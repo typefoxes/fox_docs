@@ -19,7 +19,13 @@ final class SnilsModel: Identifiable {
     var sex: Sex
     var type: String = "СНИЛС"
 
-    init(number: String, name: String, dateAndPlace: String, sex: Sex, type: String = "СНИЛС") {
+    init(
+        number: String,
+        name: String,
+        dateAndPlace: String,
+        sex: Sex,
+        type: String = "СНИЛС"
+    ) {
         self.number = number
         self.name = name
         self.dateAndPlace = dateAndPlace

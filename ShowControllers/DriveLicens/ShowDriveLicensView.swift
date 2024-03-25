@@ -8,24 +8,42 @@
 import SwiftUI
 
 struct ShowDriveLicensView: View {
+
+    // MARK: - Private properties
+
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
     @State private var showAlert = false
 
     let drive: DriveModel
 
+    // MARK: - Body
+
     var body: some View {
         NavigationStack {
             VStack {
-                HeaderShowView(showAlert: $showAlert, title: "", deleteAction: deleteData, presentationMode: presentationMode)
-                DriveLicensBodyView(drive: drive, shareAction: shareDrive())
-                Spacer(minLength: 0)
-                BaseButtonView(title: .close, presentationMode: presentationMode)
+                HeaderShowView(
+                    showAlert: $showAlert,
+                    title: .empty,
+                    deleteAction: deleteData,
+                    presentationMode: presentationMode
+                )
+                DriveLicensBodyView(
+                    drive: drive,
+                    shareAction: shareDrive()
+                )
+                    .environment(\.colorScheme, .dark)
+                Spacer(minLength: .zero)
+                BaseButtonView(
+                    title: .close,
+                    presentationMode: presentationMode
+                )
             }
             .padding()
         }
     }
+
+    // MARK: - Private functions
 
     private func deleteData() {
         modelContext.delete(drive)
@@ -54,8 +72,4 @@ struct ShowDriveLicensView: View {
 
         return driveData
     }
-}
-
-#Preview {
-    ShowDriveLicensView(drive: DriveModel(surname: "КОТИНА", surnameEng: "KOTINA", name: "ДАРЬЯ СЕРГЕЕВНА", nameEng: "DARIA SERGEEVNA", dateOfBirth: "02.04.1997", cityOfBirth: "МОСКВА", cityOfBirthEng: "MOSKVA", dateOfIssue: "23.07.2017", dateOfExpire: "23.07.2027", authority: "ГИБДД 7724", number: "77 33 124234", category: [.b, .b1, .m], cityOfIssue: "МОСКВА"))
 }

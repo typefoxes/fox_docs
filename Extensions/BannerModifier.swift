@@ -52,7 +52,13 @@ struct BannerModifier: ViewModifier {
                             Text(data.title)
                                 .bold()
                             Text(data.detail)
-                                .font(Font.system(size: 15, weight: Font.Weight.light, design: Font.Design.default))
+                                .font(
+                                    Font.system(
+                                        size: 15,
+                                        weight: Font.Weight.light,
+                                        design: Font.Design.default
+                                    )
+                                )
                         }
                     }
                     .foregroundColor(Color.white)
@@ -62,7 +68,13 @@ struct BannerModifier: ViewModifier {
                 }
                 .padding()
                 .animation(.bouncy)
-                .transition(AnyTransition.move(edge: .bottom).combined(with: .opacity))
+                .transition(
+                    AnyTransition.move(
+                        edge: .bottom
+                    ).combined(
+                        with: .opacity
+                    )
+                )
                 .onTapGesture {
                     withAnimation {
                         self.show = false
@@ -84,13 +96,5 @@ struct BannerModifier: ViewModifier {
 extension View {
     func banner(data: Binding<BannerModifier.BannerData>, show: Binding<Bool>) -> some View {
         self.modifier(BannerModifier(data: data, show: show))
-    }
-}
-
-struct Banner_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            Text("Hello")
-        }
     }
 }

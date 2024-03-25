@@ -20,7 +20,14 @@ final class INNModel: Identifiable {
     var placeOfBirth: String
     var type = "ИНН"
 
-    init(number: String, name: String, gender: Sex, dateOfBirth: String, placeOfBirth: String, type: String = "ИНН") {
+    init(
+        number: String,
+        name: String,
+        gender: Sex,
+        dateOfBirth: String,
+        placeOfBirth: String,
+        type: String = "ИНН"
+    ) {
         self.number = number
         self.name = name
         self.gender = gender

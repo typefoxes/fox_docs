@@ -9,6 +9,8 @@ import SwiftUI
 
 struct InnBodyView: View {
 
+    // MARK: - Constants
+
     private enum Constants {
         static let titleMain: String = "СВИДЕТЕЛЬСТВО"
         static let titleSecondary: String = "О ПОСТАНОВКЕ НА УЧЕТ В НАЛОГОВОМ ОРГАНЕ"
@@ -20,10 +22,14 @@ struct InnBodyView: View {
         static let padding: CGFloat = 10
     }
 
+    // MARK: - Properties
+
     let inn: INNModel
     var copyAction: (String) -> Void
     var shareAction: String
     
+    // MARK: - Body
+
     var body: some View {
         VStack {
             Text(Constants.titleMain)
@@ -35,14 +41,31 @@ struct InnBodyView: View {
                 .font(.caption2)
                 .foregroundColor(.innFontTop)
             
-            InnDetailsView(inn: inn, copyAction: copyAction)
+            InnDetailsView(
+                inn: inn,
+                copyAction: copyAction
+            )
         }
-        .background(RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous).fill(.innTop))
-        ShareLinkButton(action: shareAction, shareTitle: Constants.typeDoc)
+        .background(
+            RoundedRectangle(
+                cornerRadius: Constants.cornerRadius,
+                style: .continuous
+            ).fill(
+                .innTop
+            )
+        )
+        ShareLinkButton(
+            action: shareAction,
+            shareTitle: Constants.typeDoc
+        )
     }
 }
 
+// MARK: - InnDetailsView
+
 struct InnDetailsView: View {
+
+    // MARK: - Constants
 
     private enum Constants {
         static let numberTitle: String = "Номер"
@@ -54,20 +77,66 @@ struct InnDetailsView: View {
         static let cornerRadius: CGFloat = 10
     }
 
+    // MARK: - Properties
+
     let inn: INNModel
     var copyAction: (String) -> Void
     
+    // MARK: - Body
+
     var body: some View {
-        VStack(spacing: Constants.spacing) {
-            DetailRow(title: Constants.numberTitle, value: inn.number, position: .vertical, action: { copyAction(inn.number.replacingOccurrences(of: " ", with: "")) })
-            DetailRow(title: Constants.nameTitle, value: inn.name, position: .vertical)
+        VStack(
+            spacing: Constants.spacing
+        ) {
+            DetailRow(title: Constants.numberTitle,
+                      value: inn.number,
+                      position: .vertical,
+                      textColor: .innFontInside,
+                      action: {
+                copyAction(
+                    inn.number.replacingOccurrences(
+                        of: " ",
+                        with: ""
+                    )
+                )
+            })
+            DetailRow(
+                title: Constants.nameTitle,
+                value: inn.name,
+                position: .vertical,
+                textColor: .innFontInside
+            )
             HStack {
-                DetailRow(title: Constants.dateTitle, value: inn.dateOfBirth, position: .vertical)
-                DetailRow(title: Constants.placeTitle, value: inn.placeOfBirth, position: .vertical)
+                DetailRow(
+                    title: Constants.dateTitle,
+                    value: inn.dateOfBirth,
+                    position: .vertical,
+                    textColor: .innFontInside
+                )
+                DetailRow(
+                    title: Constants.placeTitle,
+                    value: inn.placeOfBirth,
+                    position: .vertical,
+                    textColor: .innFontInside
+                )
             }
-            DetailRow(title: Constants.genderTitle, value: inn.gender.rawValue, position: .vertical)
+            DetailRow(
+                title: Constants.genderTitle,
+                value: inn.gender.rawValue,
+                position: .vertical,
+                textColor: .innFontInside
+            )
         }
-        .padding(Constants.spacing)
-        .background(RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous).fill(.innInside))
+        .padding(
+            Constants.spacing
+        )
+        .background(
+            RoundedRectangle(
+                cornerRadius: Constants.cornerRadius,
+                style: .continuous
+            ).fill(
+                .innInside
+            )
+        )
     }
 }

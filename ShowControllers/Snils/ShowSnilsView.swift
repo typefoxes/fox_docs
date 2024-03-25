@@ -9,28 +9,47 @@ import SwiftUI
 
 struct ShowSnilsView: View {
 
+    // MARK: - Properties
+
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
     @State private var showAlert = false
 
     let snils: SnilsModel
+
+    // MARK: - Constants
 
     private enum Constants {
         static let headerTitle: String = "СНИЛС"
     }
 
+    // MARK: - Body
+
     var body: some View {
         NavigationStack {
             VStack {
-                HeaderShowView(showAlert: $showAlert, title: Constants.headerTitle, deleteAction: deleteData, presentationMode: presentationMode)
-                SnilsView(snils: snils, copyAction: copyTapped, shareAction: shareSnils())
+                HeaderShowView(
+                    showAlert: $showAlert,
+                    title: Constants.headerTitle,
+                    deleteAction: deleteData,
+                    presentationMode: presentationMode
+                )
+                SnilsView(
+                    snils: snils,
+                    copyAction: copyTapped,
+                    shareAction: shareSnils()
+                )
                 Spacer()
-                BaseButtonView(title: .close, presentationMode: presentationMode)
+                BaseButtonView(
+                    title: .close,
+                    presentationMode: presentationMode
+                )
             }
             .padding()
         }
     }
+
+    // MARK: - Private functions
 
     private func copyTapped(text: String) {
         let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
@@ -59,8 +78,4 @@ struct ShowSnilsView: View {
 
         return cardData
     }
-}
-
-#Preview {
-    ShowSnilsView(snils: SnilsModel(number: "123-123-123 12", name: "КОТИНА ДАРЬЯ СЕРГЕЕВНА", dateAndPlace: "02 АПРЕЛЯ 1997 ГОДА МОСКВА", sex: .female, type: "СНИЛС"))
 }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AddCardBodyView: View {
 
+    // MARK: - Constants
+
     private enum Constants {
         static let numberPlaceholder: String = "XXXX XXXX XXXX XXXX"
         static let datePlaceholder: String = "MM/YY"
@@ -20,8 +22,9 @@ struct AddCardBodyView: View {
         static let spacing: CGFloat = 10
     }
 
-    @FocusState private var activeTF: ActiveKeyboardFields!
+    // MARK: - Properties
 
+    @FocusState private var activeTF: ActiveKeyboardFields!
     @Binding var name: String
     @Binding var cvv: String
     @Binding var type: String
@@ -32,31 +35,82 @@ struct AddCardBodyView: View {
     private let typeCard = BankType.allCases
     private let banks = Bank.allCases
 
+    // MARK: - Body
     var body: some View {
         VStack() {
             VStack {
-                AddField(title: nil, placeHolder: Constants.numberPlaceholder, changeType: .cardNumber, text: $number, keyboardType: .numberPad, titlePosition: .none)
+                AddField(
+                    title: nil,
+                    placeHolder: Constants.numberPlaceholder,
+                    changeType: .cardNumber,
+                    text: $number,
+                    keyboardType: .numberPad,
+                    titlePosition: .none
+                )
                     .font(.title3)
-                    .focused($activeTF, equals: .cardNumber)
+                    .focused(
+                        $activeTF,
+                        equals: .cardNumber
+                    )
                 HStack {
-                    AddField(title: nil, placeHolder: Constants.datePlaceholder, changeType: .date, text: $date, keyboardType: .numberPad, titlePosition: .none)
-                        .focused($activeTF, equals: .expirationDate)
-                    AddField(title: nil, placeHolder: Constants.cvvPlaceholder, changeType: .cvv, text: $cvv, keyboardType: .numberPad, titlePosition: .none)
-                        .frame(width: 35)
-                        .focused($activeTF, equals: .cvv)
+                    AddField(
+                        title: nil,
+                        placeHolder: Constants.datePlaceholder,
+                        changeType: .date,
+                        text: $date,
+                        keyboardType: .numberPad,
+                        titlePosition: .none
+                    )
+                    .focused(
+                        $activeTF,
+                        equals: .expirationDate
+                    )
+                    AddField(
+                        title: nil,
+                        placeHolder: Constants.cvvPlaceholder,
+                        changeType: .cvv,
+                        text: $cvv,
+                        keyboardType: .numberPad,
+                        titlePosition: .none
+                    )
+                    .frame(width: 35)
+                    .focused(
+                        $activeTF,
+                        equals: .cvv
+                    )
                 }.padding(.top, Constants.spacing)
-                AddField(title: nil, placeHolder: Constants.namePlaceholder, changeType: .none, text: $name, keyboardType: .default, titlePosition: .none)
-                    .focused($activeTF, equals: .cardHolderName)
-                    .padding(.top, Constants.spacing)
+                AddField(
+                    title: nil,
+                    placeHolder: Constants.namePlaceholder,
+                    changeType: .none,
+                    text: $name,
+                    keyboardType: .default,
+                    titlePosition: .none
+                )
+                .focused(
+                    $activeTF,
+                    equals: .cardHolderName
+                )
+                .padding(.top, Constants.spacing)
             }
             HStack {
-                GenericMenu(title: nil, options: BankType.allCases, selection: $selectedType, content: { type in
+                GenericMenu(title: nil,
+                            options: BankType.allCases,
+                            selection: $selectedType,
+                            content: {
+                    type in
                     Text(type.rawValue)
-                }, spacer: true)
+                },
+                            spacer: true)
                 Spacer()
-                GenericMenu(title: nil, options: Bank.allCases, selection: $selectedBank, content: { bank in
+                GenericMenu(title: nil,
+                            options: Bank.allCases,
+                            selection: $selectedBank,
+                            content: {
+                    bank in
                     Text(bank.rawValue)
-                }, spacer: false)
+                },
+                            spacer: false)
             }.padding(.top, Constants.spacing)
         }
         .padding(Constants.padding)
@@ -64,16 +118,24 @@ struct AddCardBodyView: View {
         .environment(\.colorScheme, .dark)
         .tint(.white)
         .background(
-            RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous)
+            RoundedRectangle(
+                cornerRadius: Constants.cornerRadius,
+                style: .continuous
+            )
                 .fill(
                     LinearGradient(
-                        gradient: Gradient(colors: [Color.green, Color.accentColor]),
+                        gradient: Gradient(
+                            colors: [
+                                Color.green,
+                                Color.accentColor
+                            ]
+                        ),
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
                 )
         )
-        .padding(20)
+        .padding(Constants.padding)
     }
 }
 

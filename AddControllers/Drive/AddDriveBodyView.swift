@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct AddDriveBodyView: View {
+
+    // MARK: - Constants
+    
     private enum Constants {
         static let selectedCategoriesDefault: String = "Выбрать"
         static let selectedCategoriesSeparator: String = ", "
@@ -33,6 +36,8 @@ struct AddDriveBodyView: View {
         static let cornerRadius: CGFloat = 20
     }
 
+    // MARK: - Properties
+
     @Binding var surname: String
     @Binding var surnameEng: String
     @Binding var name: String
@@ -45,10 +50,7 @@ struct AddDriveBodyView: View {
     @Binding var authority: String
     @Binding var number: String
     @Binding var cityOfIssue: String
-
     @Binding var selectedCategories: [DriveCategory]
-    @State private var isShowingPicker = false
-
     var selectedCategoriesString: String {
         if selectedCategories.isEmpty {
             return Constants.selectedCategoriesDefault
@@ -56,6 +58,12 @@ struct AddDriveBodyView: View {
             return selectedCategories.map { $0.rawValue }.joined(separator: Constants.selectedCategoriesSeparator)
         }
     }
+
+    // MARK: - Private properties
+
+    @State private var isShowingPicker = false
+
+    // MARK: - Body
 
     var body: some View {
         VStack {
@@ -67,18 +75,102 @@ struct AddDriveBodyView: View {
                     .fontWeight(.heavy)
                 VStack {
                     VStack {
-                        AddField(title: Constants.surnameItemRus, placeHolder: Constants.placeHolderText, changeType: .none, text: $surname, keyboardType: .default, titlePosition: .horizontal)
-                        AddField(title: Constants.surnameItemEng, placeHolder: Constants.placeHolderText, changeType: .none, text: $surnameEng, keyboardType: .default, titlePosition: .horizontal)
-                        AddField(title: Constants.nameRus, placeHolder: Constants.placeHolderText, changeType: .none, text: $name, keyboardType: .default, titlePosition: .horizontal)
-                        AddField(title: Constants.nameEng, placeHolder: Constants.placeHolderText, changeType: .none, text: $nameEng, keyboardType: .default, titlePosition: .horizontal)
-                        AddField(title: Constants.dateOfBirth, placeHolder: Constants.datePlaceholder, changeType: .date, text: $dateOfBirth, keyboardType: .numberPad, titlePosition: .horizontal)
-                        AddField(title: Constants.cityOfBirthRus, placeHolder: Constants.placeHolderText, changeType: .none, text: $cityOfBirth, keyboardType: .default, titlePosition: .horizontal)
-                        AddField(title: Constants.cityOfBirthEng, placeHolder: Constants.placeHolderText, changeType: .none, text: $cityOfBirthEng, keyboardType: .default, titlePosition: .horizontal)
-                        AddField(title: Constants.dateOfIssue, placeHolder: Constants.datePlaceholder, changeType: .date, text: $dateOfIssue, keyboardType: .numberPad, titlePosition: .horizontal)
-                        AddField(title: Constants.dateOfExpire, placeHolder: Constants.datePlaceholder, changeType: .date, text: $dateOfExpire, keyboardType: .numberPad, titlePosition: .horizontal)
-                        AddField(title: Constants.authority, placeHolder: Constants.placeHolderText, changeType: .none, text: $authority, keyboardType: .default, titlePosition: .horizontal)
-                        AddField(title: Constants.number, placeHolder: Constants.numberPlaceHolder, changeType: .cardNumber, text: $number, keyboardType: .numberPad, titlePosition: .horizontal)
-                        AddField(title: Constants.cityOfIssue, placeHolder: Constants.placeHolderText, changeType: .none, text: $cityOfIssue, keyboardType: .default, titlePosition: .horizontal)
+                        AddField(
+                            title: Constants.surnameItemRus,
+                            placeHolder: Constants.placeHolderText,
+                            changeType: .none,
+                            text: $surname,
+                            keyboardType: .default,
+                            titlePosition: .horizontal
+                        )
+                        AddField(
+                            title: Constants.surnameItemEng,
+                            placeHolder: Constants.placeHolderText,
+                            changeType: .none,
+                            text: $surnameEng,
+                            keyboardType: .default,
+                            titlePosition: .horizontal
+                        )
+                        AddField(
+                            title: Constants.nameRus,
+                            placeHolder: Constants.placeHolderText,
+                            changeType: .none,
+                            text: $name,
+                            keyboardType: .default,
+                            titlePosition: .horizontal
+                        )
+                        AddField(
+                            title: Constants.nameEng,
+                            placeHolder: Constants.placeHolderText,
+                            changeType: .none,
+                            text: $nameEng,
+                            keyboardType: .default,
+                            titlePosition: .horizontal
+                        )
+                        AddField(
+                            title: Constants.dateOfBirth,
+                            placeHolder: Constants.datePlaceholder,
+                            changeType: .date,
+                            text: $dateOfBirth,
+                            keyboardType: .numberPad,
+                            titlePosition: .horizontal
+                        )
+                        AddField(
+                            title: Constants.cityOfBirthRus,
+                            placeHolder: Constants.placeHolderText,
+                            changeType: .none,
+                            text: $cityOfBirth,
+                            keyboardType: .default,
+                            titlePosition: .horizontal
+                        )
+                        AddField(
+                            title: Constants.cityOfBirthEng,
+                            placeHolder: Constants.placeHolderText,
+                            changeType: .none,
+                            text: $cityOfBirthEng,
+                            keyboardType: .default,
+                            titlePosition: .horizontal
+                        )
+                        AddField(
+                            title: Constants.dateOfIssue,
+                            placeHolder: Constants.datePlaceholder,
+                            changeType: .date,
+                            text: $dateOfIssue,
+                            keyboardType: .numberPad,
+                            titlePosition: .horizontal
+                        )
+                        AddField(
+                            title: Constants.dateOfExpire,
+                            placeHolder: Constants.datePlaceholder,
+                            changeType: .date,
+                            text: $dateOfExpire,
+                            keyboardType: .numberPad,
+                            titlePosition: .horizontal
+                        )
+                        AddField(
+                            title: Constants.authority,
+                            placeHolder: Constants.placeHolderText,
+                            changeType: .none,
+                            text: $authority,
+                            keyboardType: .default,
+                            titlePosition: .horizontal
+                        )
+                        AddField(
+                            title: Constants.number,
+                            placeHolder: Constants.numberPlaceHolder,
+                            changeType: .cardNumber,
+                            text: $number,
+                            keyboardType: .numberPad,
+                            titlePosition: .horizontal
+                        )
+                        AddField(
+                            title: Constants.cityOfIssue,
+                            placeHolder: Constants.placeHolderText,
+                            changeType: .none,
+                            text: $cityOfIssue,
+                            keyboardType: .default,
+                            titlePosition: .horizontal
+                        )
                         HStack {
                             Text(Constants.category)
                                 .font(.caption)
@@ -97,7 +189,10 @@ struct AddDriveBodyView: View {
                                     NavigationView {
                                         List {
                                             ForEach(DriveCategory.allCases, id: \.self) { category in
-                                                MultipleSelectionRow(category: category, isSelected: self.selectedCategories.contains(category)) {
+                                                MultipleSelectionRow(
+                                                    category: category,
+                                                    isSelected: self.selectedCategories.contains(category)
+                                                ) {
                                                     if self.selectedCategories.contains(category) {
                                                         self.selectedCategories.removeAll(where: { $0 == category })
                                                     } else {
@@ -117,13 +212,38 @@ struct AddDriveBodyView: View {
                     }.padding()
                 }
                 .background {
-                    RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous)
-                        .fill(.linearGradient(colors: [Color.indigo, Color.cyan], startPoint: .topLeading, endPoint: .bottomTrailing))
+                    RoundedRectangle(
+                        cornerRadius: Constants.cornerRadius,
+                        style: .continuous
+                    )
+                    .fill(
+                        .linearGradient(
+                            colors: [
+                                Color.indigo,
+                                Color.cyan
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
                 }
             }
             .background {
-                RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous)
-                .fill(.linearGradient(colors: [Color.blue, Color.green], startPoint: .topLeading, endPoint: .bottomTrailing)) }
+                RoundedRectangle(
+                    cornerRadius: Constants.cornerRadius,
+                    style: .continuous
+                )
+                .fill(
+                    .linearGradient(
+                        colors: [
+                            Color.blue,
+                            Color.green
+                        ],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+            }
             .padding(Constants.padding)
             .environment(\.colorScheme, .dark)
         }

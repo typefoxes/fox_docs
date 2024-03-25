@@ -14,9 +14,14 @@ import SwiftUI
 ///   - isSelected: Логическое значение, указывающее, выбрана ли категория.
 ///   - action: Замыкание, которое должно быть выполнено при нажатии на строку.
 struct MultipleSelectionRow: View {
+
+    // MARK: - Properties
+
     let category: DriveCategory
     let isSelected: Bool
     var action: () -> Void
+
+    // MARK: - Body
 
     var body: some View {
         Button(action: {

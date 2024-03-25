@@ -8,9 +8,16 @@
 import SwiftUI
 import SwiftData
 
+// MARK: - DocumentTypeView
+
 struct DocumentTypeView: View {
+
+    // MARK: - Properties
+
     let documentType: DocumentType
     let onTapAction: () -> Void
+
+    // MARK: - Body
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -33,23 +40,28 @@ struct DocumentTypeView: View {
     }
 }
 
+// MARK: - DocsSectionView
+
 struct DocsSectionView: View {
+
+    // MARK: - Private properties
+
     @Query private var passports: [PassportModel]
     @Query private var snils: [SnilsModel]
     @Query private var passportInt: [PassportIntModel]
     @Query private var inn: [INNModel]
     @Query private var drive: [DriveModel]
-
     @State private var selectedDocument: DocumentWrapper?
 
-    var body: some View {
-        let allDocuments: [DocumentWrapper] = passports.map { DocumentWrapper(document: $0) } +
-                                              snils.map { DocumentWrapper(document: $0) } +
-                                              passportInt.map { DocumentWrapper(document: $0) } +
-                                              inn.map { DocumentWrapper(document: $0) } +
-                                              drive.map { DocumentWrapper(document: $0) }
+    private enum Constants {
+        static let headerTitle: String = "Документы"
+        static let sectionFrameHeight: CGFloat = 200
+    }
+    // MARK: - Body
 
-        Section(header: Text("Документы")) {
+    var body: some View {
+        let allDocuments = setAllDocument()
+        Section(header: Text(Constants.headerTitle)) {
             ScrollView(.horizontal) {
                 LazyHStack {
                     ForEach(allDocuments) { document in
@@ -59,7 +71,7 @@ struct DocsSectionView: View {
                     }
                 }
             }
-            .frame(height: 200)
+            .frame(height: Constants.sectionFrameHeight)
         }
         .sheet(item: $selectedDocument) { documentWrapper in
             switch getDocumentType(documentWrapper.document) {
@@ -77,6 +89,8 @@ struct DocsSectionView: View {
         }
     }
 
+    // MARK: - Private functions
+
     private func getDocumentType(_ document: Any) -> DocumentType {
         if let passport = document as? PassportModel {
             return .passport(passport)
@@ -91,5 +105,26 @@ struct DocsSectionView: View {
         } else {
             fatalError("Unknown document type")
         }
+    }
+
+    private func setAllDocument() -> [DocumentWrapper] {
+        var allDocs: [DocumentWrapper] = []
+
+        allDocs.append(contentsOf: passports.map {
+            DocumentWrapper(document: $0)
+        })
+        allDocs.append(contentsOf: snils.map {
+            DocumentWrapper(document: $0)
+        })
+        allDocs.append(contentsOf: passportInt.map {
+            DocumentWrapper(document: $0)
+        })
+        allDocs.append(contentsOf: inn.map {
+            DocumentWrapper(document: $0)
+        })
+        allDocs.append(contentsOf: drive.map {
+            DocumentWrapper(document: $0)
+        })
+        return allDocs
     }
 }

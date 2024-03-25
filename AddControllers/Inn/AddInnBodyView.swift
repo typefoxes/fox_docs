@@ -6,10 +6,29 @@
 //
 
 import SwiftUI
-/// Эта структура представляет собой SwiftUI-представление для формы ввода данных INNModel.
+
 struct AddInnBodyView: View {
 
-    /// - Binding: Связанные свойства для отображения и изменения данных формы.
+    // MARK: - Constants
+
+    private enum Constants {
+        static let mainTitle: String = "СВИДЕТЕЛЬСТВО"
+        static let subTitle: String = "О ПОСТАНОВКЕ НА УЧЕТ В НАЛОГОВОМ ОРГАНЕ"
+        static let numberTitle: String = "Номер"
+        static let numberPlaceholder: String = "XXXX XXXX XXXX"
+        static let nameTitle: String = "ФИО"
+        static let namePlaceholder: String = "ABCD ABCD ABCD"
+        static let dateTitle: String = "Дата рождения"
+        static let datePlaceholder: String = "XX.XX.XXXX"
+        static let genderTitle: String = "Пол"
+        static let placeTitle: String = "Место рождения"
+        static let placePlaceholder: String = "New York City..."
+        static let padding: CGFloat = 10
+        static let cornerRadius: CGFloat = 10
+        static let frameHeight: CGFloat = 100
+    }
+    // MARK: - Properties
+
     @Binding var number: String
     @Binding var name: String
     @Binding var dateOfBirth: String
@@ -17,42 +36,87 @@ struct AddInnBodyView: View {
     @Binding var selectedGender: Sex
     @Binding  var genders: [Sex]
 
-    /// Основное содержимое представления, состоящее из заголовка и полей формы.
+    // MARK: - Body
+
     var body: some View {
         VStack() {
-            Text("СВИДЕТЕЛЬСТВО").font(.caption).foregroundColor(.innFontTop).padding(.top, 10)
-            Text("О ПОСТАНОВКЕ НА УЧЕТ В НАЛОГОВОМ ОРГАНЕ").font(.caption2).foregroundColor(.innFontTop)
+            Text(Constants.mainTitle)
+                .font(.caption)
+                .foregroundColor(.innFontTop)
+                .padding(.top, Constants.padding)
+            Text(Constants.subTitle)
+                .font(.caption2)
+                .foregroundColor(.innFontTop)
             VStack() {
                 HStack {
                     VStack {
-                        /// AddField: Представление для отображения поля ввода с заголовком, плейсхолдером, текстом и клавиатурой.
-                        AddField(title: "Номер", placeHolder: "XXXX XXXX XXXX", changeType: .innNumber, text: $number, keyboardType: .numberPad, titlePosition: .vertical)
-                        AddField(title: "ФИО", placeHolder: "ABCD ABCD ABCD", changeType: .none, text: $name, keyboardType: .default, titlePosition: .vertical)
-                        AddField(title: "Дата рождения", placeHolder: "XX.XX.XXXX", changeType: .fullDate, text: $dateOfBirth, keyboardType: .numberPad, titlePosition: .vertical)
+                        AddField(
+                            title: Constants.numberTitle,
+                            placeHolder: Constants.numberPlaceholder,
+                            changeType: .innNumber,
+                            text: $number,
+                            keyboardType: .numberPad,
+                            titlePosition: .vertical
+                        )
+                        AddField(
+                            title: Constants.nameTitle,
+                            placeHolder: Constants.namePlaceholder,
+                            changeType: .none,
+                            text: $name,
+                            keyboardType: .default,
+                            titlePosition: .vertical
+                        )
+                        AddField(
+                            title: Constants.dateTitle,
+                            placeHolder: Constants.datePlaceholder,
+                            changeType: .fullDate,
+                            text: $dateOfBirth,
+                            keyboardType: .numberPad,
+                            titlePosition: .vertical
+                        )
                         HStack {
-                            /// GenericMenu: Представление для отображения выпадающего меню с доступными полами.
-                            GenericMenu(title: "Пол", options: genders, selection: $selectedGender, content: { gender in
+                            GenericMenu(title: Constants.genderTitle,
+                                        options: genders,
+                                        selection: $selectedGender,
+                                        content: {
+                                gender in
                                 Text(gender.rawValue)
-                            }, spacer: true)
-                            AddField(title: "Место рождения", placeHolder: "New York City...", changeType: .none, text: $placeOfBirth, keyboardType: .default, titlePosition: .vertical)
-                        }.padding(.top, 10)
-                    }.padding(20)
+                            },
+                                        spacer: true)
+                            AddField(
+                                title: Constants.placeTitle,
+                                placeHolder: Constants.placePlaceholder,
+                                changeType: .none,
+                                text: $placeOfBirth,
+                                keyboardType: .default,
+                                titlePosition: .vertical
+                            )
+                        }
+                        .padding(.top, Constants.padding)
+                    }
+                    .padding(Constants.padding)
                     Image(.herbInn)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(height: 100)
+                        .frame(height: Constants.frameHeight)
                         .tint(.innFontInside)
                 }
-                .padding(.top, 10)
+                .padding(.top, Constants.padding)
                 .background {
-                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    RoundedRectangle(
+                        cornerRadius: Constants.cornerRadius,
+                        style: .continuous
+                    )
                         .fill(.innInside)
                 }
             }
         }
         .environment(\.colorScheme, .light)
         .background {
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
+            RoundedRectangle(
+                cornerRadius: Constants.cornerRadius,
+                style: .continuous
+            )
                 .fill(.innTop)
         }
     }

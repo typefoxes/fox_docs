@@ -8,22 +8,39 @@
 import SwiftUI
 
 struct CardViewController: View {
+
+    // MARK: - Properties
+
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
     @State private var showAlert = false
-    
     let card: CardViewModel
     
+    // MARK: - Body
+
     var body: some View {
             VStack {
-                HeaderShowView(showAlert: $showAlert, title: "Банковская карта", deleteAction: deleteData, presentationMode: presentationMode)
-                CardView(card: card, copyAction: copyTapped, shareAction: shareCard())
+                HeaderShowView(
+                    showAlert: $showAlert,
+                    title: "Банковская карта",
+                    deleteAction: deleteData,
+                    presentationMode: presentationMode
+                )
+                CardView(
+                    card: card,
+                    copyAction: copyTapped,
+                    shareAction: shareCard()
+                )
                 Spacer()
-                BaseButtonView(title: .close, presentationMode: presentationMode)
+                BaseButtonView(
+                    title: .close,
+                    presentationMode: presentationMode
+                )
             }
             .padding()
     }
+
+    // MARK: - Private functions
 
     private func copyTapped(text: String) {
         let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
@@ -54,8 +71,4 @@ struct CardViewController: View {
         
         return cardData
     }
-}
-
-#Preview {
-    CardViewController(card: CardViewModel(name: "Darya Kotina", number: "6666 6666 6666 6666", cvv: "123", type: .masterCard, date: "12/12", bank: .sber))
 }

@@ -9,10 +9,14 @@ import SwiftUI
 
 struct AddCardMainView: View {
 
+    // MARK: - Constants
+
     private enum Constants {
         static let toolbarButton: String = "Следующий"
         static let padding: CGFloat = 50
     }
+
+    // MARK: - Private properties
 
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -26,14 +30,31 @@ struct AddCardMainView: View {
     @State private var selectedBank: Bank = .noBank
     @State private var selectedType: BankType = .noType
 
+    // MARK: - Body
+
     var body: some View {
         NavigationStack {
             VStack {
-                AddCardBodyView(name: $name, cvv: $cvv, type: $type, date: $date, number: $number, selectedBank: $selectedBank, selectedType: $selectedType)
-                    .padding(.top, Constants.padding)
+                AddCardBodyView(
+                    name: $name,
+                    cvv: $cvv,
+                    type: $type,
+                    date: $date,
+                    number: $number,
+                    selectedBank: $selectedBank,
+                    selectedType: $selectedType
+                )
+                .padding(
+                    .top,
+                    Constants.padding
+                )
                 Spacer()
-                BaseButtonView(title: .save, saveAction: saveData, presentationMode: presentationMode)
-                    .disableWithOpacity(number.count != 19 || date.count != 5 || name.isEmpty || cvv.count != 3 || selectedType == .noType || selectedBank == .noBank)
+                BaseButtonView(
+                    title: .save,
+                    saveAction: saveData,
+                    presentationMode: presentationMode
+                )
+                    .disableWithOpacity(isDisabled())
             }
             .padding()
             .toolbar {
@@ -61,8 +82,21 @@ struct AddCardMainView: View {
         }
     }
 
+    // MARK: - Private functions
+
+    private func isDisabled() -> Bool {
+        return number.count != 19 || date.count != 5 || name.isEmpty || cvv.count != 3 || selectedType == .noType || selectedBank == .noBank
+    }
+
     private func saveData() {
-        let card = CardViewModel(name: name, number: number, cvv: cvv, type: BankType(rawValue: selectedType.rawValue) ?? .noType, date: date, bank: Bank(rawValue: selectedBank.rawValue) ?? .noBank)
+        let card = CardViewModel(
+            name: name,
+            number: number,
+            cvv: cvv,
+            type: BankType(rawValue: selectedType.rawValue) ?? .noType,
+            date: date,
+            bank: Bank(rawValue: selectedBank.rawValue) ?? .noBank
+        )
         modelContext.insert(card)
         do {
             try modelContext.save()
@@ -70,11 +104,5 @@ struct AddCardMainView: View {
         } catch {
             print(error.localizedDescription)
         }
-    }
-}
-
-struct AddCardMainView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddCardMainView()
     }
 }

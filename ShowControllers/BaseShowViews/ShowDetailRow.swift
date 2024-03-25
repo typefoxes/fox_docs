@@ -9,16 +9,23 @@ import SwiftUI
 
 struct DetailRow: View {
 
+    // MARK: - Constants
+
     private enum Constants {
         static let copyImage: Image = Image("CopyImage")
         static let copyImageHeight: CGFloat = 15
         static let padding: CGFloat = 10
     }
 
+    // MARK: - Properties
+
     let title: String
     let value: String
     let position: TitlePositions
+    let textColor: Color
     var action: (() -> Void)? = nil
+
+    // MARK: - Body
 
     var body: some View {
         switch position {
@@ -39,27 +46,28 @@ struct DetailRow: View {
         }
     }
 
-    func titleBuilder() -> some View {
+    // MARK: - Private functions
+
+   private func titleBuilder() -> some View {
         HStack {
             Text(title)
                 .font(.caption)
                 .foregroundColor(.secondary)
-            Spacer()
         }
     }
 
-    func valueBuilder() -> some View {
+    private func valueBuilder() -> some View {
         HStack {
             Text(value)
                 .font(.caption)
-                .foregroundColor(.innFontInside)
+                .foregroundColor(textColor)
             if let action = action {
                 Button(action: action) {
                     Constants.copyImage
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: Constants.copyImageHeight)
-                        .tint(.innFontInside)
+                        .tint(textColor)
                 }
             }
             Spacer()

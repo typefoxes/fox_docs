@@ -10,28 +10,15 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    
-    
-    
+
     var body: some View {
-        NavigationView {
-            VStack {
-                List {
-                    CardSectionView()
-                    DocsSectionView()
-                    
-                }
-                .toolbar {
-                    ToolbarItem {
-                        HeaderHomeView()
-                    }
-                }
+        HeaderHomeView()
+        VStack {
+            List {
+                CardSectionView()
+                DocsSectionView()
+
             }
         }
     }
-}
-
-#Preview {
-    ContentView()
-        .modelContainer(for: [], inMemory: true)
 }

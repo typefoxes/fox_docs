@@ -16,9 +16,21 @@ import SwiftUI
 ///  - presentationMode: Привязка к режиму презентации, используется для закрытия текущего представления.
 
 struct BaseButtonView: View {
+
+    // MARK: - Constants
+
+    private enum Constants {
+        static let verticalPadding: CGFloat = 12
+        static let cornerRadius: CGFloat = 20
+    }
+
+    // MARK: - Properties
+
     var title: TitleButton
     var saveAction: (() -> Void)?
     var presentationMode: Binding<PresentationMode>
+
+    // MARK: - Body
 
     var body: some View {
         Button(action: {
@@ -30,11 +42,23 @@ struct BaseButtonView: View {
             Text(title.rawValue)
                 .fontWeight(.semibold)
                 .foregroundColor(.white)
-                .padding(.vertical, 12)
+                .padding(.vertical, Constants.verticalPadding)
                 .frame(maxWidth: .infinity)
                 .background {
-                    RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .fill(.linearGradient(colors: [Color.blue, Color.sber], startPoint: .topLeading, endPoint: .bottomTrailing))
+                    RoundedRectangle(
+                        cornerRadius: Constants.cornerRadius,
+                        style: .continuous
+                    )
+                    .fill(
+                        .linearGradient(
+                            colors: [
+                                Color.blue,
+                                Color.sber
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
                 }
         }
     }

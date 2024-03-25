@@ -8,25 +8,53 @@
 import SwiftUI
 
 struct ShowPassportView: View {
+    // MARK: - Properties
+
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
     @State private var showAlert = false
 
     let passport: PassportModel
 
+    // MARK: - Constants
+
+    private enum Constants {
+        static let title: String = "Паспорт РФ"
+    }
+
+    // MARK: - Body
+
     var body: some View {
         NavigationStack {
             VStack {
-                HeaderShowView(showAlert: $showAlert, title: "Паспорт РФ", deleteAction: deleteData, presentationMode: presentationMode)
+                HeaderShowView(
+                    showAlert: $showAlert,
+                    title: Constants.title,
+                    deleteAction: deleteData,
+                    presentationMode: presentationMode
+                )
 
-                PassportView(passport: passport, copyAction: copyTapped, shareAction: sharePassport(), shareTitle: makeShortName())
+                PassportView(
+                    passport: passport,
+                    copyAction: copyTapped,
+                    shareAction: sharePassport(),
+                    shareTitle: makeShortName()
+                )
+                .environment(
+                    \.colorScheme,
+                     .light
+                )
                 Spacer()
-                BaseButtonView(title: .close, presentationMode: presentationMode)
+                BaseButtonView(
+                    title: .close,
+                    presentationMode: presentationMode
+                )
             }
             .padding()
         }
     }
+
+    // MARK: - Private functions
 
     private func copyTapped(text: String) {
         let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
@@ -58,12 +86,12 @@ struct ShowPassportView: View {
         }
     }
 
-    func makeShortName() -> String {
+    private func makeShortName() -> String {
         let nameComponents = passport.fullName.components(separatedBy: " ")
-        var shortName = "Паспорт РФ "
+        var shortName = Constants.title
 
         if let lastName = nameComponents.first {
-            shortName += "\(lastName) "
+            shortName += " \(lastName) "
         }
 
         for i in 1..<nameComponents.count {
@@ -73,11 +101,5 @@ struct ShowPassportView: View {
         }
 
         return shortName.trimmingCharacters(in: .whitespaces)
-    }
-}
-
-struct ShowPassportView_Previews: PreviewProvider {
-    static var previews: some View {
-        ShowPassportView(passport: PassportModel(fullName: "Котина Дарья Сергеевна", seriaAndNumber: "1234 123456", dateOfVidachy: "12.12.2020", whoGive: "МВД РОССИИ ПО ГОР МОСКВЕ gkghbkhgv yugkyu yugku fhf uehf e euhfuwehf uehfuqwefhu uehfuhfy gkgkyu yugukygb yugkuy", codePodrazdelenia: "770-770", dateOfBirth: "12.12.2022", placeOfBirth: "г.Москва", type: "Паспорт", sex: .female))
     }
 }

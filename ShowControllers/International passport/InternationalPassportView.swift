@@ -9,10 +9,13 @@ import SwiftUI
 
 struct InternationalPassportView: View {
 
+    // MARK: - Properties
+
     let passport: PassportIntModel
     var copyAction: (String) -> Void
     var shareAction: String
 
+    // MARK: - Constants
     private enum Constants {
         static let titleRussiaFederation: String = "РОССИЙСКАЯ ФЕДЕРАЦИЯ / RUSSIAN FEDERATION"
         static let surnameTitle: String = "Фамилия / Surname"
@@ -33,8 +36,9 @@ struct InternationalPassportView: View {
         static let copyImageHeight: CGFloat = 15
         static let padding: CGFloat = 10
         static let cornerRadius: CGFloat = 10
-
     }
+
+    // MARK: - Body
 
     var body: some View {
         VStack {
@@ -47,7 +51,14 @@ struct InternationalPassportView: View {
                 }
             }
             .padding(Constants.padding)
-            .background(RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous).fill(Color.passportInside))
+            .background(
+                RoundedRectangle(
+                    cornerRadius: Constants.cornerRadius,
+                    style: .continuous
+                ).fill(
+                    Color.passportInside
+                )
+            )
             .environment(\.colorScheme, .light)
             DividerView()
             VStack() {
@@ -61,33 +72,102 @@ struct InternationalPassportView: View {
                 }
             }
             .padding(Constants.padding)
-            .background(RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous).fill(Color.passportInside))
+            .background(
+                RoundedRectangle(
+                    cornerRadius: Constants.cornerRadius,
+                    style: .continuous
+                ).fill(
+                    Color.passportInside
+                )
+            )
             .environment(\.colorScheme, .light)
         }
         .padding(Constants.padding)
-        .background(RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous).fill(Color.passport))
-        ShareLinkButton(action: shareAction, shareTitle: Constants.passportType)
+        .background(
+            RoundedRectangle(
+                cornerRadius: Constants.cornerRadius,
+                style: .continuous
+            ).fill(
+                Color.passport
+            )
+        )
+        ShareLinkButton(
+            action: shareAction,
+            shareTitle: Constants.passportType
+        )
     }
 
+    // MARK: - Private functions
+
     private func passportInformation() -> some View {
-        VStack(spacing: Constants.padding) {
-            DetailRow(title: Constants.surnameTitle, value: "\(passport.surname)", position: .vertical)
-            DetailRow(title: Constants.givenNameTitle, value: "\(passport.givenName)", position: .vertical)
+        VStack(
+            spacing: Constants.padding
+        ) {
+            DetailRow(
+                title: Constants.surnameTitle,
+                value: "\(passport.surname)",
+                position: .vertical,
+                textColor: .passportText
+            )
+            DetailRow(
+                title: Constants.givenNameTitle,
+                value: "\(passport.givenName)",
+                position: .vertical,
+                textColor: .passportText
+            )
             HStack {
-                DetailRow(title: Constants.sexTitle, value: "\(passport.gender.rawValue)", position: .vertical)
-                DetailRow(title: Constants.dateOfBirthTitle, value: "\(passport.dateOfBirth)", position: .vertical)
+                DetailRow(
+                    title: Constants.sexTitle,
+                    value: "\(passport.gender.rawValue)",
+                    position: .vertical,
+                    textColor: .passportText
+                )
+                DetailRow(
+                    title: Constants.dateOfBirthTitle,
+                    value: "\(passport.dateOfBirth)",
+                    position: .vertical,
+                    textColor: .passportText
+                )
             }
-            DetailRow(title: Constants.placeOfBirthTitle, value: "\(passport.placeOfBirth)", position: .vertical)
+            DetailRow(
+                title: Constants.placeOfBirthTitle,
+                value: "\(passport.placeOfBirth)",
+                position: .vertical,
+                textColor: .passportText
+            )
         }
     }
 
     private func importantDates() -> some View {
-        VStack(spacing: Constants.padding) {
-            DetailRow(title: Constants.dateOfIssueTitle, value: "\(passport.dateOfIssue)", position: .vertical)
-            DetailRow(title: Constants.dateOfExpireTitle, value: "\(passport.dateOfexpire)", position: .vertical)
-            DetailRow(title: Constants.authorityTitle, value: "\(passport.authority)", position: .vertical)
-            DetailRow(title: Constants.passportNoTitle, value: "\(passport.number)", position: .vertical, action: {
-                copyAction(passport.number)
+        VStack(
+            spacing: Constants.padding
+        ) {
+            DetailRow(
+                title: Constants.dateOfIssueTitle,
+                value: "\(passport.dateOfIssue)",
+                position: .vertical,
+                textColor: .passportText
+            )
+            DetailRow(
+                title: Constants.dateOfExpireTitle,
+                value: "\(passport.dateOfexpire)",
+                position: .vertical,
+                textColor: .passportText
+            )
+            DetailRow(
+                title: Constants.authorityTitle,
+                value: "\(passport.authority)",
+                position: .vertical,
+                textColor: .passportText
+            )
+            DetailRow(title: Constants.passportNoTitle,
+                      value: "\(passport.number)",
+                      position: .vertical,
+                      textColor: .passportText,
+                      action: {
+                copyAction(
+                    passport.number
+                )
             })
         }
     }

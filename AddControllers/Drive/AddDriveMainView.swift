@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct AddDriveMainView: View {
+
+    // MARK: - Private properties
+
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -25,20 +28,60 @@ struct AddDriveMainView: View {
     @State private var cityOfIssue: String = .empty
     @State private var selectedCategories: [DriveCategory] = []
 
+    // MARK: - Body
+
     var body: some View {
         NavigationStack {
             VStack {
-                AddDriveBodyView(surname: $surname, surnameEng: $surnameEng, name: $name, nameEng: $nameEng, dateOfBirth: $dateOfBirth, cityOfBirth: $cityOfBirth, cityOfBirthEng: $cityOfBirthEng, dateOfIssue: $dateOfIssue, dateOfExpire: $dateOfExpire, authority: $authority, number: $number, cityOfIssue: $cityOfIssue, selectedCategories: $selectedCategories)
+                AddDriveBodyView(
+                    surname: $surname,
+                    surnameEng: $surnameEng,
+                    name: $name,
+                    nameEng: $nameEng,
+                    dateOfBirth: $dateOfBirth,
+                    cityOfBirth: $cityOfBirth,
+                    cityOfBirthEng: $cityOfBirthEng,
+                    dateOfIssue: $dateOfIssue,
+                    dateOfExpire: $dateOfExpire,
+                    authority: $authority,
+                    number: $number,
+                    cityOfIssue: $cityOfIssue,
+                    selectedCategories: $selectedCategories
+                )
                 Spacer()
-                BaseButtonView(title: .save, saveAction: saveData, presentationMode: presentationMode)
-                    .disableWithOpacity(surname.isEmpty || surnameEng.isEmpty || name.isEmpty || nameEng.isEmpty || dateOfBirth.isEmpty || cityOfBirth.isEmpty || cityOfBirthEng.isEmpty || dateOfIssue.isEmpty || dateOfExpire.isEmpty || authority.isEmpty || number.isEmpty)
+                BaseButtonView(
+                    title: .save,
+                    saveAction: saveData,
+                    presentationMode: presentationMode
+                )
+                    .disableWithOpacity(isDisabled())
             }
             .padding()
         }
     }
 
+    // MARK: - Private functions
+
+    private func isDisabled() -> Bool {
+        return surname.isEmpty || surnameEng.isEmpty || name.isEmpty || nameEng.isEmpty || dateOfBirth.isEmpty || cityOfBirth.isEmpty || cityOfBirthEng.isEmpty || dateOfIssue.isEmpty || dateOfExpire.isEmpty || authority.isEmpty || number.isEmpty
+    }
+
     private func saveData() {
-        let drive = DriveModel(surname: surname, surnameEng: surnameEng, name: name, nameEng: nameEng, dateOfBirth: dateOfBirth, cityOfBirth: cityOfBirth, cityOfBirthEng: cityOfBirthEng, dateOfIssue: dateOfIssue, dateOfExpire: dateOfExpire, authority: authority, number: number, category: selectedCategories, cityOfIssue: cityOfIssue)
+        let drive = DriveModel(
+            surname: surname,
+            surnameEng: surnameEng,
+            name: name,
+            nameEng: nameEng,
+            dateOfBirth: dateOfBirth,
+            cityOfBirth: cityOfBirth,
+            cityOfBirthEng: cityOfBirthEng,
+            dateOfIssue: dateOfIssue,
+            dateOfExpire: dateOfExpire,
+            authority: authority,
+            number: number,
+            category: selectedCategories,
+            cityOfIssue: cityOfIssue
+        )
         modelContext.insert(drive)
         do {
             try modelContext.save()
@@ -47,8 +90,4 @@ struct AddDriveMainView: View {
             print(error.localizedDescription)
         }
     }
-}
-
-#Preview {
-    AddDriveMainView()
 }

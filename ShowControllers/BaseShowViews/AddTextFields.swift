@@ -19,6 +19,9 @@ import SwiftUI
 ///
 /// - Note: Тип `changeType` должен соответствовать протоколу `onChangeAddView`.
 struct AddField: View {
+
+    // MARK: - Properties
+
     let title: String?
     let placeHolder: String
     let changeType: onChangeAddView
@@ -26,9 +29,11 @@ struct AddField: View {
     let keyboardType: UIKeyboardType
     let titlePosition: TitlePositions
 
+    // MARK: - Private functions
+
     /// Функция для создания текстового поля ввода.
     /// - Returns: Вью, содержащее текстовое поле ввода.
-    func textFieldBuilder() -> some View {
+   private func textFieldBuilder() -> some View {
         HStack {
             HStack {
                 TextField(placeHolder, text: $text)
@@ -57,14 +62,16 @@ struct AddField: View {
 
 /// Функция для создания заголовка текстового поля.
 /// - Returns: Вью, содержащее заголовок текстового поля.
-    func titleBuilder() -> some View {
+   private func titleBuilder() -> some View {
         HStack {
-            Text(title ?? "")
+            Text(title ?? .empty)
                 .font(.caption)
                 .foregroundColor(.secondary)
             Spacer()
         }
     }
+
+    // MARK: - Body
 
     var body: some View {
         switch titlePosition {

@@ -18,14 +18,11 @@ extension View {
     }
 }
 
-struct DocumentWrapper: Identifiable {
-    let id = UUID()
-    let document: Any
-}
-
 extension String {
+    static let empty = ""
+
     func chunkFormatted(withChunkSize chunkSize: Int, withSeparator separator: Character) -> String {
-        return self.filter { $0 != separator }.enumerated().reduce(into: "") { result, pair in
+        return self.filter { $0 != separator }.enumerated().reduce(into: .empty) { result, pair in
             if pair.offset > 0 && pair.offset % chunkSize == 0 {
                 result.append(separator)
             }
@@ -54,6 +51,4 @@ extension String {
         result = formattedDate
         return String(result.prefix(10))
     }
-
-    static let empty = ""
 }

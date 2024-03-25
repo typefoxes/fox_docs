@@ -8,18 +8,23 @@
 import SwiftUI
 
 struct PassportView: View {
-    
+    // MARK: - Constants
+
     private enum Constants {
         static let titleMain: String = "РОССИЙСКАЯ ФЕДЕРАЦИЯ"
         static let padding: CGFloat = 10
         static let cornerRadius: CGFloat = 10
         static let passportPhoto: Image = Image("passportPhoto")
     }
-    
+   
+    // MARK: - Properties
+
     let passport: PassportModel
     var copyAction: (String) -> Void
     var shareAction: String
     var shareTitle: String
+
+    // MARK: - Body
 
     var body: some View {
         VStack(spacing: Constants.padding) {
@@ -27,10 +32,11 @@ struct PassportView: View {
                 .foregroundColor(.passportText)
                 .font(.caption)
 
-            PassportDetailsView(passport: passport, copyAction: copyAction)
-
+            PassportDetailsView(
+                passport: passport,
+                copyAction: copyAction
+            )
             DividerView()
-
             PassportPhotoView(
                 image: Constants.passportPhoto,
                 fullName: passport.fullName,
@@ -49,6 +55,8 @@ struct PassportView: View {
         )
     }
 }
+
+// MARK: - PassportDetailsView
 
 struct PassportDetailsView: View {
 
@@ -72,12 +80,12 @@ struct PassportDetailsView: View {
     }
     var body: some View {
         VStack(spacing: Constants.spacing) {
-            DetailRow(title: Constants.whoGiveTitle, value: passport.whoGive, position: .vertical, action: whoGiveCopyAction)
+            DetailRow(title: Constants.whoGiveTitle, value: passport.whoGive, position: .vertical, textColor: .passportText, action: whoGiveCopyAction)
             HStack(spacing: Constants.spacing) {
-                DetailRow(title: Constants.dateTitle, value: passport.dateOfVidachy, position: .vertical)
-                DetailRow(title: Constants.codeTitle, value: passport.codePodrazdelenia, position: .vertical)
+                DetailRow(title: Constants.dateTitle, value: passport.dateOfVidachy, position: .vertical, textColor: .passportText)
+                DetailRow(title: Constants.codeTitle, value: passport.codePodrazdelenia, position: .vertical, textColor: .passportText)
             }
-            DetailRow(title: .empty, value: passport.seriaAndNumber, position: .none, action: numberCopyAction)
+            DetailRow(title: .empty, value: passport.seriaAndNumber, position: .none, textColor: .passportText, action: numberCopyAction)
         }
         .padding(Constants.spacing)
         .background(
@@ -88,6 +96,7 @@ struct PassportDetailsView: View {
 }
 
 struct PassportPhotoView: View {
+    // MARK: - Constants
 
     private enum Constants {
         static let padding: CGFloat = 10
@@ -99,6 +108,8 @@ struct PassportPhotoView: View {
         static let placeOfBirthTitle: String = "Место рождения"
     }
 
+    // MARK: - Properties
+
     let image: Image
     let fullName: String
     let sex: String
@@ -107,6 +118,8 @@ struct PassportPhotoView: View {
     var shareAction: String
     var shareTitle: String
     
+    // MARK: - Body
+
     var body: some View {
         VStack {
             HStack {
@@ -117,15 +130,40 @@ struct PassportPhotoView: View {
                     .cornerRadius(Constants.cornerRadius)
 
                 VStack(alignment: .leading, spacing: Constants.padding) {
-                    DetailRow(title: Constants.nameTitle, value: fullName, position: .vertical)
+                    DetailRow(
+                        title: Constants.nameTitle,
+                        value: fullName,
+                        position: .vertical,
+                        textColor: .passportText
+                    )
                     HStack {
-                        DetailRow(title: Constants.genderTitle, value: sex, position: .vertical)
-                        DetailRow(title: Constants.dateOfBirthTitle, value: dateOfBirth, position: .vertical)
+                        DetailRow(
+                            title: Constants.genderTitle,
+                            value: sex,
+                            position: .vertical,
+                            textColor: .passportText
+                        )
+                        DetailRow(
+                            title: Constants.dateOfBirthTitle,
+                            value: dateOfBirth,
+                            position: .vertical,
+                            textColor: .passportText
+                        )
                     }
-                    DetailRow(title: Constants.placeOfBirthTitle, value: placeOfBirth, position: .vertical)
+
+                    DetailRow(
+                        title: Constants.placeOfBirthTitle,
+                        value: placeOfBirth,
+                        position: .vertical,
+                        textColor: .passportText
+                    )
                 }
             }
-            ShareLinkButton(action: shareAction, shareTitle: shareTitle)
+
+            ShareLinkButton(
+                action: shareAction,
+                shareTitle: shareTitle
+            )
         }
         .padding(Constants.padding)
         .background(
